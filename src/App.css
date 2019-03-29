@@ -1,0 +1,316 @@
+.createNotePinIcon {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0%
+}
+.cardToolsClose {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5.5%
+}
+
+  #createNoteParent {
+    margin-left: 30%
+  }
+  .createNote {
+    height: 0px;
+    width: 500px;
+    margin-left: 100px;
+    margin-top: 100px;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #dadce0;
+  }
+  .createNote1 {
+    /* height: 100px; */
+    width: 500px;
+    margin-left: 100px;
+    margin-top: 100px;
+    border-radius: 10px;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #dadce0;
+  }
+  .staticCreateNote {
+    display: flex;
+    flex-direction: row;
+    margin-top: -3%
+  }
+#noteMenu{
+  letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+}
+#reminderMenu{
+  letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+}
+#labelMenu
+{
+  letter-spacing: .01785714em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 700;
+}
+#archiveMenu{
+  letter-spacing: .01785714em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 700;
+}
+#trashIcon{
+  letter-spacing: .01785714em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 700;
+}
+ .search{
+  background: transparent;
+  border: none;
+  font: normal 16px Roboto,sans-serif;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  height: 46px;
+  outline: none;
+  padding: 6px 16px 11px 16px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  white-space: nowrap;
+ }
+#fundoo-font-dashboard{
+  display: inline-block;
+    font-family: 'Product Sans',Arial,sans-serif;
+    font-size: 22px;
+    line-height: 24px;
+    padding-left: 8px;
+    position: relative;
+    top: -1.5px;
+    vertical-align: middle;
+    color: inherit;
+    opacity: 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    opacity: .54;
+}
+.icons{
+  opacity:.54
+}
+
+/**************************************css for reset page**********************************/
+#statement1-reset{
+  font-weight: 200%;
+  margin-top: 0%;
+  text-align: left;
+  font-size: 150%
+}
+#statement2-reset{
+  font-weight: 200%;
+  margin-top: 10%;
+  text-align: left;
+  font-size: 150%
+}
+.newpassword{
+  height:50%;
+  margin-left: 0%;
+  margin-right: 0%;
+  width: 92%;
+  flex-grow: 100%
+}
+#submitbutton-reset {
+  margin-left: 0.5%;
+  margin-right: 18%;
+  margin-top: 5%;
+  padding: initial;
+  display: flex;
+  justify-content: space-between;
+}
+/*************************css for forgotpassword page***************/
+.box_forgot{
+  width: 500px;
+  height: 450px;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #555;
+  background-color: #fff;
+  /* margin: 10% 0px 0px 30%; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6.0%;
+  margin-bottom: 3.5%;
+}
+#statement1{
+  font-weight: 200%;
+  margin-top: 0%;
+  text-align: left;
+  font-size: 150%
+}
+#statement3{
+  font-weight: 200%;
+  margin-top: 0%;
+  text-align: left;
+  font-size: 125%;
+}
+#email-input-forgot{
+  margin-left: -1%;
+  margin-top: 5%;
+}
+#submitbutton-forgot {
+  margin-left: -0.5%;
+  margin-right: 18%;
+  margin-top: 4%;
+  padding: initial;
+  display: flex;
+  justify-content: space-between;
+}
+
+/************************************css for register page*******************************/
+#font_register{
+  font-weight: 300%;
+  margin-top: 0%;
+  text-align: left;
+  font-size: 150%
+}
+.box_register{
+  width: 500px;
+  height: 450px;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #555;
+  background-color: #fff;
+  /* margin: 10% 0px 0px 30%; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6.0%;
+  margin-bottom: 3.5%;
+}
+#fundoofont_register{
+  font-weight: bold;
+ text-align: center;
+  font-size: 100%;
+  font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+  margin-top: -18%;
+}
+.statement1{
+  font-weight:300%
+}
+#firstname-input{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px;
+  margin-right: 40px;
+}
+.username{
+  height:50%;
+  margin-left: 0%;
+  margin-right: 0%;
+  width: 92%;
+  flex-grow: 100%
+}
+#button-signIn{
+  margin-left: 0%;
+  margin-right: 8%;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  text-transform: lowercase;
+}
+.button-next{
+  margin-left: 82%;
+  margin-right: 4%;
+  margin-top: -6%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/******************************css for login page*********************************/
+.box {
+    width: 400px;
+    height: 493px;
+    flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #555;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7.5%;
+    margin-bottom: 3.5%;
+  }
+  #font{
+    font-weight: 200;
+    margin-top: -12%;
+    text-align: center;
+  }
+  #fundoofont{
+    font-weight: normal;
+   text-align: center;
+    font-size: 400%;
+    font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+    margin-top: -18%;
+  }
+  #font-F{
+    color:#4285F4;
+    font-family: sans-serif;
+  }
+  #font-u{
+    color:#DB4437
+}
+#font-n{
+    color:#F4B400;
+}
+#font-d{
+    color:#4285F4;
+}
+#font-o{
+    color:lightgreen;
+}
+#font-o{
+    color:#DB4437
+}
+  #email-input{
+    margin-left: 22%;
+    margin-right: 0%;
+    margin-top: 8%;
+  }
+  #password-input{
+    margin-left: 22%;
+    width: 55%;
+    margin-right: 0%;
+    margin-top: 8%;
+  }
+  #forgotbutton {
+    font-weight: 800;
+    margin-left: -1.5%;
+    margin-right: 17%;
+    margin-top: -18%;
+    display: flex;
+    text-transform: lowercase;
+    justify-content: space-between;
+  }
+  #submitbutton {
+    margin-left: 79.5%;
+    margin-right: 18%;
+    margin-top: 16%;
+    padding: initial;
+    display: flex;
+    justify-content: space-between;
+  }
+  #createbutton {
+    font-weight: bold;
+    margin-left: 0.5%;
+    margin-right: 17%;
+    margin-top: 5%;
+    text-transform: none;
+    padding: initial;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+
+  
