@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "jest": "^24.5.0",
     "jest-enzyme": "^7.0.2",
+    "jsonwebtoken": "^8.5.1",
     "material-ui": "^0.20.2",
     "nodemon": "^1.18.10",
     "react": "^16.8.4",
@@ -27,7 +28,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  
   "browserslist": [
     ">0.2%",
     "not dead",

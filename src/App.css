@@ -1,12 +1,143 @@
+/*************************************display notes************************************/
+div .listRemindr {
+  padding-left: 15px
+}
+
+div .currentDate {
+  display: flex;
+  justify-content: space-between;
+}
+
+#cardsViewDiv {
+  margin-left: 30%;
+  margin-top:5%;
+  background-color: #202124;
+  width: 25%;
+}
+#displaycontentdiv {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3%;
+
+}
+.CardsView {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
+.cards:hover .cardTools {
+  visibility: visible;
+  box-shadow: 2px 2px 2px 2px solid gray
+}
+#pallette{
+  height: 62px;
+    margin: 0 14px;
+    width: 32px;
+    color: #202124;
+    opacity: .71;
+}
+#reminderIcon{
+  height: 0px;
+  margin: 0 50px;
+  width: 32px;
+  color: #202124;
+    opacity: .71;
+}
+#archiveIcon{
+  height: 0px;
+  /* margin: 0 90px; */
+  width: 32px;
+  color: #202124;
+    opacity: .71;
+    /* margin-top:-25px; */
+    margin-top: -59%;
+    margin-left: 50%;
+    padding: 17%;
+}
+.colorPalleteCard  {
+  position: absolute;
+  max-width: 116px;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  z-index: 2;
+  transition: 5s;
+}
+/**********************************css for user profile****************************/
+@media only screen and (min-width:500px) and (max-width:535px){
+#userProfileIcon {
+  margin-left: 0px; 
+}
+
+#paperlogout{
+  width:100%;outline: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: 991;
+    line-height: normal;
+    width: 300px;
+    padding: 0px;
+    margin-top: 13px;
+    margin-right: 50%
+}
+
+#userProfileDetails {
+  display: flex;
+  flex-direction: space-between;
+}
+.avatar {
+  margin: 10;
+  color:royalblue
+}
+
+#profilebutton {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3.5%;
+}
+#addaccount{
+  text-transform: inherit;
+  background: #f8f8f8;
+    border: 1px solid #c6c6c6;
+    display: inline-block;
+    line-height: 28px;
+    padding: 0 12px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    color: #666;
+    margin-left: 0%;
+}
+#signout{
+  text-transform:inherit;
+  margin-right: 1%;
+  display: inline-block;
+  background: #f8f8f8;
+  border: 1px solid #c6c6c6;
+    line-height: 28px;
+    padding: 0 12px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    margin: 0 20px;
+    white-space: nowrap;
+    color: #666;
+    cursor: default;
+    text-decoration: none;
+}
+}
+/*************************** css for create note ,appbar ********************************/
 .createNotePinIcon {
   display: flex;
   flex-direction: row;
-  margin-top: 0%
+  margin-top: 0%;
 }
 .cardToolsClose {
   display: flex;
   justify-content: space-between;
   margin-top: 5.5%
+}
+.listCards:hover .cardTools {
+  visibility: visible
 }
 
   #createNoteParent {
@@ -96,8 +227,16 @@
     -webkit-font-smoothing: antialiased;
     opacity: .54;
 }
-.icons{
-  opacity:.54
+#refreshicon{
+  opacity:.54,
+}
+.listicon{
+  opacity:.54,
+  
+}
+.settingsicon{
+  opacity:.54,
+  
 }
 
 /**************************************css for reset page**********************************/
@@ -311,6 +450,3 @@
     display: flex;
     justify-content: space-between;
   }
-  
-
-  

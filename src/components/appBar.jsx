@@ -1,23 +1,16 @@
 import React from 'react';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-
 import InputBase from '@material-ui/core/InputBase';
-
-
 import { withStyles } from '@material-ui/core/styles';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Tooltip } from '@material-ui/core';
 import Drawer from '../components/drawer';
 import PersistentDrawerLeft from '../components/drawer';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-
-
+import UserProfile from "../components/userProfile";
 
 const styles = theme => ({
   root: {
@@ -68,10 +61,9 @@ const styles = theme => ({
   inputRoot: {
     color: 'primary',
     width: '100%',
-
   },
   inputInput: {
-    position:'relative',
+    position: 'relative',
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
@@ -102,16 +94,18 @@ class PrimarySearchAppBar extends React.Component {
     mobileMoreAnchorEl: null,
     open: false
   };
-
-  
-
+  handleRefresh(evt) {
+    evt.preventDefault();
+    window.location.reload();
+  }
   handleToggle = () => {
     this.setState({ open: !this.state.open });
   }
+  handleAppbar() {
+    this.props.notePropsToApp();
+  }
   render() {
-
     const { classes } = this.props;
-
     return (
       <div className={classes.root}>
         <AppBar position="static" color="inherit" >
@@ -128,7 +122,7 @@ class PrimarySearchAppBar extends React.Component {
                 Fundoo
               </span>
             </div>
-            <div className={classes.search }>
+            <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -143,30 +137,29 @@ class PrimarySearchAppBar extends React.Component {
               </div>
             </div>
             <div className={classes.grow} />
-            <div className="icons">
+            <div id="refreshicon">
+            <Tooltip title="refresh" onClick={this.handleRefresh}>
               <img src={require('../assets/refresh.svg')} alt="reminder icon"
-                style={{ marginRight: "40px" }} />
-              <img src={require('../assets/list.svg')} alt="reminder icon"
-                style={{ marginRight: "40px" }} />
-              <img src={require('../assets/settings.svg')} alt="reminder icon"
-                style={{ marginRight: "40px" }} />
+                style={{ marginRight: "50px", opacity: .54 }} />
+                    </Tooltip>
             </div>
-          <div className="profile" >
-              <IconButton color="primary">
-                <AccountCircle />
-              </IconButton>
-              </div>
-          
-
+            <div className="listicon">
+              <img src={require('../assets/list.svg')} alt="reminder icon"
+                style={{ marginRight: "50px", opacity: .54 }} />
+            </div>
+            <div className="settingsicon">
+              <img src={require('../assets/settings.svg')} alt="reminder icon"
+                style={{ marginRight: "50px", opacity: .54 }} />
+            </div>
+            <div>
+              <UserProfile props={this.props} />
+            </div>
           </Toolbar>
         </AppBar>
         <PersistentDrawerLeft appBarProps={this.state.open} />
         <Drawer />
-
       </div>
     );
   }
 }
-
-
 export default withStyles(styles)(PrimarySearchAppBar);

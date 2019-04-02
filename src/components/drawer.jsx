@@ -123,10 +123,9 @@ class PersistentDrawerLeft extends React.Component {
             Trash
                     </MenuItem>
         </Drawer>
+        
       </div>
     );
   }
 }
-
-
 export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft);

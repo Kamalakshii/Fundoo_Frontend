@@ -35,12 +35,12 @@ const theme = createMuiTheme({
                 fontFamily: "georgia"
             },
         },
-        MuiDrawer: {
+        MuiToolbar: {
             regular: {
                 display: "flex",
                 justifyContent: "space-between",
                 width: "100%",
-                backgroundColor:"white"
+                backgroundColor: "white"
             },
             root: {
                 position: "absolute",
@@ -64,7 +64,7 @@ export default class appBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            left: true,
+            left: false,
             open: false,
             searchNote: ""
         };
@@ -95,21 +95,16 @@ export default class appBar extends React.Component {
             console.log("error at handleSearchBar in appBar");
         }
     }
-
-
-    handleRefresh(evt) {
-        evt.preventDefault();
-        window.location.reload();
-    }
-
+    // handleRefresh(evt) {
+    //     evt.preventDefault();
+    //     window.location.reload();
+    // }
     handleAppbar() {
         this.props.notePropsToApp();
     }
-
-    searchLabels(value) {
-        this.props.searchLabels(value)
-    }
-
+    // searchLabels(value) {
+    //     this.props.searchLabels(value)
+    // }
     render() {
         // const { open } = this.state;
         return (
@@ -161,11 +156,10 @@ export default class appBar extends React.Component {
                             </Toolbar>
                             <DrawerMenu
                                 appBarProps={this.state.open}
-
                                 handleNavigation={this.props.handleNavigation}
-                                searchLabels={(value) => this.searchLabels(value)}
-                                makeLabelFalse={this.props.makeLabelFalse} 
-                                />
+                                // searchLabels={(value) => this.searchLabels(value)}
+                                makeLabelFalse={this.props.makeLabelFalse}
+                            />
                         </AppBar>
                     </MuiThemeProvider>
                 </div>
