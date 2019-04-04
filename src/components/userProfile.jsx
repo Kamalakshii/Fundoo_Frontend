@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the user profile.
+ *  @file           : userProfile.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 30-03-2019
+ *****************************************************************************************/
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Popper from '@material-ui/core/Popper';
@@ -51,6 +57,7 @@ export default class Logout extends React.Component {
    handlelogout = event => {
     try {
         event.preventDefault();
+        localStorage.clear();
         this.props.props.props.history.push("/login");
     } catch (err) {
         console.log("error at registrationclick in userProfile");
@@ -93,7 +100,6 @@ handleregister = event => {
   };
 
   render() {
-
     const { anchorEl, open, placement } = this.state;
     const userDetails = localStorage.getItem('username');
     const initial = userDetails.substring(0, 1);
@@ -126,7 +132,7 @@ handleregister = event => {
                         </Tooltip>
                       </IconButton>
                       <span style={{ marginTop: "-1px", marginLeft: "20px" }}>
-                        <p style={{ marginBottom: "0px" }}>{userDetails}<br></br> </p>
+                        <p style={{ marginBottom: "0px" }}>{'username'}<br></br> </p>
                         <small style={{ marginBottom: "0px" }}>{localStorage.getItem('email')} </small>
                       </span>
                     </div>
@@ -149,7 +155,7 @@ handleregister = event => {
         <div className="iconButton">
           <IconButton id="userProfileIcon">
             <Tooltip
-              title={"Fundoo Account   :" + localStorage.getItem('username')}>
+              title={"Fundoo Account   :" + localStorage.getItem('userDetails')}>
               <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
                 {this.state.profilePic !== "" ?
                   <img style={{

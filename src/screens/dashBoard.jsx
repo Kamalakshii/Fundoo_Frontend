@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create a dashboard and it contains few components. 
+ *  @file           : dashBoard.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 27-03-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import CreateNote from '../components/createNote';
 import AppbarComponent from '../components/appBar';
@@ -50,7 +56,6 @@ export default class dashBoard extends Component {
                     {this.state.archive ?
                         <div id="dashboard1">
                             <Notes
-                                noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}
                             />
                         </div>

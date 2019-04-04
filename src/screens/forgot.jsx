@@ -1,3 +1,10 @@
+/****************************************************************************************
+ *  @Purpose        : To create a forgot password page for recover the password
+                      using mail.
+ *  @file           : forgotPassword.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 23-03-2019
+ *****************************************************************************************/
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';

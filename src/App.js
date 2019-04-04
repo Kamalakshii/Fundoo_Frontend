@@ -6,7 +6,13 @@ import registration from "../src/screens/register";
 import forgotPassword from "../src/screens/forgot";
 import resetPassword from "../src/screens/reset";
 import dashBoard from "../src/screens/dashBoard";
- class App extends React.Component {
+/******************************************************************************
+ *  @Purpose        : Here will import all the pages by using specific path.
+ *  @file           : App.js        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 15-03-2019
+ ******************************************************************************/ 
+class App extends React.Component {
   render() {
     return (
       <div>

@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the tools that required in creating a note.
+ *  @file           : toolbar.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 30-03-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import Reminder from '../components/reminder';
 import ColorBox from '../components/colorBox';
@@ -6,7 +12,7 @@ export default class Tools extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
         }
         this.handleToggle = this.handleToggle.bind(this);
     }
@@ -24,6 +30,7 @@ export default class Tools extends Component {
         const setNoteTime = parseInt(new Date().getHours()) >= 10 ? "PM" : "AM";
         return (
             <div>
+                
                 <div className="cardTools">
                   
                 <Reminder

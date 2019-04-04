@@ -1,4 +1,9 @@
-
+/*************************************************************************************************************
+ *  @Purpose        : Here we have to create the reminder for setting the reminder for note.
+ *  @file           : reminder.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 29-03-2019
+ ***************************************************************************************************************/
 import React, { Component } from 'react';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
@@ -73,7 +78,7 @@ export default class reminder extends Component {
         date = date.replace(days[new Date().getDay() - 1], days[new Date().getDay()]);
         var reminder1 = date + ", 8 AM";
         console.log("tomorow reminder data====>", reminder1);
-        this.props.reminder(reminder1, this.props.noteID)
+        this.props.reminder(reminder1, this.props.noteID)                                         
     }
     // setWeeklyReminder = () => {
     //     this.handleClose();
@@ -105,11 +110,11 @@ export default class reminder extends Component {
                                             <ListItem className="listRemindr" >Reminder:</ListItem>
                                             <MenuItem className="currentDate" onClick={() => this.setTodayReminder()}>
                                                 <div>Later today</div>
-                                                <div>8:00 {setAMPM}</div>
+                                                <div>10:00 {setAMPM}</div>
                                             </MenuItem>
                                             <MenuItem className="currentDate" onClick={() => this.setTomorrowReminder()}>
                                                 <div>Tomorrow</div>
-                                                <div>8:00 AM</div>
+                                                <div>10:00 AM</div>
                                             </MenuItem>
                                             {/* <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
                                                 <div>Next Week</div>

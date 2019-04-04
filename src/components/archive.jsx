@@ -1,3 +1,9 @@
+/*****************************************************************************************************
+ *  @Purpose        : Here we will archive the created notes
+ *  @file           : archive.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 20-03-2019
+ *****************************************************************************************************/
 import React, { Component } from 'react';
 import Archiveicon from '../assets/archive.svg';
 import { Snackbar, IconButton, Tooltip } from '@material-ui/core';

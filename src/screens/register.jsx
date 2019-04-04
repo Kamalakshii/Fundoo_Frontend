@@ -1,3 +1,9 @@
+/********************************************************************************
+ *  @Purpose        : Create a registration page to register the users .
+ *  @file           : register.jsx        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 24-03-2019
+ *********************************************************************************/
 import React from "react";
 import "../App.css";
 import TextField from '@material-ui/core/TextField';

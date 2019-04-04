@@ -1,3 +1,9 @@
+/********************************************************************************
+ *  @Purpose        : To create a login page for login to the registered account.
+ *  @file           : login.jsx        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 25-03-2019
+ *********************************************************************************/
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -107,6 +113,8 @@ export default class login extends React.Component {
                             snackBarMessage: "Login Successfull!!"
                         });
                          localStorage.setItem('username', response.data.result.firstname)
+                         console.log("in login_________________",response.data.result.firstname);
+                         
                           localStorage.setItem('email', response.data.result.email)
                          localStorage.setItem('userId', response.data.result._id)
                     localStorage.setItem('token', response.data.token.token)

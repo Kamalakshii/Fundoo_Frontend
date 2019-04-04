@@ -1,10 +1,14 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the drawer component.
+ *  @file           : drawer.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 25-03-2019
+ *****************************************************************************************/
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { MenuItem } from '@material-ui/core';
-
 const drawerWidth = 240;
-
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -62,6 +66,12 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  menuItem:{
+    "&:focus":{
+      backgroundColor:"#feefc3",
+      borderRadius: '0 25px 25px 0'
+    }
+  }
 });
 
 class PersistentDrawerLeft extends React.Component {
@@ -69,11 +79,9 @@ class PersistentDrawerLeft extends React.Component {
     open: false,
   };
   render() {
-    const { classes, theme } = this.props;
-    const { open } = this.state;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
-
         <Drawer
           className={classes.drawer}
           variant="persistent"
@@ -83,45 +91,49 @@ class PersistentDrawerLeft extends React.Component {
             paper: classes.drawerPaper,
           }}
         >
-
-          <MenuItem id="noteMenu" >
-            <img src={require('../assets/note.svg')} alt="note icon"
-              style={{ marginRight: "50px" }} />
+        <div >
+          <MenuItem id="noteMenu" className={classes.menuItem} >
+            <img src={require('../assets/note.svg')} alt="note icon" 
+              style={{ marginRight: "50px"}} />
             Notes
            </MenuItem>
-
-
-          <MenuItem id="reminderMenu" >
+           </div>
+           <div>
+          <MenuItem id="reminderMenu" className={classes.menuItem} >
             <img src={require('../assets/remainder.svg')} alt="reminder icon"
               style={{ marginRight: "50px" }} />
-            Reminders
+            Reminder
            </MenuItem>
-
+           </div>
+           
           <div style={{ borderBottom: "1px solid lightgrey", borderTop: "1px solid lightgrey" }}>
             <div style={{ padding: "3.5% 8%", fontSize: "12px", marginBottom: "15px", marginTop: "10px", fontFamily: "arial", color: "gray" }}>
               LABELS
              </div>
-
+             
             <div>
-              <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
+              <MenuItem id="labelMenu"  onClick={this.handleEditLabel}>
                 <img src={require('../assets/edit.svg')} alt="edit icon"
                   style={{ marginRight: "50px" }} />
                 Edit Labels
                </MenuItem>
             </div>
-
-          </div>
-          <MenuItem id="archiveMenu" >
+            
+          </div> 
+           <div >
+          <MenuItem id="archiveMenu" className={classes.menuItem}>
             <img src={require('../assets/archive.svg')} alt="archive icon"
               style={{ marginRight: "50px" }} />
             Archive
           </MenuItem>
-
-          <MenuItem id="trashIcon" >
+          </div>
+          <div>
+          <MenuItem id="trashMenu" className={classes.menuItem}>
             <img src={require('../assets/trash.svg')} alt="trash icon"
               style={{ marginRight: "50px" }} />
             Trash
                     </MenuItem>
+                    </div>
         </Drawer>
         
       </div>

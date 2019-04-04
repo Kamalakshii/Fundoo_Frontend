@@ -1,3 +1,9 @@
+/*******************************************************************************
+ *  @Purpose        : To create note services that will perform CRUD operations.
+ *  @file           : noteServices.js        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 29-03-2019
+ *******************************************************************************/
 import axios from 'axios';
 /**
  * @description:To create a new note

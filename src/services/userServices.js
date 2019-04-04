@@ -1,3 +1,13 @@
+/******************************************************************************
+ *  @Purpose        : To create user services that will send the incoming data 
+                    to server and save that data to database and at login, reset
+                    password, forgotpassword time fetching correct information 
+                    from database.
+ *  @file           : userServices.js        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @version        : v0.1
+ *  @since          : 29-03-2019
+ ******************************************************************************/
 import axios from "axios";
 export function userLogin(data)
 {

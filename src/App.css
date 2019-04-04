@@ -2,23 +2,31 @@
 div .listRemindr {
   padding-left: 15px
 }
-
+#pin
+{
+  margin-left: 93%;
+    /* right: 20px; */
+    margin-top: -32px;
+}
 div .currentDate {
   display: flex;
   justify-content: space-between;
 }
 
 #cardsViewDiv {
-  margin-left: 30%;
+  margin-left: 38%;
   margin-top:5%;
-  background-color: #202124;
-  width: 25%;
+  width: 42%;
+  /* border-radius:0%; */
+  font-family: 'Roboto',arial,sans-serif;
+  opacity: 1;
+  position :fixed;
 }
+
 #displaycontentdiv {
   display: flex;
   justify-content: space-between;
   margin-top: 3%;
-
 }
 .CardsView {
   display: flex;
@@ -26,7 +34,7 @@ div .currentDate {
   flex-wrap: wrap
 }
 .cards:hover .cardTools {
-  visibility: visible;
+  visibility: hidden;
   box-shadow: 2px 2px 2px 2px solid gray
 }
 #pallette{
@@ -65,7 +73,6 @@ div .currentDate {
   transition: 5s;
 }
 /**********************************css for user profile****************************/
-@media only screen and (min-width:500px) and (max-width:535px){
 #userProfileIcon {
   margin-left: 0px; 
 }
@@ -81,16 +88,14 @@ div .currentDate {
     margin-top: 13px;
     margin-right: 50%
 }
-
 #userProfileDetails {
   display: flex;
-  flex-direction: space-between;
+  flex-direction: space-between; 
 }
 .avatar {
   margin: 10;
   color:royalblue
 }
-
 #profilebutton {
   display: flex;
   justify-content: space-around;
@@ -106,7 +111,7 @@ div .currentDate {
     -webkit-border-radius: 2px;
     border-radius: 2px;
     color: #666;
-    margin-left: 0%;
+    margin-left: 5%;
 }
 #signout{
   text-transform:inherit;
@@ -115,7 +120,7 @@ div .currentDate {
   background: #f8f8f8;
   border: 1px solid #c6c6c6;
     line-height: 28px;
-    padding: 0 12px;
+    padding: 0 8px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
     margin: 0 20px;
@@ -124,8 +129,9 @@ div .currentDate {
     cursor: default;
     text-decoration: none;
 }
-}
+
 /*************************** css for create note ,appbar ********************************/
+
 .createNotePinIcon {
   display: flex;
   flex-direction: row;
@@ -139,7 +145,6 @@ div .currentDate {
 .listCards:hover .cardTools {
   visibility: visible
 }
-
   #createNoteParent {
     margin-left: 30%
   }
@@ -171,13 +176,13 @@ div .currentDate {
   letter-spacing: .01785714em;
     font-family: 'Google Sans',Roboto,Arial,sans-serif;
     font-size: .875rem;
-    font-weight: 700;
+    font-weight: 700; 
 }
 #reminderMenu{
-  letter-spacing: .01785714em;
-    font-family: 'Google Sans',Roboto,Arial,sans-serif;
-    font-size: .875rem;
-    font-weight: 700;
+letter-spacing: .01785714em;
+font-family: 'Google Sans',Roboto,Arial,sans-serif;
+font-size: .875rem;
+font-weight: 700;
 }
 #labelMenu
 {
@@ -192,13 +197,13 @@ div .currentDate {
   font-size: .875rem;
   font-weight: 700;
 }
-#trashIcon{
+#trashMenu{
   letter-spacing: .01785714em;
   font-family: 'Google Sans',Roboto,Arial,sans-serif;
   font-size: .875rem;
   font-weight: 700;
 }
- .search{
+.search{
   background: transparent;
   border: none;
   font: normal 16px Roboto,sans-serif;
@@ -212,6 +217,14 @@ div .currentDate {
   box-sizing: border-box;
   white-space: nowrap;
  }
+@media only screen and (min-width:536px) and (max-width:450px){
+#trashIcon{
+  letter-spacing: .01785714em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 700;
+}
+
 #fundoo-font-dashboard{
   display: inline-block;
     font-family: 'Product Sans',Arial,sans-serif;
@@ -232,13 +245,11 @@ div .currentDate {
 }
 .listicon{
   opacity:.54,
-  
 }
 .settingsicon{
   opacity:.54,
-  
 }
-
+}
 /**************************************css for reset page**********************************/
 #statement1-reset{
   font-weight: 200%;

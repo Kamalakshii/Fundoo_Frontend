@@ -1,8 +1,8 @@
 /*****************************************************************************************************
- *  @Purpose        : 
+ *  @Purpose        : to display notes in the dashbord
  *  @file           : notes.jsx       
  *  @author         : KAMALAKSHI C SWAMY
- *  @since          : 01-04-2019
+ *  @since          : 31-03-2019
  *****************************************************************************************************/
 import React, { Component } from 'react';
 import { Card, Chip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
@@ -39,6 +39,12 @@ export default class Cards extends Component {
             notes: [],
             label: false
         }
+    }
+    async handleClick(note) {
+        console.log('note data ' + note);
+        console.log("note--------------------->", note);
+        this.cardsToDialogBox.current.getData(note);;
+        await this.setState({ open1: true })
     }
     componentDidMount() {
         getNotes()

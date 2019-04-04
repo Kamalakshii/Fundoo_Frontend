@@ -1,3 +1,9 @@
+/*****************************************************************************************************
+ *  @Purpose        : Here we have to set the color for note
+ *  @file           : colorBox.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 26-03-2019
+ *****************************************************************************************************/
 import React, { Component } from 'react';
 import { IconButton, Tooltip, Card, Popper, Fade, Paper } from '@material-ui/core';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -26,25 +32,25 @@ export default class ColorPallete extends Component {
             anchorEl: null,
         }
         this.handleToggle = this.handleToggle.bind(this);
-        // this.handleMouseEnter = this.handleMouseEnter.bind(this);
-        // this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.handleColor = this.handleColor.bind(this);
     }
     /**
      * @description:it will display the color box when mouse entered into the color icon
      */
-    // handleMouseEnter() {
-    //     try {
-    //         this.setState({ open: true });
-    //         // this.props.handleToggle(!this.state.open)
-    //     } catch (err) {
-    //         console.log("error at handleMouseEnter in colorBox");
-    //     }
-    // }
-    // handleMouseLeave() {
-    //     this.setState({ open: false });
-    //      this.props.handleToggle(!this.state.open)
-    // }
+    handleMouseEnter() {
+        try {
+            this.setState({ open: true });
+            // this.props.handleToggle(!this.state.open)
+        } catch (err) {
+            console.log("error at handleMouseEnter in colorBox");
+        }
+    }
+    handleMouseLeave() {
+        this.setState({ open: false });
+         this.props.handleToggle(!this.state.open)
+    }
     /**
      * @description:it will close the color popper box
      */
@@ -114,25 +120,6 @@ export default class ColorPallete extends Component {
                         </ClickAwayListener>
                         : null}
                 </div>
-                {/* <Popper open={open} anchorEl={anchorEl} placement={'bottom-start'} transition style={{ zIndex: 9999 }}>
-                    {({ TransitionProps }) => (
-                        <Fade {...TransitionProps} timeout={0}>
-                            <Paper >
-                                <ClickAwayListener onClick={() => this.closePopper()}>
-                                    <div>
-                                        {this.state.open ?
-                                            // <ClickAwayListener onClick={() => this.closePopper()}>
-                                            <Card >
-                                                {changeCardColor}
-                                            </Card>
-                                            // </ClickAwayListener>
-                                            : null}
-                                    </div>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Fade>
-                    )}
-                </Popper> */}
             </div>
         )
     }

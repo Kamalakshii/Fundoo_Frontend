@@ -1,3 +1,9 @@
+/******************************************************************************
+ *  @Purpose        : Create a resetPassword page to reset the new password.
+ *  @file           : reset.jsx        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 26-03-2019
+ ******************************************************************************/
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';

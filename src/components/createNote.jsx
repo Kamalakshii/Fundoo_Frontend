@@ -1,9 +1,15 @@
+/****************************************************************************************
+ *  @Purpose        : Here we have to create the new Notes.
+ *  @file           : createNotes.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 27-03-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
-import { Input, Card ,createMuiTheme, MuiThemeProvider,Chip} from '@material-ui/core'
+import { Input, Card, createMuiTheme, MuiThemeProvider, Chip } from '@material-ui/core'
 import { createNote } from '../services/noteServices';
-
 import { Button } from '@material-ui/core';
 import Tools from './toolbar';
+import EditPin from '../components/pin';
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -19,26 +25,28 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 })
-export default class createNotes extends Component{
-    constructor(props){
+export default class createNotes extends Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             openNote: false,
-               title: "",
+            title: "",
             description: "",
             color: "rgb(255, 255, 255)",
             newNote: {},
             reminder: "",
             archive: false,
- 
+            pinned: false,
+            trash: false
 
-        } 
+        }
         this.handleTitle = this.handleTitle.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
         this.handleColor = this.handleColor.bind(this);
         this.handleReminder = this.handleReminder.bind(this);
         this.handleArchive = this.handleArchive.bind(this);
+        this.handlePinned = this.handlePinned.bind(this);
     }
     handleTitle(evt) {
         try {
@@ -58,10 +66,10 @@ export default class createNotes extends Component{
             console.log("error at handleDescription in createNotes");
         }
     }
-     /**
-     * @description:it will handle the color event
-     * @param {*value for color} value 
-     */
+    /**
+    * @description:it will handle the color event
+    * @param {*value for color} value 
+    */
     handleColor(value) {
         try {
             this.setState({ color: value });
@@ -69,10 +77,10 @@ export default class createNotes extends Component{
             console.log("error at handleColor in createNotes");
         }
     }
-   /**
-     * @description:it will handle the reminder event
-     * @param {*value for reminder} value 
-     */
+    /**
+      * @description:it will handle the reminder event
+      * @param {*value for reminder} value 
+      */
     handleReminder(value) {
         try {
             this.setState({ reminder: value })
@@ -83,10 +91,10 @@ export default class createNotes extends Component{
     reminderNote = () => {
         this.setState({ reminder: "" })
     }
-      /**
-     * @description:it will handle the archive event
-     * @param {*value for archive} value 
-     */
+    /**
+   * @description:it will handle the archive event
+   * @param {*value for archive} value 
+   */
     handleArchive(value) {
         try {
             this.setState({ archive: value });
@@ -94,18 +102,29 @@ export default class createNotes extends Component{
             console.log("error at handleArchive in createNotes");
         }
     }
+    /**
+    * @description:it will handle the pinned event
+    * @param {*value for pinned} value 
+    */
+    handlePinned(value) {
+        try {
+            this.setState({ pinned: value });
+        } catch (err) {
+            console.log("error at handlePinned in createNotes");
+        }
+    }
     handleToggle() {
         try {
             this.setState({ openNote: !this.state.openNote });
             // console.log("pinned", this.state.openNote);
-            if (this.state.title !== '' || this.state.description !== '' ||this.state.color !== "rgb(255, 255, 255)") {
+            if (this.state.title !== '' || this.state.description !== '' || this.state.color !== "rgb(255, 255, 255)") {
                 const note = {
                     userId: localStorage.getItem('userId'),
                     title: this.state.title,
                     description: this.state.description,
                     color: this.state.color,
                     reminder: this.state.reminder,
-
+                    pinned: this.state.pinned,
                     archive: this.state.archive,
                 }
                 createNote(note)
@@ -125,83 +144,87 @@ export default class createNotes extends Component{
                     color: "rgb(255, 255, 255)",
                     reminder: "",
                     archive: false,
+                    pinned: false,
                 })
             }
         } catch (err) {
             console.log("error at handleToggle in createNotes");
         }
     }
-    render()
-{
-            return (!this.state.openNote ?
-                <MuiThemeProvider theme={theme}>
-                    <div id="createNoteParent">
-                        <Card className="createNote">
-                            <div className="staticCreateNote">
-                                <Input
-                                    className="noteInputBase1"
-                                    multiline
-                                    disableUnderline={true}
-                                    placeholder="Take a note ..."
-                                    id="description"
-                                    readOnly={true}
-                                    onClick={this.handleToggle}
-                                    value=""
-                                />
-                            </div>
-                        </Card>
-                    </div>
-                </MuiThemeProvider>
-                :
-                <MuiThemeProvider theme={theme}>
-                    <div id="createNoteParent">
-                        <Card className="createNote1" style={{ backgroundColor: this.state.color }}>
-                            <div className="createNotePinIcon">
-                                <Input
-                                    className="noteInputBase"
-                                    multiline
-                                    disableUnderline={true}
-                                    id="title"
-                                    placeholder="Title"
-                                    value={this.state.title}
-                                    onChange={this.handleTitle}
-                                />
-                                
-                            </div>
+    render() {
+        return (!this.state.openNote ?
+            <MuiThemeProvider theme={theme}>
+                <div id="createNoteParent">
+                    <Card className="createNote">
+                        <div className="staticCreateNote">
+                            <Input
+                                className="noteInputBase1"
+                                multiline
+                                disableUnderline={true}
+                                placeholder="Take a note ..."
+                                id="description"
+                                readOnly={true}
+                                onClick={this.handleToggle}
+                                value=""
+                            />
+                        </div>
+                    </Card>
+                </div>
+            </MuiThemeProvider>
+            :
+            <MuiThemeProvider theme={theme}>
+                <div id="createNoteParent">
+                    <Card className="createNote1" style={{ backgroundColor: this.state.color }}>
+                        <div className="createNotePinIcon">
                             <Input
                                 className="noteInputBase"
                                 multiline
                                 disableUnderline={true}
-                                placeholder="Take a note..."
-                                id="description"
-                                value={this.state.description}
-                                onChange={this.handleDescription}
+                                id="title"
+                                placeholder="Title"
+                                value={this.state.title}
+                                onChange={this.handleTitle}
                             />
-                             {this.state.reminder ?
+                        </div>
+                        <div>
+                            <EditPin
+                                pinStatus={this.state.pinned}
+                                cardPropsToPin={this.handlePinned}
+                            />
+                        </div>
+                        <Input
+                            className="noteInputBase"
+                            multiline
+                            disableUnderline={true}
+                            placeholder="Take a note..."
+                            id="description"
+                            value={this.state.description}
+                            onChange={this.handleDescription}
+                        />
+                        {this.state.reminder ?
                             <Chip
                                 label={this.state.reminder}
                                 onDelete={() => this.reminderNote()}
                             />
                             :
                             null}
-                             <div className="cardToolsClose" >
-                             <Tools
-                               reminder={this.handleReminder}
-                               archiveNote={this.handleArchive}
+                        <div className="cardToolsClose" >
+                            <Tools
+                                reminder={this.handleReminder}
+                                archiveNote={this.handleArchive}
                                 createNotePropsToTools={this.handleColor}
                                 archiveStatus={this.state.archive}
                             />
                             <div>
-                            <Button onClick={this.handleToggle}>close</Button>
+                                <Button onClick={this.handleToggle}>close</Button>
+                            </div>
                         </div>
-                        </div>
-                       
-                        </Card>
-                    </div>
-                </MuiThemeProvider>
-            )
-        }
+
+                    </Card>
+                </div>
+            </MuiThemeProvider>
+        )
     }
-           
-        
-    
+}
+
+

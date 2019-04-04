@@ -1,3 +1,9 @@
+/*****************************************************************************************************
+ *  @Purpose        : Here we have to create the appbar that contains all required appbar components.
+ *  @file           : appBar.jsx       
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 20-03-2019
+ *****************************************************************************************************/
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,7 +24,6 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1,
-
   },
   menuButton: {
     marginLeft: -12,
@@ -92,7 +97,7 @@ class PrimarySearchAppBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    open: false
+    open: true
   };
   handleRefresh(evt) {
     evt.preventDefault();
@@ -157,7 +162,9 @@ class PrimarySearchAppBar extends React.Component {
           </Toolbar>
         </AppBar>
         <PersistentDrawerLeft appBarProps={this.state.open} />
-        <Drawer />
+        <Drawer 
+         appBarProps={this.state.open}
+        />
       </div>
     );
   }
