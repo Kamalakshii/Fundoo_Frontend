@@ -31,3 +31,17 @@ export function resetPassword(password, token) {
         }
     })
 }
+/**
+ * 
+ * @param {*} data 
+ */
+export function uploadProfilePic(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/setProfilePic',
+        data, {
+            headers: headers
+        }
+    )
+}

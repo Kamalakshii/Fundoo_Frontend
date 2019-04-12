@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- *  @Purpose        : Here we will archive the created notes
+ *  @Purpose        : to archive the created notes
  *  @file           : archive.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 20-03-2019
@@ -17,13 +17,13 @@ export default class Archive extends Component {
             snackBarMessage: "",
             openSnackBar: false,
         }
-        this.handleArchive=this.handleArchive.bind(this)
+        this.handleArchive = this.handleArchive.bind(this)
     }
-  async  handleArchive (){
+    async  handleArchive() {
         console.log("(this.props.archiveStatusd", this.state.isArchived);
         if (this.props.archiveStatus === false) {
             //this.state.isArchived = true;
-          await this.setState({ isArchived: true });
+            await this.setState({ isArchived: true });
             this.setState({
                 openSnackBar: true,
                 snackBarMessage: "Note Archived"
@@ -32,7 +32,7 @@ export default class Archive extends Component {
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
         }
         else {
-          //  this.state.isArchived = false;
+            //  this.state.isArchived = false;
             this.setState({ isArchived: false });
             console.log(" this.state.isArchived changle else", this.state.isArchived);
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
@@ -89,8 +89,8 @@ export default class Archive extends Component {
                         ]}
                     />
                 </div>
-               :
-                <div id = "archiveIcon">
+                :
+                <div id="archiveIcon">
                     <Tooltip title="Archive Note" onClick={
                         this.handleArchive
                     }>

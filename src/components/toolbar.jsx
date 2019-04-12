@@ -1,5 +1,5 @@
 /****************************************************************************************
- *  @Purpose        : Here we have to create the tools that required in creating a note.
+ *  @Purpose        : to create the tools that required in creating a note.
  *  @file           : toolbar.jsx       
  *  @author         : KAMALAKSHI C SWAMY 
  *  @since          : 30-03-2019
@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import Reminder from '../components/reminder';
 import ColorBox from '../components/colorBox';
 import Archive from '../components/archive';
+import MoreOptions from './moreOptions';
 export default class Tools extends Component {
     constructor(props) {
         super(props);
@@ -29,10 +30,8 @@ export default class Tools extends Component {
     render() {
         const setNoteTime = parseInt(new Date().getHours()) >= 10 ? "PM" : "AM";
         return (
-            <div>
-                
-                <div className="cardTools">
-                  
+            <div>               
+                <div className="cardTools">      
                 <Reminder
                         handleToggle={this.handleToggle}
                         parentToolsProps={setNoteTime}
@@ -48,6 +47,12 @@ export default class Tools extends Component {
                         archiveNote={this.props.archiveNote}
                         noteID={this.props.noteID}
                         archiveStatus={this.props.archiveStatus}
+                    />
+                         <MoreOptions
+                        handleToggle={this.handleToggle}
+                        trashNote={this.props.trashNote}
+                        noteID={this.props.noteID}
+                        trashStatus={this.props.trashStatus}
                     />
                 </div>
             </div>

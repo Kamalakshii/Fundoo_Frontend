@@ -1,6 +1,56 @@
+.appList {
+  margin-left: 26px
+}
+.CardsView {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top:5%;
+  margin-left:20%
+}
+.cards {
+  width: 250px;
+  
+  margin: 8px;
+  
+  padding: 15px;
+}
+#gap{
+  display:flex;
+  width:fit-content
+}
+.root{
+  display:flex;
+  flex-wrap:wrap
+}
+.listCards {
+  width: 250px;
+  margin-left: 90px;
+  margin-top: 10px;
+  padding: 10px;
+}
+/***********************moreOptions*******************************************************/
+#moreOptionsMenu {
+  font-family: arial;
+  font-size: 15px;
+  height: 5%;
+}
+.moreOptionsPopper {
+  margin-top: -95px;
+  z-index: -1
+}
+.more{
+  margin-left: 300%;
+  opacity:.71;
+  margin-top:-15%
+}
 /*************************************display notes************************************/
-div .listRemindr {
+div .listRemindr{
   padding-left: 15px
+}
+.chip{
+  margin-left: 0%;
+  margin-top: 3%;
 }
 #pin
 {
@@ -8,45 +58,78 @@ div .listRemindr {
     /* right: 20px; */
     margin-top: -32px;
 }
-div .currentDate {
+div .currentDate{
   display: flex;
   justify-content: space-between;
 }
-
-#cardsViewDiv {
+#cardsViewDiv{
+  margin-left: 20%;
+  /* background-color: #202124; */
+  width: 41%; 
   margin-left: 38%;
+  border-radius:0%;
   margin-top:5%;
-  width: 42%;
-  /* border-radius:0%; */
   font-family: 'Roboto',arial,sans-serif;
   opacity: 1;
-  position :fixed;
 }
-
 #displaycontentdiv {
   display: flex;
   justify-content: space-between;
   margin-top: 3%;
+  padding-bottom: 5%
 }
 .CardsView {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
+
+/* #cardsViewDiv {
+  /* margin-left: 38%;
+  margin-top:5%; */
+  /* width: 41%; */
+  /* border-radius:0%; */
+  /* font-family: 'Roboto',arial,sans-serif;
+  opacity: 1;
+  position :fixed; 
+} */
+/* 
+#displaycontentdiv {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3%;
+  padding-bottom: 5%
+}
+.CardsView {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap ;
+  margin-left: 38%;
+  margin-top: 3%;
+}  */
 .cards:hover .cardTools {
-  visibility: hidden;
+  visibility: visible;
   box-shadow: 2px 2px 2px 2px solid gray
 }
 #pallette{
   height: 62px;
-    margin: 0 14px;
+    margin-left: 100%;
     width: 32px;
     color: #202124;
     opacity: .71;
 }
+.afterSlide {
+  margin-left: 50px;
+  transition: margin-left 0.25s;
+}
+
+.beforeSlide {
+  transition: 0.25s
+}
+
 #reminderIcon{
   height: 0px;
-  margin: 0 50px;
+  margin-left: -1%;
   width: 32px;
   color: #202124;
     opacity: .71;
@@ -54,13 +137,13 @@ div .currentDate {
 #archiveIcon{
   height: 0px;
   /* margin: 0 90px; */
-  width: 32px;
+  width: 45px;
   color: #202124;
     opacity: .71;
     /* margin-top:-25px; */
-    margin-top: -59%;
-    margin-left: 50%;
-    padding: 17%;
+    margin-top: -124%;
+    margin-left: 200%;
+    /* padding: 17%; */
 }
 .colorPalleteCard  {
   position: absolute;
@@ -131,6 +214,14 @@ div .currentDate {
 }
 
 /*************************** css for create note ,appbar ********************************/
+/* .noteInputBase {
+  margin-top: 3%;
+  width: 460px;
+}
+.noteInputBase1 {
+  margin-top: 0%;
+  width: 460px;
+} */
 
 .createNotePinIcon {
   display: flex;
@@ -157,6 +248,7 @@ div .currentDate {
     padding: 20px;
     border: 1px solid #dadce0;
   }
+  
   .createNote1 {
     /* height: 100px; */
     width: 500px;
@@ -170,7 +262,8 @@ div .currentDate {
   .staticCreateNote {
     display: flex;
     flex-direction: row;
-    margin-top: -3%
+    margin-top: -3%;
+   
   }
 #noteMenu{
   letter-spacing: .01785714em;
@@ -241,7 +334,12 @@ font-weight: 700;
     opacity: .54;
 }
 #refreshicon{
-  opacity:.54,
+  opacity:.54;
+  margin-left:20%;
+}
+
+#view{
+  margin-left:50%
 }
 .listicon{
   opacity:.54,

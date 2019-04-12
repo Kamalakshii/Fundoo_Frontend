@@ -49,6 +49,37 @@ export function updateColor(data) {
         }
     )
 }
+
+/**
+ * 
+ * @param {*} data 
+ */
+export function updateArchiveStatus(data) {
+    console.log("archive data from front-end==>", data);
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/isArchived',
+        data, {
+            headers: headers
+        }
+    )
+}
+/**
+ * 
+ * @param {*} data 
+ */
+export function updateTrashStatus(data) {
+    console.log("trash data from front-end==>", data);
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/isTrashed',
+        data, {
+            headers: headers
+        }
+    )
+}
 /**
  * 
  * @param {*} notesData 
@@ -56,7 +87,7 @@ export function updateColor(data) {
 export function otherArray(notesData) {
     let otherArr = [];
     for (let i = 0; i < notesData.length; i++) {
-        if (!notesData[i].archive) {
+        if (!notesData[i].archive && !notesData[i].trash) {
             otherArr.push(notesData[i]);
         }
     }
@@ -84,24 +115,16 @@ export function setReminder(data) {
 export function remiderArray(notesData) {
     let reminderArr = [];
     for (let i = 0; i < notesData.length; i++) {
-        if (notesData[i].reminder !== "" && !notesData[i].trash) {
+        if (notesData[i].reminder !== "") {
             reminderArr.push(notesData[i]);
         }
     }
     return reminderArr;
 }
-/**
- * 
- * @param {*} data 
- */
-export function updateArchiveStatus(data) {
-    console.log("archive data from front-end==>", data);
-    var headers = {
-        "token": localStorage.getItem("token")
-    }
-    return axios.put('/isArchived',
-        data, {
-            headers: headers
-        }
-    )
+export function isTrashed(data) {
+
+    return axios.put('/isTrash', data, {
+        headers: { 'token': localStorage.getItem('token') }
+
+    })
 }

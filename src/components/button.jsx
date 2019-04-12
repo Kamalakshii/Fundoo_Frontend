@@ -1,5 +1,5 @@
 /********************************************************************************
- *  @Purpose        : Here export the button component
+ *  @Purpose        : to export the button component
  *  @file           : button.jsx        
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 15-03-2019
@@ -12,7 +12,6 @@ export default class Button extends Component {
         return (
             <div className = "button">
             <button id="Login">Login</button>
-            
             </div>
         );
     }

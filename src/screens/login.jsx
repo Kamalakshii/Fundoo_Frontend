@@ -14,7 +14,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { userLogin } from "../services/userServices";
-
 import "../App.css";
 export default class login extends React.Component {
     constructor(props) {
@@ -118,8 +117,8 @@ export default class login extends React.Component {
                           localStorage.setItem('email', response.data.result.email)
                          localStorage.setItem('userId', response.data.result._id)
                     localStorage.setItem('token', response.data.token.token)
+                    localStorage.setItem('profilePic', response.data.result.profilePic);
                     //    console.log("hhhhhhh",response.token);
-      
                         this.props.history.push('/dashBoard');
                     })
                     .catch((err) => {
@@ -134,8 +133,6 @@ export default class login extends React.Component {
             console.log("error at handleSubmit in login");
         }
     }
-
-
     render() {
         return (
             <div>

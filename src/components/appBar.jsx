@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- *  @Purpose        : Here we have to create the appbar that contains all required appbar components.
+ *  @Purpose        : to create the appbar that contains all required appbar components.
  *  @file           : appBar.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 20-03-2019
@@ -12,11 +12,13 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { Tooltip } from '@material-ui/core';
+import { Tooltip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Drawer from '../components/drawer';
 import PersistentDrawerLeft from '../components/drawer';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import UserProfile from "../components/userProfile";
+import CardsView from "../components/cardsView";
+import PropTypes from "prop-types";
 
 const styles = theme => ({
   root: {
@@ -85,41 +87,41 @@ const styles = theme => ({
       display: 'flex',
     },
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
+
 });
 
 class PrimarySearchAppBar extends React.Component {
-  state = {
-    anchorEl: null,
-    mobileMoreAnchorEl: null,
-    open: true
+  constructor(props){
+    super(props);
+  this.state = {
+    open: false
   };
-  handleRefresh(evt) {
-    evt.preventDefault();
+}
+  handleRefresh=(event) =>{
+    event.preventDefault();
     window.location.reload();
   }
   handleToggle = () => {
+    this.props.slideCards();
     this.setState({ open: !this.state.open });
   }
-  handleAppbar() {
+  handleAppbar=()=> {
     this.props.notePropsToApp();
   }
+ 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="inherit" >
+        <AppBar position="fixed" color="inherit" id="AppBar" >
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" onClick={this.handleToggle} >
+            <IconButton className={classes.menuButton}
+            id="Button" color="inherit" onClick={this.handleToggle} >
               <Tooltip title="main menu">
                 <MenuIcon />
               </Tooltip>
             </IconButton>
+         
             <img src={require("../assets/keep.png")}
               alt="" />
             <div id="fundoo-font-dashboard">
@@ -143,18 +145,15 @@ class PrimarySearchAppBar extends React.Component {
             </div>
             <div className={classes.grow} />
             <div id="refreshicon">
-            <Tooltip title="refresh" onClick={this.handleRefresh}>
-              <img src={require('../assets/refresh.svg')} alt="reminder icon"
-                style={{ marginRight: "50px", opacity: .54 }} />
-                    </Tooltip>
+              <Tooltip title="refresh" onClick={this.handleRefresh} >
+                <img src={require('../assets/refresh.svg')} alt="reminder icon" 
+                  style={{  opacity: .54 }} />
+              </Tooltip>
             </div>
-            <div className="listicon">
-              <img src={require('../assets/list.svg')} alt="reminder icon"
-                style={{ marginRight: "50px", opacity: .54 }} />
-            </div>
-            <div className="settingsicon">
-              <img src={require('../assets/settings.svg')} alt="reminder icon"
-                style={{ marginRight: "50px", opacity: .54 }} />
+            <div className="appList">
+              <CardsView
+                appPropstoCardsView={this.handleAppbar}
+              />
             </div>
             <div>
               <UserProfile props={this.props} />
@@ -162,11 +161,14 @@ class PrimarySearchAppBar extends React.Component {
           </Toolbar>
         </AppBar>
         <PersistentDrawerLeft appBarProps={this.state.open} />
-        <Drawer 
-         appBarProps={this.state.open}
+        <Drawer
+          appBarProps={this.state.open}
         />
       </div>
     );
-  }
+  } 
 }
+PrimarySearchAppBar.propTypes={
+  classes:PropTypes.object.isRequired
+};
 export default withStyles(styles)(PrimarySearchAppBar);

@@ -555,7 +555,7 @@ element.style {
 .staticCreateNote {
   display: flex;
   flex-direction: row;
-  margin-top: -3%
+  margin-top: -3%;
 }
 
 .noteInputBase {
@@ -643,12 +643,14 @@ element.style {
 }
 
 .afterSlide {
-  margin-left: 50px;
-  transition: margin-left 0.25s;
+
+  /* transition: margin-left 0.25s; */
+  transition: all 1s ease-in-out;
 }
 
 .beforeSlide {
-  transition: 0.25s
+  /* transition: 0.25s */
+  transition: all 1s ease-in-out;
 }
 
 .cardToolsClose {

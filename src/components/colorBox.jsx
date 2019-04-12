@@ -1,15 +1,14 @@
 /*****************************************************************************************************
- *  @Purpose        : Here we have to set the color for note
+ *  @Purpose        : to set the color for a particular note
  *  @file           : colorBox.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 26-03-2019
  *****************************************************************************************************/
 import React, { Component } from 'react';
-import { IconButton, Tooltip, Card, Popper, Fade, Paper } from '@material-ui/core';
+import { IconButton, Tooltip, Card } from '@material-ui/core';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
 /**
- * @description:it will define the color using rgb-color code
+ * @description:this will define the color using rgb-color code
  */
 const colorCodesAndNames = [{ name: "default", colorCode: "rgb(255, 255, 255)" },
 { name: "Red", colorCode: "rgb(242,139,130)" },
@@ -37,7 +36,7 @@ export default class ColorPallete extends Component {
         this.handleColor = this.handleColor.bind(this);
     }
     /**
-     * @description:it will display the color box when mouse entered into the color icon
+     * @description:it will display the color box when mouse is omn the color icon
      */
     handleMouseEnter() {
         try {
@@ -107,10 +106,10 @@ export default class ColorPallete extends Component {
                         alt="change color"
                         onClick={this.handleToggle}
                         onMouseEnter={this.handleMouseEnter}
+                        // onMouseLeave={this.handleMouseLeave}
                     />
                     </div>
                 </Tooltip>
-                
                 <div>
                     {this.state.open ?
                         <ClickAwayListener onClick={() => this.closePopper()}>

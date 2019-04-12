@@ -1,5 +1,5 @@
 /****************************************************************************************
- *  @Purpose        : Here we have to create the drawer component.
+ *  @Purpose        : to create the drawer component.
  *  @file           : drawer.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 25-03-2019

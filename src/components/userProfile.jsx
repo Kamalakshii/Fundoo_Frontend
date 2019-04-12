@@ -1,5 +1,5 @@
 /****************************************************************************************
- *  @Purpose        : Here we have to create the user profile.
+ *  @Purpose        : to create the user profile.
  *  @file           : userProfile.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 30-03-2019
@@ -14,6 +14,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Tooltip from '@material-ui/core/Tooltip';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
+import { uploadProfilePic } from "../services/userServices";
 import '../App.css';
 const styles = theme => ({
   typography: {
@@ -28,7 +29,7 @@ export default class Logout extends React.Component {
       anchorEl: null,
       open: false,
       placement: null,
-      profilepic: ""
+      profilePic: ""
     };
   }
    /**
@@ -40,6 +41,13 @@ export default class Logout extends React.Component {
       } catch (err) {
           console.log("error at triggerInputFile in userProfile");
       }
+  }
+  componentDidMount(){
+    if(localStorage.getItem("profilePic") !== "undefined"){
+      this.setState({
+        profilePic:localStorage.getItem("profilePic")
+      })
+    }
   }
   /**
    * @description:it will toggle or reback the event
@@ -67,13 +75,20 @@ export default class Logout extends React.Component {
      * @description:it will upload the image
      * @param {*} evt 
      */
-    uploadImage(evt) {
-      try {
-          console.log("upload image", evt.target.files[0]);
-          this.props.uploadImage(evt.target.files[0], this.props.note._id)
-      } catch (err) {
-          console.log("error at uploadImage in userProfile");
-      }
+    uploadImage = (e) => {
+      let data = new FormData();
+      console.log("image:------------", e.target.files[0]);
+      data.append('image', e.target.files[0]);
+      uploadProfilePic(data)
+          .then((result) => {
+              console.log("profile", result.data.data);
+              localStorage.setItem('profilePic', result.data.data);
+              this.setState({
+                  profilePic: result.data.data
+              })
+          }).catch((err) => {
+              alert(err);
+          })
   }
 /**
  * @description:it will redirect to login page
@@ -118,7 +133,7 @@ handleregister = event => {
                             onClick={() => { this.triggerInputFile() }}>
                             {this.state.profilePic !== "" ?
                               <img style={{
-                                width: "80px", height: "80px"
+                                width:"webkit-full-available", height:"webkit-full-available" 
                               }} src={this.state.profilePic} alt="change Profile pic"></img>
                               :
                               <b style={{ fontSize: "33px" }}>{initial}</b>
@@ -132,7 +147,7 @@ handleregister = event => {
                         </Tooltip>
                       </IconButton>
                       <span style={{ marginTop: "-1px", marginLeft: "20px" }}>
-                        <p style={{ marginBottom: "0px" }}>{'username'}<br></br> </p>
+                        <p style={{ marginBottom: "0px" }}>{userDetails}<br></br> </p>
                         <small style={{ marginBottom: "0px" }}>{localStorage.getItem('email')} </small>
                       </span>
                     </div>
@@ -155,11 +170,11 @@ handleregister = event => {
         <div className="iconButton">
           <IconButton id="userProfileIcon">
             <Tooltip
-              title={"Fundoo Account   :" + localStorage.getItem('userDetails')}>
+              title={"Fundoo Account   :" + localStorage.getItem('username')}>
               <Avatar style={{ width: "35px", height: "35px", backgroundColor: "blur" }} onClick={this.handleClick('bottom-end')} >
                 {this.state.profilePic !== "" ?
                   <img style={{
-                    width: "40px", height: "40px"
+                    width:"webkit-full-available", height:"webkit-full-available" 
                   }} src={this.state.profilePic} alt="change Profile pic"></img>
                   :
                   initial

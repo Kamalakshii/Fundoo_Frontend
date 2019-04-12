@@ -1,5 +1,5 @@
 /****************************************************************************************
- *  @Purpose        : Here we have to create the new Notes.
+ *  @Purpose        : to create the new Notes.
  *  @file           : createNotes.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 27-03-2019
@@ -37,8 +37,7 @@ export default class createNotes extends Component {
             reminder: "",
             archive: false,
             pinned: false,
-            trash: false
-
+            trash: false,
         }
         this.handleTitle = this.handleTitle.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
@@ -113,6 +112,13 @@ export default class createNotes extends Component {
             console.log("error at handlePinned in createNotes");
         }
     }
+    handleTrash(value) {
+        try {
+            this.setState({ trash: value });
+        } catch (err) {
+            console.log("error at handleTrash in createNotes");
+        }
+    }
     handleToggle() {
         try {
             this.setState({ openNote: !this.state.openNote });
@@ -126,10 +132,11 @@ export default class createNotes extends Component {
                     reminder: this.state.reminder,
                     pinned: this.state.pinned,
                     archive: this.state.archive,
+                    trash: this.state.trash,
                 }
                 createNote(note)
                     .then((result) => {
-                        console.log("create note result from back-end====>", result.data);
+                        console.log("create note result from back-end====>", result);
                         this.setState({
                             newNote: result.data.data.note
                         })
@@ -145,6 +152,7 @@ export default class createNotes extends Component {
                     reminder: "",
                     archive: false,
                     pinned: false,
+                    trash: false
                 })
             }
         } catch (err) {
@@ -202,10 +210,12 @@ export default class createNotes extends Component {
                             onChange={this.handleDescription}
                         />
                         {this.state.reminder ?
+                        <div className="chip">
                             <Chip
                                 label={this.state.reminder}
                                 onDelete={() => this.reminderNote()}
                             />
+                            </div>
                             :
                             null}
                         <div className="cardToolsClose" >
@@ -214,6 +224,8 @@ export default class createNotes extends Component {
                                 archiveNote={this.handleArchive}
                                 createNotePropsToTools={this.handleColor}
                                 archiveStatus={this.state.archive}
+                                trashNote={this.handleTrash}
+                                trashStatus={this.state.trash}
                             />
                             <div>
                                 <Button onClick={this.handleToggle}>close</Button>
@@ -226,5 +238,6 @@ export default class createNotes extends Component {
         )
     }
 }
+export {createNote}
 
 

@@ -1,5 +1,5 @@
 /*************************************************************************************************************
- *  @Purpose        : Here we have to create the reminder for setting the reminder for note.
+ *  @Purpose        : to create the reminder for setting the reminder for note.
  *  @file           : reminder.jsx       
  *  @author         : KAMALAKSHI C SWAMY
  *  @since          : 29-03-2019
@@ -66,7 +66,7 @@ export default class reminder extends Component {
         this.handleClose();
         let ampm = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
         var date = new Date().toDateString();
-        var reminder1 = date + ", 8 " + ampm;
+        var reminder1 = date + ", 10 " + ampm;
         console.log("today reminder data=====>", reminder1);
         this.props.reminder(reminder1, this.props.noteID)
     }
@@ -76,18 +76,18 @@ export default class reminder extends Component {
         var date = new Date().toDateString();
         date = date.replace(new Date().getDate().toString(), new Date().getDate() + 1);
         date = date.replace(days[new Date().getDay() - 1], days[new Date().getDay()]);
-        var reminder1 = date + ", 8 AM";
+        var reminder1 = date + ", 10 AM";
         console.log("tomorow reminder data====>", reminder1);
         this.props.reminder(reminder1, this.props.noteID)                                         
     }
-    // setWeeklyReminder = () => {
-    //     this.handleClose();
-    //     var date = new Date().toDateString();
-    //     date = date.replace(new Date().getDate().toString(), (new Date().getDate() + 7));
-    //     var reminder1 = date + ", 8 AM";
-    //     console.log("weekly reminder data=====>", reminder1);
-    //     this.props.reminder(reminder1, this.props.noteID)
-    // }
+    setWeeklyReminder = () => {
+        this.handleClose();
+        var date = new Date().toDateString();
+        date = date.replace(new Date().getDate().toString(), (new Date().getDate() + 7));
+        var reminder1 = date + ", 08 AM";
+        console.log("weekly reminder data=====>", reminder1);
+        this.props.reminder(reminder1, this.props.noteID)
+    }
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -116,13 +116,13 @@ export default class reminder extends Component {
                                                 <div>Tomorrow</div>
                                                 <div>10:00 AM</div>
                                             </MenuItem>
-                                            {/* <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
+                                            <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
                                                 <div>Next Week</div>
                                                 <div>Mon, 8:00 AM</div>
-                                            </MenuItem> */}
+                                            </MenuItem>
                                             <MenuItem className="currentDate">
                                                 <div>april</div>
-                                                <div>mangoes</div>
+                                                <div>mumbai</div>
                                             </MenuItem>
                                         </div>
                                     </ClickAwayListener>
