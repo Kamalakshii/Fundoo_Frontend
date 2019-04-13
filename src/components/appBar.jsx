@@ -16,7 +16,7 @@ import { Tooltip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Drawer from '../components/drawer';
 import PersistentDrawerLeft from '../components/drawer';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import UserProfile from "../components/userProfile";
+import UserProfile from "./userProfile1";
 import CardsView from "../components/cardsView";
 import PropTypes from "prop-types";
 

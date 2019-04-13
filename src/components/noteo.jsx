@@ -493,7 +493,7 @@ export default class Cards extends Component {
                             }
                         </div>
                     }
-                    <DialogBox
+                     <DialogBox
                         ispinned={this.ispinned}
                         ref={this.cardsToDialogBox}
                         parentProps={this.state.open1}

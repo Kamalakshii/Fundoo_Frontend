@@ -7,7 +7,7 @@ import Popper from "@material-ui/core/Popper";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Button } from "@material-ui/core";
 import "../App.css";
-import Demo from "./crop";
+import Demo from "./profilePicUpload";
 export default class Logout extends Component {
   constructor(props) {
     super(props);
@@ -97,8 +97,8 @@ export default class Logout extends Component {
   };
   render() {
     const { anchorEl, open, placement } = this.state;
-    const userDetails = localStorage.getItem("userDetails");
-    const initial = userDetails.substring(0, 1);
+    const firstName = localStorage.getItem("firstName");
+    const initial = firstName.substring(0, 1);
     return (
       <div>
         <Popper open={open} anchorEl={anchorEl} placement={placement}>
@@ -142,7 +142,7 @@ export default class Logout extends Component {
                   onClose={this.handleClose1}
                 />
                 <div className="POPContent">
-                  <div className="popName">{userDetails}</div>
+                  <div className="popName">{firstName}</div>
                   <div className="popEmail">
                     {localStorage.getItem("email")}{" "}
                   </div>
@@ -162,7 +162,7 @@ export default class Logout extends Component {
         </Popper>
         <div className="iconButton">
           <Tooltip
-            title={"Fundoo Account: " + localStorage.getItem("username")}
+            title={"Fundoo Account: " + localStorage.getItem("firstName")}
           >
             <Avatar
               style={{ width: "32px", height: "32px" }}

@@ -90,11 +90,7 @@ export default class DialogBox extends Component {
     createNotePropsToTools = (value, noteID) => {
         this.setState({ color: value })
         this.props.createNotePropsToTools(value, noteID)
-
     }
-  
-  
-  
     render() {
         return (
             <MuiThemeProvider theme={theme}>
@@ -123,10 +119,7 @@ export default class DialogBox extends Component {
                                 value={this.state.title}
                                 onChange={this.handleTitleClick}
                             />
-
                         </div>
-                
-                      
                         <div className="cardToolsClose">
                             <Tools
                                 createNotePropsToTools={this.createNotePropsToTools}
