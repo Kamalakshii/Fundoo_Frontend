@@ -19,22 +19,22 @@ export default class Archive extends Component {
         }
         this.handleArchive = this.handleArchive.bind(this)
     }
-    async  handleArchive() {
-        console.log("(this.props.archiveStatusd", this.state.isArchived);
+    handleArchive = () => {
+        console.log("(this.props.archiveStatus", this.state.isArchived);
         if (this.props.archiveStatus === false) {
-            //this.state.isArchived = true;
-            await this.setState({ isArchived: true });
+            this.state.isArchived = true;
+            // this.setState({ isArchived: true });
             this.setState({
                 openSnackBar: true,
                 snackBarMessage: "Note Archived"
             });
-            console.log("this.state.isArchived changed", this.state.isArchived);
+            // console.log("this.state.isArchived changed", this.state.isArchived);
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
         }
         else {
             //  this.state.isArchived = false;
             this.setState({ isArchived: false });
-            console.log(" this.state.isArchived changle else", this.state.isArchived);
+            console.log(" this.state.isArchived change else", this.state.isArchived);
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
         }
     }
@@ -55,13 +55,17 @@ export default class Archive extends Component {
         return (
             this.state.isArchived ?
                 <div>
-                    {/* <img src={Archiveicon}
-                        onClick={
+
+                    <div id="archiveIcon">
+                        <Tooltip title="Archive Note" onClick={
                             this.handleArchive
-                        }
-                     alt="archive note icon"
-                    className="archiveIcon"
-                    /> */}
+                        }>
+                            <img src={Archiveicon}
+                                alt="archive note icon"
+                            />
+                        </Tooltip>
+                    </div>
+
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',

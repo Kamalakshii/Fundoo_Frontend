@@ -39,15 +39,8 @@ export default class createNotes extends Component {
             pinned: false,
             trash: false,
         }
-        this.handleTitle = this.handleTitle.bind(this);
-        this.handleDescription = this.handleDescription.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
-        this.handleColor = this.handleColor.bind(this);
-        this.handleReminder = this.handleReminder.bind(this);
-        this.handleArchive = this.handleArchive.bind(this);
-        this.handlePinned = this.handlePinned.bind(this);
     }
-    handleTitle(evt) {
+    handleTitle=(evt)=> {
         try {
             this.setState({ title: evt.target.value })
         } catch (err) {
@@ -58,7 +51,7 @@ export default class createNotes extends Component {
      * @description:it will handle the description event
      * @param {*event for description} evt 
      */
-    handleDescription(evt) {
+    handleDescription=(evt)=> {
         try {
             this.setState({ description: evt.target.value })
         } catch (err) {
@@ -69,7 +62,7 @@ export default class createNotes extends Component {
     * @description:it will handle the color event
     * @param {*value for color} value 
     */
-    handleColor(value) {
+    handleColor=(value)=> {
         try {
             this.setState({ color: value });
         } catch (err) {
@@ -80,7 +73,7 @@ export default class createNotes extends Component {
       * @description:it will handle the reminder event
       * @param {*value for reminder} value 
       */
-    handleReminder(value) {
+    handleReminder=(value)=>{
         try {
             this.setState({ reminder: value })
         } catch (err) {
@@ -88,13 +81,13 @@ export default class createNotes extends Component {
         }
     }
     reminderNote = () => {
-        this.setState({ reminder: "" })
+        this.setState({ reminder: ""})
     }
     /**
    * @description:it will handle the archive event
    * @param {*value for archive} value 
    */
-    handleArchive(value) {
+    handleArchive=(value) =>{
         try {
             this.setState({ archive: value });
         } catch (err) {
@@ -105,21 +98,21 @@ export default class createNotes extends Component {
     * @description:it will handle the pinned event
     * @param {*value for pinned} value 
     */
-    handlePinned(value) {
+    handlePinned=(value) =>{
         try {
             this.setState({ pinned: value });
         } catch (err) {
             console.log("error at handlePinned in createNotes");
         }
     }
-    handleTrash(value) {
+    handleTrash=(value) =>{
         try {
             this.setState({ trash: value });
         } catch (err) {
             console.log("error at handleTrash in createNotes");
         }
     }
-    handleToggle() {
+    handleToggle=()=> {
         try {
             this.setState({ openNote: !this.state.openNote });
             // console.log("pinned", this.state.openNote);
@@ -167,7 +160,6 @@ export default class createNotes extends Component {
                         <div className="staticCreateNote">
                             <Input
                                 className="noteInputBase1"
-                                multiline
                                 disableUnderline={true}
                                 placeholder="Take a note ..."
                                 id="description"
@@ -192,12 +184,6 @@ export default class createNotes extends Component {
                                 placeholder="Title"
                                 value={this.state.title}
                                 onChange={this.handleTitle}
-                            />
-                        </div>
-                        <div>
-                            <EditPin
-                                pinStatus={this.state.pinned}
-                                cardPropsToPin={this.handlePinned}
                             />
                         </div>
                         <Input
@@ -231,7 +217,6 @@ export default class createNotes extends Component {
                                 <Button onClick={this.handleToggle}>close</Button>
                             </div>
                         </div>
-
                     </Card>
                 </div>
             </MuiThemeProvider>

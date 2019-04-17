@@ -66,9 +66,9 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
-  menuItem:{
-    "&:focus":{
-      backgroundColor:"#feefc3",
+  menuItem: {
+    "&:focus": {
+      backgroundColor: "#feefc3",
       borderRadius: '0 25px 25px 0'
     }
   }
@@ -77,7 +77,19 @@ const styles = theme => ({
 class PersistentDrawerLeft extends React.Component {
   state = {
     open: false,
+    navigateArchived: false,
   };
+  handleClose = (event) => {
+    this.props.name(event);
+  }
+  async handleArchived() {
+    await this.setState({
+        navigateReminder: false,
+        navigateArchived: true,
+        navigateTrashed: false
+    })
+    this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+}
   render() {
     const { classes } = this.props;
     return (
@@ -91,51 +103,51 @@ class PersistentDrawerLeft extends React.Component {
             paper: classes.drawerPaper,
           }}
         >
-        <div >
-          <MenuItem id="noteMenu" className={classes.menuItem} >
-            <img src={require('../assets/note.svg')} alt="note icon" 
-              style={{ marginRight: "50px"}} />
-            Notes
+          <div >
+            <MenuItem id="noteMenu" className={classes.menuItem} onClick={()=>this.handleClose("Fundoo")}  >
+           <img src={require('../assets/note.svg')} alt="note icon"
+                style={{ marginRight: "50px" }} />
+              Notes
            </MenuItem>
-           </div>
-           <div>
-          <MenuItem id="reminderMenu" className={classes.menuItem} >
-            <img src={require('../assets/remainder.svg')} alt="reminder icon"
-              style={{ marginRight: "50px" }} />
-            Reminder
+          </div>
+          <div>
+            <MenuItem id="reminderMenu" className={classes.menuItem} onClick={()=>this.handleClose("Reminders")}>
+              <img src={require('../assets/remainder.svg')} alt="reminder icon"
+                style={{ marginRight: "50px" }} />
+              Reminders
            </MenuItem>
-           </div>
-           
+          </div>
+
           <div style={{ borderBottom: "1px solid lightgrey", borderTop: "1px solid lightgrey" }}>
             <div style={{ padding: "3.5% 8%", fontSize: "12px", marginBottom: "15px", marginTop: "10px", fontFamily: "arial", color: "gray" }}>
               LABELS
              </div>
-             
+
             <div>
-              <MenuItem id="labelMenu"  onClick={this.handleEditLabel}>
+              <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
                 <img src={require('../assets/edit.svg')} alt="edit icon"
                   style={{ marginRight: "50px" }} />
                 Edit Labels
                </MenuItem>
             </div>
-            
-          </div> 
-           <div >
-          <MenuItem id="archiveMenu" className={classes.menuItem}>
-            <img src={require('../assets/archive.svg')} alt="archive icon"
-              style={{ marginRight: "50px" }} />
-            Archive
+
+          </div>
+          <div >
+            <MenuItem id="archiveMenu" className={classes.menuItem} onClick={() => this.handleArchived()}>
+              <img src={require('../assets/archive.svg')} alt="archive icon"
+                style={{ marginRight: "50px" }} />
+              Archive
           </MenuItem>
           </div>
           <div>
-          <MenuItem id="trashMenu" className={classes.menuItem}>
-            <img src={require('../assets/trash.svg')} alt="trash icon"
-              style={{ marginRight: "50px" }} />
-            Trash
+            <MenuItem id="trashMenu" className={classes.menuItem} onClick={()=>this.handleClose("Bin")}>
+              <img src={require('../assets/trash.svg')} alt="trash icon" 
+                style={{ marginRight: "50px" }} />
+              Bin
                     </MenuItem>
-                    </div>
+          </div>
         </Drawer>
-        
+
       </div>
     );
   }

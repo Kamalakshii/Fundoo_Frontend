@@ -1,6 +1,8 @@
+
 import React, { Component } from 'react';
 import { Dialog, Input, Button, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';
-import Tools from '../components/toolbar';
+import Tools from '../components/tools';
+import EditPin from '../components/editPin';
 const theme = createMuiTheme({
     overrides: {
         MuiDialog: {
@@ -64,7 +66,9 @@ export default class DialogBox extends Component {
     async handleToggle(e) {
         console.log("this.state.title==>", this.state.title);
         console.log("this.state.description==>", this.state.description);
-     
+        await this.props.editTitle(this.state.title, this.state._id)
+        await this.props.editDescription(this.state.description, this.state._id)
+        this.props.closeEditBox(e);
     }
     getData(note) {
         console.log("note in dialog==>", note);
@@ -87,9 +91,36 @@ export default class DialogBox extends Component {
         this.props.closeEditBox(e);
     }
 
+    reminder1 = () => {
+        this.setState({ reminder: "" })
+        this.props.reminder('', this.state._id)
+    }
     createNotePropsToTools = (value, noteID) => {
         this.setState({ color: value })
         this.props.createNotePropsToTools(value, noteID)
+
+    }
+    archiveNote = (value, noteID) => {
+        console.log("archive value in dialog========>", value);
+        this.setState({ archive: value })
+        this.props.archiveNote(value, noteID)
+      this.props.closeEditBox();
+    }
+    reminder = (value, noteID) => {
+        this.setState({ reminder: value })
+        this.props.reminder(value, noteID);
+    }
+    image = (value, noteID) => {
+        this.setState({ image: value })
+        this.props.uploadImage(value, noteID);
+    }
+    trashNote = (noteID) => {
+        this.props.trashNote(noteID);
+        this.props.closeEditBox();
+    }
+    ispinned = (value, noteID) => {
+        this.setState({ pinned: value })
+        this.props.ispinned(value, noteID);
     }
     render() {
         return (
@@ -119,7 +150,31 @@ export default class DialogBox extends Component {
                                 value={this.state.title}
                                 onChange={this.handleTitleClick}
                             />
+                            <div>
+                                <EditPin
+                                    initialpinstatus={this.state.pinned}
+                                    noteID={this.state._id}
+                                    pinstatus={this.ispinned}
+                                />
+                            </div>
                         </div>
+                        <div>
+                            <Input
+                                className="dialogInputBase"
+                                disableUnderline={true}
+                                placeholder="edit note"
+                                multiline
+                                value={this.state.description}
+                                onChange={this.handleDescClick}
+                            />
+                        </div>
+                        {this.state.reminder ?
+                            <Chip id="chipcss"
+                                label={this.state.reminder}
+                                onDelete={() => this.reminder1()}
+                            />
+                            :
+                            null}
                         <div className="cardToolsClose">
                             <Tools
                                 createNotePropsToTools={this.createNotePropsToTools}
@@ -139,3 +194,4 @@ export default class DialogBox extends Component {
         )
     }
 }
+

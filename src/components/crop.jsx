@@ -15,7 +15,6 @@ export default class Demo extends Component {
   handleClose = () => {
     this.props.onClose();
   };
-
   onChange = e => {
     e.preventDefault();
     let files;
@@ -41,7 +40,7 @@ export default class Demo extends Component {
     this.state.cropResult = this.cropper.getCroppedCanvas().toBlob(blob => {
       const formData = new FormData();
       formData.append("image", blob);
-      console.log("data is ========================================", formData);
+      console.log("data is ==========", formData);
       uploadProfilePic(formData)
         .then(result => {
           console.log("profile", result.data.data);

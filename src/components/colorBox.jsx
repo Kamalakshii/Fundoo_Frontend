@@ -30,15 +30,11 @@ export default class ColorPallete extends Component {
             open: false,
             anchorEl: null,
         }
-        this.handleToggle = this.handleToggle.bind(this);
-        this.handleMouseEnter = this.handleMouseEnter.bind(this);
-        this.handleMouseLeave = this.handleMouseLeave.bind(this);
-        this.handleColor = this.handleColor.bind(this);
     }
     /**
      * @description:it will display the color box when mouse is omn the color icon
      */
-    handleMouseEnter() {
+    handleMouseEnter=()=> {
         try {
             this.setState({ open: true });
             // this.props.handleToggle(!this.state.open)
@@ -46,9 +42,21 @@ export default class ColorPallete extends Component {
             console.log("error at handleMouseEnter in colorBox");
         }
     }
-    handleMouseLeave() {
+    handleMouseLeave=() =>{
         this.setState({ open: false });
          this.props.handleToggle(!this.state.open)
+    }
+    /**
+     * @description:it will handle the selecting color event
+     * @param {*changing color event} event 
+     */
+    handleColor=(event) =>{
+        try {
+            console.log("changing color", this.props.noteID)
+            this.props.toolsPropsToColorpallete(event.target.value, this.props.noteID);
+        } catch (err) {
+            console.log("error at handleColor in colorBox");
+        }
     }
     /**
      * @description:it will close the color popper box
@@ -63,21 +71,9 @@ export default class ColorPallete extends Component {
         }
     }
     /**
-     * @description:it will handle the selecting color event
-     * @param {*changing color event} event 
-     */
-    handleColor(event) {
-        try {
-            console.log("changing color", this.props.noteID)
-            this.props.toolsPropsToColorpallete(event.target.value, this.props.noteID);
-        } catch (err) {
-            console.log("error at handleColor in colorBox");
-        }
-    }
-    /**
      * @description:it will toggle the color icon
      */
-    handleToggle() {
+    handleToggle=()=> {
         try {
             this.setState({ open: !this.state.open });
             this.props.handleToggle(!this.state.open)
@@ -89,13 +85,12 @@ export default class ColorPallete extends Component {
         const { anchorEl, open } = this.state;
         const changeCardColor = colorCodesAndNames.map((colorKey) =>
             <Tooltip title={colorKey.name}>
-                <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px", }}
+                <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px" }}
                     value={colorKey.colorCode}
                     onClick={this.handleColor}
                 >
                 </IconButton>
-            </Tooltip>
-            
+            </Tooltip>     
         );
         return (
             <div>
@@ -104,9 +99,9 @@ export default class ColorPallete extends Component {
                     <img src={require('../assets/pallete.svg')}
                         className="colorPalleteIcon"
                         alt="change color"
-                        onClick={this.handleToggle}
                         onMouseEnter={this.handleMouseEnter}
-                        // onMouseLeave={this.handleMouseLeave}
+                        onClick={this.handleToggle}
+                         //onMouseLeave={this.handleMouseLeave}
                     />
                     </div>
                 </Tooltip>

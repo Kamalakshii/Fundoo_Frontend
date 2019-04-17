@@ -88,6 +88,14 @@ export default class reminder extends Component {
         console.log("weekly reminder data=====>", reminder1);
         this.props.reminder(reminder1, this.props.noteID)
     }
+    handleMouseEnter=()=> {
+        try {
+            this.setState({ open: true });
+            // this.props.handleToggle(!this.state.open)
+        } catch (err) {
+            console.log("error at handleMouseEnter in colorBox");
+        }
+    }
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
@@ -98,7 +106,9 @@ export default class reminder extends Component {
                     <Tooltip title="Remind me">
                         <img src={require('../assets/reminder.svg')}
                             className="reminderIcon"
-                            onClick={this.handleClick('bottom-start')} alt="remider icon" />
+                            onClick={this.handleClick('bottom-start')} alt="remider icon" 
+                                                   />
+
                     </Tooltip>
                     </div>
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 9999 }}>

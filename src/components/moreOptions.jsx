@@ -8,6 +8,7 @@ import { MenuItem } from "@material-ui/core";
 import { Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import "../App.css";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 export default class MoreOptions extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class MoreOptions extends Component {
       anchorEl: null,
       open: false,
       placement: null,
-      isTrash: false,
+    //isTrash: false,
       snackBarMessage: "",
       openSnackBar: false
     };
@@ -59,24 +60,6 @@ export default class MoreOptions extends Component {
       console.log("error at handleClick in popper");
     }
   };
-  // handleTrash = () => {
-  //   console.log("(this.props.trashStatus", this.state.isTrash);
-  //   if (this.props.trashStatus === false) {
-  //     this.state.isTrash = true;
-  //     //this.setState({ isTrash: true });
-  //     this.setState({
-  //       openSnackBar: true,
-  //       snackBarMessage: "Note Trashed"
-  //     });
-  //     console.log("this.state.isTrash changed", this.state.isTrash);
-  //     this.props.trashNote(this.state.isTrash, this.props.noteID);
-  //   } else {
-  //     //  this.state.isTrash = false;
-  //     this.setState({ isTrash: false });
-  //     console.log(" this.state.isTrash change in else", this.state.isTrash);
-  //     this.props.trashNote(this.state.isTrash, this.props.noteID);
-  //   }
-  // };
   handleTrashedNotes = () => {
     // this.closeLabelPopper();
     this.props.trashNote(this.props.noteID);
@@ -103,7 +86,7 @@ export default class MoreOptions extends Component {
           open={open}
           anchorEl={anchorEl}
           placement={placement}
-          transition
+          transition style={{zIndex : 9999}}
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>

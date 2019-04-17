@@ -49,7 +49,6 @@ export function updateColor(data) {
         }
     )
 }
-
 /**
  * 
  * @param {*} data 
@@ -80,19 +79,7 @@ export function updateTrashStatus(data) {
         }
     )
 }
-/**
- * 
- * @param {*} notesData 
- */
-export function otherArray(notesData) {
-    let otherArr = [];
-    for (let i = 0; i < notesData.length; i++) {
-        if (!notesData[i].archive && !notesData[i].trash) {
-            otherArr.push(notesData[i]);
-        }
-    }
-    return otherArr;
-}
+
 /**
  * 
  * @param {*} data 
@@ -108,6 +95,62 @@ export function setReminder(data) {
         }
     )
 }
+
+export function isTrashed(data) {
+
+    return axios.put('/isTrash', data, {
+        headers: { 'token': localStorage.getItem('token') }
+
+    })
+}
+
+export function updateTitle(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/editTitle',
+        data, {
+            headers: headers
+        }
+    )
+}
+export function updateDescription(data) {
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/editDescription',
+        data, {
+            headers: headers
+        }
+    )
+}
+/***************************************************************************************************** */
+/**
+ * 
+ * @param {*} notesData 
+ */
+export function otherArray(notesData) {
+    let otherArr = [];
+    for (let i = 0; i < notesData.length; i++) {
+        if (!notesData[i].archive && !notesData[i].trash) {
+            otherArr.push(notesData[i]);
+        }
+    }
+    return otherArr;
+}
+/**
+ * 
+ * @param {*} notesData 
+ */
+export function archiveArray(notesData) {
+    let archiveArr = [];
+    for (let i = 0; i < notesData.length; i++) {
+        if (notesData[i].archive) {
+            archiveArr.push(notesData[i]);
+        }
+    }
+    return archiveArr;
+}
 /**
  * 
  * @param {*} notesData 
@@ -120,11 +163,4 @@ export function remiderArray(notesData) {
         }
     }
     return reminderArr;
-}
-export function isTrashed(data) {
-
-    return axios.put('/isTrash', data, {
-        headers: { 'token': localStorage.getItem('token') }
-
-    })
 }

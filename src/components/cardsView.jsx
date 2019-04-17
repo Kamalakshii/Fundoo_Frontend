@@ -31,8 +31,10 @@ export default class cardsView extends Component {
                         />
                         </Tooltip>
                     </IconButton>
+             
                 </div>
                 :
+                
                 <div>
                     <IconButton id="cardViewIcon">
                         <Tooltip title="Grid View" onClick={this.handleCardsView}>
@@ -40,6 +42,8 @@ export default class cardsView extends Component {
                         </Tooltip>
                     </IconButton>
                 </div>
+
+               
         )
     }
 }

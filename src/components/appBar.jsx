@@ -16,7 +16,7 @@ import { Tooltip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Drawer from '../components/drawer';
 import PersistentDrawerLeft from '../components/drawer';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import UserProfile from "./userProfile1";
+import UserProfile from "./userProfile";
 import CardsView from "../components/cardsView";
 import PropTypes from "prop-types";
 
@@ -91,13 +91,14 @@ const styles = theme => ({
 });
 
 class PrimarySearchAppBar extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {
-    open: false
-  };
-}
-  handleRefresh=(event) =>{
+    this.state = {
+      open: false,
+      name: "Fundoo"
+    };
+  }
+  handleRefresh = (event) => {
     event.preventDefault();
     window.location.reload();
   }
@@ -105,10 +106,12 @@ class PrimarySearchAppBar extends React.Component {
     this.props.slideCards();
     this.setState({ open: !this.state.open });
   }
-  handleAppbar=()=> {
+  handleAppbar = () => {
     this.props.notePropsToApp();
   }
- 
+  handleName = (event) => {
+    this.setState({ name: event })
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -116,24 +119,27 @@ class PrimarySearchAppBar extends React.Component {
         <AppBar position="fixed" color="inherit" id="AppBar" >
           <Toolbar>
             <IconButton className={classes.menuButton}
-            id="Button" color="inherit" onClick={this.handleToggle} >
+              id="Button" color="inherit" onClick={this.handleToggle} >
               <Tooltip title="main menu">
                 <MenuIcon />
               </Tooltip>
             </IconButton>
-         
-            <img src={require("../assets/keep.png")}
-              alt="" />
+            {this.state.name === "Fundoo" ?
+              <img src={require("../assets/keep.png")}
+                alt="" />
+              :
+              null
+            }
             <div id="fundoo-font-dashboard">
-              <span>
-                Fundoo
-              </span>
+              {this.state.name}
+              <div style={{ "paddingLeft": "40px" }} />
             </div>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <div className="search">
+              <div className="search" >
                 <InputBase
                   placeholder="Search"
                   classes={{
@@ -146,8 +152,8 @@ class PrimarySearchAppBar extends React.Component {
             <div className={classes.grow} />
             <div id="refreshicon">
               <Tooltip title="refresh" onClick={this.handleRefresh} >
-                <img src={require('../assets/refresh.svg')} alt="reminder icon" 
-                  style={{  opacity: .54 }} />
+                <img src={require('../assets/refresh.svg')} alt="reminder icon"
+                  style={{ opacity: .54 }} />
               </Tooltip>
             </div>
             <div className="appList">
@@ -159,16 +165,18 @@ class PrimarySearchAppBar extends React.Component {
               <UserProfile props={this.props} />
             </div>
           </Toolbar>
+          <PersistentDrawerLeft appBarProps={this.state.open} />
+          <Drawer
+            appBarProps={this.state.open}
+            name={this.handleName}
+            handleNavigation={this.props.handleNavigation}
+          />
         </AppBar>
-        <PersistentDrawerLeft appBarProps={this.state.open} />
-        <Drawer
-          appBarProps={this.state.open}
-        />
       </div>
     );
-  } 
+  }
 }
-PrimarySearchAppBar.propTypes={
-  classes:PropTypes.object.isRequired
+PrimarySearchAppBar.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 export default withStyles(styles)(PrimarySearchAppBar);

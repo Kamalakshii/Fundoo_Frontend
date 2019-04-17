@@ -39,15 +39,15 @@ export default class TrashOptions extends Component {
             console.log("error at clickMoreOptions in trashOption");
         }
     }
-    handleRestore = () => {
-        this.closeLabelPopper();
-        this.props.restore(this.props.noteID)
+    // handleRestore = () => {
+    //     this.closeLabelPopper();
+    //     this.props.restore(this.props.noteID)
 
-    }
-    handleDelete = () => {
-        this.closeLabelPopper();
-        this.props.deleteNote("" ,this.props.noteID)
-    }
+    // }
+    // handleDelete = () => {
+    //     this.closeLabelPopper();
+    //     this.props.deleteNote("" ,this.props.noteID)
+    // }
     /**
     * @description:it will close the color popper box
     */

@@ -19,10 +19,7 @@ export default class dashBoard extends Component {
             archive: false,
             trash: false
         }
-        this.getNewNote = this.getNewNote.bind(this);
         this.noteToCards = React.createRef();
-        this.handleCardStyle = this.handleCardStyle.bind(this);
-        this.slideCards = this.slideCards.bind(this);
     }
     /**
     * @description:it performs the card action
@@ -48,12 +45,28 @@ export default class dashBoard extends Component {
     * @description:it display the new note
     * @param {*get new card or note} newCard 
     */
-    getNewNote(newCard) {
+    getNewNote=(newCard)=> {
         console.log("new card", newCard);
         try {
             this.noteToCards.current.displayNewCard(newCard);
         } catch (err) {
             console.log("error at getNewNote in dashBoard");
+        }
+    }
+    handleNavigation=(reminder, archive, trash)=> {
+        console.log("handleNavigation", reminder, archive, trash);
+        if (reminder === true || archive === true || trash === true) {
+            this.setState({
+                reminder: reminder,
+                archive: archive,
+                trash: trash
+            })
+        } else {
+            this.setState({
+                reminder: false,
+                archive: false,
+                trash: false
+            })
         }
     }
     render() {
@@ -65,22 +78,32 @@ export default class dashBoard extends Component {
                         props={this.props}
                         slideCards={this.slideCards}
                         notePropsToApp={this.handleCardStyle}
+                        handleNavigation={this.handleNavigation}
                     />
                 </div>
-                <div className="dashboard">
-                    <CreateNote
-                        getNewNote={this.getNewNote}
-                    />
-                    <Notes
-                        noteProps={this.state.cardStyles}
-                        ref={this.noteToCards}
-                        uploadImage={this.state.image}
-                    />
-                    <dilogBox>
-                        </dilogBox>
+                <div className="setFixedMargin">
+                    {this.state.archive  ?
+                        <div id="dashboard1">
+                            <Notes
+                                noteProps={this.state.cardStyles}
+                                ref={this.noteToCards}
+                                navigateArchived={this.state.archive}
+                            />
+                        </div>
+                        :
+                        <div className="dashboard">
+                            <CreateNote
+                                getNewNote={this.getNewNote}
+                            />
+                            <Notes
+                                noteProps={this.state.cardStyles}
+                                ref={this.noteToCards}
+                                navigateArchived={this.state.archive}
+                            />
+                        </div>
+                    }
                 </div>
-                </div>
+            </div>
         )
-                }
+    }
 }
-

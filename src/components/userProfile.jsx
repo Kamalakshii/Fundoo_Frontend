@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
@@ -28,7 +27,6 @@ export default class Logout extends Component {
   handleClose1 = () => {
     this.setState({ isOpen: false });
   };
-
   /**
    * @description:it will close the current action event
    */
@@ -97,12 +95,12 @@ export default class Logout extends Component {
   };
   render() {
     const { anchorEl, open, placement } = this.state;
-    const userDetails = localStorage.getItem("userDetails");
+    const userDetails = localStorage.getItem("username");
     const initial = userDetails.substring(0, 1);
     return (
       <div>
         <Popper open={open} anchorEl={anchorEl} placement={placement}>
-          <Paper id="papperlogout">
+          <Paper id="paperlogout">
             <div
               className="popperMain"
               style={{
@@ -150,10 +148,10 @@ export default class Logout extends Component {
               </div>
 
               <div id="profilebutton">
-                <Button id="CloseBut" onClick={this.handleregister}>
+                <Button id="addaccount" onClick={this.handleregister}>
                   Add account
                 </Button>
-                <Button id="CloseBut" onClick={this.handlelogout}>
+                <Button id="signout" onClick={this.handlelogout}>
                   Sign out
                 </Button>
               </div>
