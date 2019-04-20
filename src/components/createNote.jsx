@@ -9,7 +9,8 @@ import { Input, Card, createMuiTheme, MuiThemeProvider, Chip } from '@material-u
 import { createNote } from '../services/noteServices';
 import { Button } from '@material-ui/core';
 import Tools from './toolbar';
-import EditPin from '../components/pin';
+import EditPin from './editPin'
+
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -40,7 +41,7 @@ export default class createNotes extends Component {
             trash: false,
         }
     }
-    handleTitle=(evt)=> {
+    handleTitle = (evt) => {
         try {
             this.setState({ title: evt.target.value })
         } catch (err) {
@@ -51,7 +52,7 @@ export default class createNotes extends Component {
      * @description:it will handle the description event
      * @param {*event for description} evt 
      */
-    handleDescription=(evt)=> {
+    handleDescription = (evt) => {
         try {
             this.setState({ description: evt.target.value })
         } catch (err) {
@@ -62,7 +63,7 @@ export default class createNotes extends Component {
     * @description:it will handle the color event
     * @param {*value for color} value 
     */
-    handleColor=(value)=> {
+    handleColor = (value) => {
         try {
             this.setState({ color: value });
         } catch (err) {
@@ -73,7 +74,7 @@ export default class createNotes extends Component {
       * @description:it will handle the reminder event
       * @param {*value for reminder} value 
       */
-    handleReminder=(value)=>{
+    handleReminder = (value) => {
         try {
             this.setState({ reminder: value })
         } catch (err) {
@@ -81,13 +82,13 @@ export default class createNotes extends Component {
         }
     }
     reminderNote = () => {
-        this.setState({ reminder: ""})
+        this.setState({ reminder: "" })
     }
     /**
    * @description:it will handle the archive event
    * @param {*value for archive} value 
    */
-    handleArchive=(value) =>{
+    handleArchive = (value) => {
         try {
             this.setState({ archive: value });
         } catch (err) {
@@ -98,21 +99,21 @@ export default class createNotes extends Component {
     * @description:it will handle the pinned event
     * @param {*value for pinned} value 
     */
-    handlePinned=(value) =>{
+    handlePinned = (value) => {
         try {
             this.setState({ pinned: value });
         } catch (err) {
             console.log("error at handlePinned in createNotes");
         }
     }
-    handleTrash=(value) =>{
+    handleTrash = (value) => {
         try {
             this.setState({ trash: value });
         } catch (err) {
             console.log("error at handleTrash in createNotes");
         }
     }
-    handleToggle=()=> {
+    handleToggle = () => {
         try {
             this.setState({ openNote: !this.state.openNote });
             // console.log("pinned", this.state.openNote);
@@ -186,6 +187,12 @@ export default class createNotes extends Component {
                                 onChange={this.handleTitle}
                             />
                         </div>
+                        <div>
+                            <EditPin
+                                pinStatus={this.state.pinned}
+                                cardPropsToPin={this.handlePinned}
+                            />
+                        </div>
                         <Input
                             className="noteInputBase"
                             multiline
@@ -196,33 +203,34 @@ export default class createNotes extends Component {
                             onChange={this.handleDescription}
                         />
                         {this.state.reminder ?
-                        <div className="chip">
-                            <Chip
-                                label={this.state.reminder}
-                                onDelete={() => this.reminderNote()}
-                            />
+                            <div className="chip">
+                                <Chip
+                                    label={this.state.reminder}
+                                    onDelete={() => this.reminderNote()}
+                                />
                             </div>
                             :
                             null}
-                        <div className="cardToolsClose" >
+                        
+                            < div className="cardToolsClose" >
                             <Tools
-                                reminder={this.handleReminder}
-                                archiveNote={this.handleArchive}
-                                createNotePropsToTools={this.handleColor}
-                                archiveStatus={this.state.archive}
-                                trashNote={this.handleTrash}
-                                trashStatus={this.state.trash}
-                            />
-                            <div>
-                                <Button onClick={this.handleToggle}>close</Button>
-                            </div>
+                            reminder={this.handleReminder}
+                            archiveNote={this.handleArchive}
+                            createNotePropsToTools={this.handleColor}
+                            archiveStatus={this.state.archive}
+                            trashNote={this.handleTrash}
+                            trashStatus={this.state.trash}
+                        />
+                        <div>
+                            <Button onClick={this.handleToggle}>close</Button>
+                        </div>
                         </div>
                     </Card>
                 </div>
-            </MuiThemeProvider>
+            </MuiThemeProvider >
         )
     }
 }
-export {createNote}
+export { createNote }
 
 

@@ -107,7 +107,7 @@ export default class reminder extends Component {
                         <img src={require('../assets/reminder.svg')}
                             className="reminderIcon"
                             onClick={this.handleClick('bottom-start')} alt="remider icon" 
-                                                   />
+                     />
 
                     </Tooltip>
                     </div>

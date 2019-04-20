@@ -18,6 +18,9 @@ export default class Logout extends Component {
       isOpen: false
     };
   }
+  /**
+   * it opens on click of avatar to change profile picture
+   */
   handleClickOpen = () => {
     this.setState({
       isOpen: true
@@ -64,7 +67,6 @@ export default class Logout extends Component {
       console.log("error at register click in popper");
     }
   };
-
   componentDidMount() {
     if (localStorage.getItem("profilePic") !== "undefined") {
       this.setState({
@@ -102,7 +104,6 @@ export default class Logout extends Component {
         <Popper open={open} anchorEl={anchorEl} placement={placement}>
           <Paper id="paperlogout">
             <div
-              className="popperMain"
               style={{
                 width: "fit-content"
               }}
@@ -140,7 +141,7 @@ export default class Logout extends Component {
                   onClose={this.handleClose1}
                 />
                 <div className="POPContent">
-                  <div className="popName">{userDetails}</div>
+                 {userDetails}
                   <div className="popEmail">
                     {localStorage.getItem("email")}{" "}
                   </div>

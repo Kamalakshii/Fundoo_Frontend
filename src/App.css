@@ -1,3 +1,102 @@
+@media only screen and (max-width: 1000px){
+  .CardsViewArchive{
+    display: flex;
+    justify-content: inherit;
+    flex-wrap: wrap;
+    margin-top: -15%;
+    margin-left: 50%;
+    width: fit-content;
+  }
+}
+@media only screen and (max-width: 1300px){
+  .CardsViewTrash{
+    display: flex;
+    justify-content: inherit;
+    flex-wrap: wrap;
+    margin-top: -4%;
+    margin-left: 88%;
+    width: fit-content;
+  }
+}
+@media only screen and (max-width: 350px){
+.CardsViewArchive{
+  display: flex;
+  justify-content: inherit;
+  flex-wrap: wrap;
+  margin-top: -15%;
+  margin-left: 30%;
+}
+}
+@media only screen and (max-width:300px){
+  .trashMessage{
+    margin-top: 100%;
+    padding-left: 100%;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: 1.375rem;
+    font-weight: 400;
+    color: #80868b;
+    line-height: 1.75rem;
+  }
+  .recycleicon{
+    background-size: 120px 120px;
+      height: 120px;
+      margin-left: 36%;
+      opacity: .1;
+      width: 120px;
+  }
+}
+/***************************************trash and archive status message*****************************/
+.trashMessage{
+  margin-left: 25%;
+  margin-top: 19%;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #80868b;
+  line-height: 1.75rem;
+}
+.archiveMessage{
+  margin-left: 25%;
+  margin-top: 19%;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #80868b;
+  line-height: 1.75rem;
+}
+.recycleicon{
+  background-size: 120px 120px;
+    height: 120px;
+    margin-left: 36%;
+    opacity: .1;
+    width: 120px;
+}
+.archiveicon{
+  background-size: 120px 120px;
+    height: 120px;
+    margin-left: 36%;
+    opacity: .1;
+    width: 120px;
+}
+.CardsViewArchive{
+  display: flex;
+  justify-content: inherit;
+  flex-wrap: wrap;
+  margin-top: -15%;
+  margin-left: 30%;
+}
+.CardsViewTrash{
+  display: flex;
+  justify-content: inherit;
+  flex-wrap: wrap;
+  margin-top: -15%;
+  margin-left: 30%;
+}
+.archiveNavigator{
+  margin-top: 1%;
+  margin-left: 7%;
+}
+/*************************************dialogBox************************************************/
 #dialogbox{
   width: 600px;
   transform: none;
@@ -16,26 +115,28 @@
   justify-content: inherit;
   flex-wrap: wrap;
   margin-top:3%;
-  margin-left:20%
+  margin-left:28%;
 }
 .listCards {
-  width: 500px;
-  margin-left: 10px;
-  margin-right:-50%;
+  width: 600px;
+  margin-left:20%;
   margin-top: 10px;
-  padding: 10px;
-}
-.cards {
-  width: 250px;
-  margin: 8px;
   padding: 15px;
 }
+.cards {
+  width: 225px;
+  margin: 8px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
 #cardViewIcon{
   margin-left: -44%
 }
 #gap{
   display:flex;
   width:fit-content;
+  word-break: break-word;
 }
 .root{
   display:flex;
@@ -70,9 +171,10 @@ div .listRemindr{
 }
 #pin
 {
-  margin-left: 93%;
+  margin-left: 85%;
     /* right: 20px; */
-    margin-top: -32px;
+    margin-top: -25px;
+    opacity: 0.41;
 }
 div .currentDate{
   display: flex;
@@ -91,16 +193,16 @@ div .currentDate{
 #displaycontentdiv {
   display: flex;
   justify-content: space-between;
-  margin-top: 3%;
+  margin-top: 4%;
   padding-bottom: 5%
+
 }
 .CardsView {
   display: flex;
   justify-content:inherit;
   flex-wrap: wrap;
 }
-.cards:hover .cardTools {
-  visibility: visible;
+.cards{
   box-shadow: 2px 2px 2px 2px solid gray
 }
 #pallette{
@@ -110,6 +212,9 @@ div .currentDate{
     color: #202124;
     opacity: .71;
 }
+/* .colorPalleteIcon:hover{
+  visibility: hidden;transition: 10s
+} */
 .afterSlide {
   margin-left: 50px;
   transition: margin-left 0.25s;
@@ -137,9 +242,20 @@ div .currentDate{
     margin-left: 200%;
     /* padding: 17%; */
 }
+#unarchiveIcon{
+  height: 0px;
+  /* margin: 0 90px; */
+  width: 45px;
+  color: #202124;
+    opacity: .71;
+    /* margin-top:-25px; */
+    margin-top: -124%;
+    margin-left: 200%;
+    /* padding: 17%; */
+}
 .colorPalleteCard  {
   position: absolute;
-  max-width: 116px;
+  max-width: 126px;
   padding: 3px;
   display: flex;
   justify-content: space-between;
@@ -151,22 +267,16 @@ div .currentDate{
 #userProfileIcon {
   margin-left: 0px; 
 }
-.popperMain{
+/* .popperMain{
   margin-top: 7%;
-}
+} */
 .POPContent{
   margin-top: 8%;
     margin-left: 10%;
 }
 #paperlogout{
-  width:100%;outline: none;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  z-index: 991;
-    line-height: normal;
-    width: 300px;
-    padding: 0px;
-    margin-top: 13px;
+    width: 316px;
+    margin-top: 18px;
     margin-right: 50%
 }
 #userProfileDetails {
@@ -175,7 +285,6 @@ div .currentDate{
 }
 .avatar {
   margin: 10;
-  color:royalblue
 }
 #profilebutton {
   display: flex;
@@ -190,42 +299,35 @@ div .currentDate{
     display: inline-block;
     line-height: 28px;
     padding: 0 12px;
-    -webkit-border-radius: 2px;
     border-radius: 2px;
     color: #666;
     margin-left: -2%;
 }
 #signout{
   text-transform:inherit;
-  margin-right: 1%;
   display: inline-block;
   background: #f8f8f8;
   border: 1px solid #c6c6c6;
     line-height: 28px;
     padding: 0 8px;
-    -webkit-border-radius: 2px;
     border-radius: 2px;
     margin-right: -28%;
-    white-space: nowrap;
-    color: #666;
-    cursor: default;
-    text-decoration: none;
+    color: #666;  
 }
 
 /*************************** css for create note ,appbar ********************************/
-/* .noteInputBase {
+ .noteInputBase {
   margin-top: 3%;
   width: 460px;
 }
 .noteInputBase1 {
-  margin-top: 0%;
   width: 460px;
-} */
-
+} 
 .createNotePinIcon {
   display: flex;
   flex-direction: row;
-  margin-top: 0%;
+  margin-top: -7%; 
+  width:170%
 }
 .createNotePinIcon1 {
   display: flex;
@@ -257,11 +359,8 @@ div .currentDate{
   justify-content: space-between;
   margin-top: 5.5%
 }
-.listCards:hover .cardTools {
-  visibility: visible
-}
   #createNoteParent {
-    margin-left: 30%
+    margin-left: 30%;
   }
    @media only screen and (max-width:1000px){
   .cards {
@@ -532,25 +631,6 @@ font-weight: 700;
     font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
     margin-top: -18%;
   }
-  #font-F{
-    color:#4285F4;
-    font-family: sans-serif;
-  }
-  #font-u{
-    color:#DB4437
-}
-#font-n{
-    color:#F4B400;
-}
-#font-d{
-    color:#4285F4;
-}
-#font-o{
-    color:lightgreen;
-}
-#font-o{
-    color:#DB4437
-}
   #email-input{
     margin-left: 22%;
     margin-right: 0%;

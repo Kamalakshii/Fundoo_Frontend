@@ -53,7 +53,6 @@ export default class Demo extends Component {
         .catch(err => {
           alert(err);
         });
-
       //console.log("Cropped result is ", this.state.cropResult);
     });
     this.props.onClose();

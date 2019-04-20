@@ -6,8 +6,10 @@
  *****************************************************************************************************/
 import React, { Component } from 'react';
 import Archiveicon from '../assets/archive.svg';
+import Unarchiveicon from '../assets/unarchive.svg'
 import { Snackbar, IconButton, Tooltip } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import addNotification from './addNotification';
 export default class Archive extends Component {
     constructor(props) {
         super(props);
@@ -38,6 +40,25 @@ export default class Archive extends Component {
             this.props.archiveNote(this.state.isArchived, this.props.noteID)
         }
     }
+    // handleUnarchive = () => {
+    //     console.log("(this.props.archiveStatus", this.state.isArchived);
+    //     if (this.props.archiveStatus === false) {
+    //         this.state.isArchived = true;
+    //         // this.setState({ isArchived: true });
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Note UnArchived"
+    //         });
+    //         // console.log("this.state.isArchived changed", this.state.isArchived);
+    //         this.props.archiveNote(this.state.isArchived, this.props.noteID)
+    //     }
+    //     else {
+    //         //  this.state.isArchived = false;
+    //         this.setState({ isArchived: false });
+    //         console.log(" this.state.isArchived change else", this.state.isArchived);
+    //         this.props.archiveNote(this.state.isArchived, this.props.noteID)
+    //     }
+    // }
     /**
     * @description:use to auto close snackBar
     */
@@ -55,7 +76,6 @@ export default class Archive extends Component {
         return (
             this.state.isArchived ?
                 <div>
-
                     <div id="archiveIcon">
                         <Tooltip title="Archive Note" onClick={
                             this.handleArchive
@@ -65,34 +85,8 @@ export default class Archive extends Component {
                             />
                         </Tooltip>
                     </div>
-
-                    <Snackbar
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'right',
-                        }}
-                        open={this.state.openSnackBar}
-                        autoHideDuration={6000}
-                        onClose={this.handleSnackClose}
-                        variant="error"
-                        ContentProps={{
-                            'aria-describedby': 'message-id',
-                        }}
-                        message={<span id="message-id">  {this.state.snackBarMessage}</span>}
-                        action={[
-                            <div >
-                                <IconButton
-                                    key="close"
-                                    aria-label="Close"
-                                    color="inherit"
-                                    onClick={this.handleSnackClose}
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                            </div>
-                        ]}
-                    />
                 </div>
+                
                 :
                 <div id="archiveIcon">
                     <Tooltip title="Archive Note" onClick={
@@ -103,6 +97,17 @@ export default class Archive extends Component {
                         />
                     </Tooltip>
                 </div>
+
+                // <div id="unarchiveIcon">
+                //     <Tooltip title="Unarchive Note" onClick={
+                //         this.handleUnarchive
+                //     }>
+                //         <img src={Unarchiveicon}
+                //             alt="archive note icon"
+                //         />
+                //     </Tooltip>
+                // </div>
+                
         )
     }
 }

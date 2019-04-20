@@ -3,6 +3,7 @@ import { Card, MuiThemeProvider, createMuiTheme, Chip, Snackbar, IconButton } fr
 import CloseIcon from '@material-ui/icons/Close';
 import Tools from '../components/toolbar';
 import DialogBox from '../components/dilogBox';
+
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -46,16 +47,22 @@ export default class ArchivedNavigator extends Component {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <MuiThemeProvider theme={theme}>
-                <div>
-                    <label style={{ fontFamily: "georgia", fontSize: "18px", color: "grey", marginRight: "760px" }}>ARCHIVE</label>
-                    <div className="CardsView">
+           <div className ="archiveMessage">
+              {(this.props.archiveArray).length === 0 ?
+              <div > <img src={require("../assets/archive.svg")} className ="archiveicon"/>
+                    <h1  style={{ fontFamily: "Google Sans',Roboto,Arial,sans-serif", color: "#80868b" ,marginLeft:"20%" }}>Your Archived Notes Appear Here</h1></div>
+                :
+                    // 
+                    null
+                }
+             </div>
+                    <div className="CardsViewArchive">
                         {this.props.archiveArray.map((key) => {
                             return (
                                 <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }}>
                                     <div className="DispCont" >
                                         <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                            <b> {key.title}</b>
-                                        
+                                            <b> {key.title}</b>                             
                                         </div>
                                         <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                             {key.description}
@@ -64,9 +71,9 @@ export default class ArchivedNavigator extends Component {
                                             <Chip
                                                 label={key.reminder}
                                                 onDelete={() => this.props.reminder("", key._id)} />
-                                            :
+                                            :                         
                                             null}
-                                    </div>
+                                    </div>                                   
                                     <div id="displaycontentdiv">
                                         <Tools
                                             createNotePropsToTools={this.props.getColor}
@@ -82,8 +89,7 @@ export default class ArchivedNavigator extends Component {
                             )
                         })
                         }
-                        <DialogBox
-                          
+                        <DialogBox         
                             ref={this.props.cardsToDialogBox}
                             parentProps={this.props.open1}
                             // note={notesArray[key].note}
@@ -97,13 +103,14 @@ export default class ArchivedNavigator extends Component {
                             createNotePropsToTools={this.props.getColor}
                         />
                     </div>
+                   
                     <Snackbar
                         anchorOrigin={{
                             vertical: 'bottom',
                             horizontal: 'right',
                         }}
                         open={this.state.openSnackBar}
-                        autoHideDuration={6000}
+                        autoHideDuration={60}
                         onClose={this.handleSnackClose}
                         variant="error"
                         ContentProps={{
@@ -122,8 +129,7 @@ export default class ArchivedNavigator extends Component {
                                 </IconButton>
                             </div>
                         ]}
-                    />
-                </div>
+                    /> 
             </MuiThemeProvider>
         )
     }

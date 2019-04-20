@@ -9,6 +9,7 @@ import CreateNote from '../components/createNote';
 import AppbarComponent from '../components/appBar';
 import Notes from '../components/notes';
 import "../App.css"
+import addNotification from '../components/addNotification';
 export default class dashBoard extends Component {
     constructor(props) {
         super(props);
@@ -82,12 +83,14 @@ export default class dashBoard extends Component {
                     />
                 </div>
                 <div className="setFixedMargin">
-                    {this.state.archive  ?
+                    {this.state.archive || this.state.trash ?
                         <div id="dashboard1">
                             <Notes
                                 noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}
                                 navigateArchived={this.state.archive}
+                                navigateTrashed={this.state.trash}
+                                navigateReminder={this.state.reminder}
                             />
                         </div>
                         :
@@ -95,10 +98,13 @@ export default class dashBoard extends Component {
                             <CreateNote
                                 getNewNote={this.getNewNote}
                             />
+                           
                             <Notes
                                 noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}
                                 navigateArchived={this.state.archive}
+                                navigateTrashed={this.state.trash}
+                                navigateReminder={this.state.reminder}
                             />
                         </div>
                     }

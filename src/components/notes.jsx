@@ -7,11 +7,14 @@
 import React, { Component } from 'react';
 import { Card, Chip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Tools from '../components/toolbar';
-import { getNotes, updateColor, setReminder, archiveArray, otherArray, isTrashed, updateArchiveStatus, updateTitle, updateDescription } from '../services/noteServices';
+import { getNotes, updateColor, trashArray, setReminder,deleteNoteForever, archiveArray, reminderArray, pinArray, otherArray, isTrashed, updatePin, updateArchiveStatus, updateTitle, updateDescription } from '../services/noteServices';
 import '../App.css';
 import ArchivedNavigator from "../components/archivedNavigator";
+import TrashedNavigator from "../components/trashedNavigator"
+import ReminderNavigator from "../components/reminderNavigator"
 import ResponsiveDialog from '../components/dilogBox'
-
+import EditPin from "./editPin"
+import PinAndOthers from '../components/notePin';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -205,9 +208,58 @@ export default class Cards extends Component {
                 alert(error)
             });
     }
+    deleteNote = (noteId) => {
+        const obj = {
+            noteID: noteId,
+        }
+        console.log("data in deleteeeeeeeeeeeee",obj);
+        
+        deleteNoteForever(obj)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === obj.noteID) {
+                        newArray.splice(i, 1);
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+            })
+            .catch((error) => {
+                // NotificationManager.error(error);
+                 alert(error)
+            });
+        }
+    pinNote = (value, noteId) => {
+        const isPinned = {
+            noteID: noteId,
+            pinned: value
+        }
+        updatePin(isPinned)
+            .then((result) => {
+                let newArray = this.state.notes
+                for (let i = 0; i < newArray.length; i++) {
+                    if (newArray[i]._id === noteId) {
+                        newArray[i].archive = false;
+                        newArray[i].trash = false;
+                        newArray[i].pinned = result.data.data;
+                        this.setState({
+                            notes: newArray
+                        })
+                    }
+                }
+
+            })
+            .catch((error) => {
+                // NotificationManager.error(error);
+                alert(error)
+            });
+    }
     handleClose = (evt) => {
         this.setState({ open1: false })
     }
+
     render() {
         let notesArray = otherArray(this.state.notes);
         if (this.props.navigateArchived) {
@@ -218,6 +270,32 @@ export default class Cards extends Component {
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     archiveNote={this.archiveNote}
+                    pinNote={this.pinNote}
+                />
+            )
+        }
+        else if (this.props.navigateTrashed) {
+            return (
+                <TrashedNavigator
+                    trashArray={trashArray(this.state.notes)}
+                    othersArray={otherArray}
+                    getColor={this.getColor}
+                    noteProps={this.props.noteProps}
+                    trashNote={this.trashNote}
+                    pinNote={this.pinNote}
+                    deleteNote={this.deleteNote}
+                />
+            )
+        }
+        else if (this.props.navigateReminder) {
+            return (
+                <ReminderNavigator
+                    reminderArray={reminderArray(this.state.notes)}
+                    othersArray={otherArray}
+                    getColor={this.getColor}
+                    noteProps={this.props.noteProps}
+                    reminderNote={this.reminderNote}
+                    pinNote={this.pinNote}
                 />
             )
         }
@@ -225,61 +303,89 @@ export default class Cards extends Component {
         return (
             <div className="root">
                 <MuiThemeProvider theme={theme}>
-                    <div className="CardsView" >
-                        {
-                            Object.keys(notesArray).slice(0).reverse().map((key) => {
-                                return (
-                                    <div id="gap" key={key}  >
-                                        <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "15px", padding: "3%", border: "1px solid #dadce0"  }}>
-                                            <div>
-                                                <div onClick={() => this.handleClick(notesArray[key])} style={{ display: "flex", justifyContent: "space-between" }}>
-                                                    <b> {notesArray[key].title}</b>
+                    {pinArray(this.state.notes).length !== 0 ?
+                        <PinAndOthers
+                            createNotePropsToTools={this.getColor}
+                            pinArray={pinArray(this.state.notes)}
+                            pinNote={this.pinNote}
+                            othersArray={otherArray(this.state.notes)}
+                            getColor={this.getColor}
+                            noteProps={this.props.noteProps}
+                            reminder={this.reminderNote}
+                            trashNote={this.trashNote}
+                            archiveNote={this.archiveNote}
+                            uploadImage={this.uploadImage}
+                            editTitle={this.editTitle}
+                            editDescription={this.editDescription}
+                            addLabelToNote={this.addLabelToNote}
+                            deleteLabelFromNote={this.deleteLabelFromNote}
+                        />
+                        :
+                        <div className="CardsView" >
+                            {
+                                Object.keys(notesArray).slice(0).reverse().map((key) => {
+                                    return (
+                                        <div id="gap" key={key}>
+                                            <Card className={cardsView} style={{ backgroundColor: notesArray[key].color, borderRadius: "15px", padding: "3%", border: "1px solid #dadce0" }}>
+                                                <div>
+                                                    <div onClick={() => this.handleClick(notesArray[key])} style={{ display: "flex", justifyContent: "space-between" }}>
+                                                        <b> {notesArray[key].title}</b>
+                                                    </div>
+                                                    <div>
+                                                        <EditPin
+                                                            cardPropsToPin={this.pinNote}
+                                                            noteID={notesArray[key]._id}
+                                                            pinStatus={notesArray[key].pinned}
+                                                        />
+                                                    </div>
+
+                                                    <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
+                                                        {notesArray[key].description}
+                                                    </div >
+                                                   
+                                                </div>
+                                                <div id="dispNote">
+                                                    <div
+                                                        style={{
+                                                            display: "flex",
+                                                            justifyContent: "space-between",
+                                                            wordBreak: "break-word"
+                                                        }}
+                                                    ></div>
                                                 </div>
 
-                                                <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
-                                                    {notesArray[key].description}
-                                                </div >
-                                            </div>
-                                            <div id="dispNote">
-                                                <div
-                                                    style={{
-                                                        display: "flex",
-                                                        justifyContent: "space-between",
-                                                        wordBreak: "break-word"
-                                                        
-                                                    }}
-                                                ></div>
-                                            </div>
-                                            <div>
-                                                {/* <img src={clockIcon} alt="clockIcon" /> */}
-                                                {notesArray[key].reminder ?
-                                                    <Chip
-                                                        label={notesArray[key].reminder}
-                                                        onDelete={() => this.reminderNote('', notesArray[key]._id)}
+                                                <div>
+                                                    {/* <img src={clockIcon} alt="clockIcon" /> */}
+                                                    {notesArray[key].reminder ?
+                                                        <Chip
+                                                            label={notesArray[key].reminder}
+                                                            onDelete={() => this.reminderNote('', notesArray[key]._id)}
+                                                        />
+                                                        :
+                                                        null
+                                                    }
+                                                </div>
+                                                <div id="displaycontentdiv">
+                                                    <Tools
+                                                        createNotePropsToTools={this.getColor}
+                                                        noteID={notesArray[key]._id}
+                                                        // note={notesArray[key].note}
+                                                        reminder={this.reminderNote}
+                                                        archiveNote={this.archiveNote}
+                                                        archiveStatus={notesArray[key].archive}
+                                                        trashNote={this.trashNote}
+                                                        trashStatus={notesArray[key].trash}
+                                                        pinArray={pinArray(this.state.notes)}
+                                                        pinNote={this.pinNote}
                                                     />
-                                                    :
-                                                    null
-                                                }
-                                            </div>
-                                            <div id="displaycontentdiv">
-                                                <Tools
-                                                    createNotePropsToTools={this.getColor}
-                                                    noteID={notesArray[key]._id}
-                                                    // note={notesArray[key].note}
-                                                    reminder={this.reminderNote}
-                                                    archiveNote={this.archiveNote}
-                                                    archiveStatus={notesArray[key].archive}
-                                                    trashNote={this.trashNote}
-                                                    trashStatus={notesArray[key].trash}
-                                                />
-                                                 
-                                            </div>
-                                        </Card>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+                                                </div>
+                                            </Card>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    }
                     <ResponsiveDialog
                         close={this.handleClose}
                         ref={this.cardsToDialogBox}

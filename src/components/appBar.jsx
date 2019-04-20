@@ -12,7 +12,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { Tooltip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { Tooltip } from '@material-ui/core';
 import Drawer from '../components/drawer';
 import PersistentDrawerLeft from '../components/drawer';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -94,7 +94,7 @@ class PrimarySearchAppBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      open: true,
       name: "Fundoo"
     };
   }

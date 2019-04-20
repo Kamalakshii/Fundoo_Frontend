@@ -8,8 +8,6 @@ import { MenuItem } from "@material-ui/core";
 import { Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import "../App.css";
-import zIndex from "@material-ui/core/styles/zIndex";
-
 export default class MoreOptions extends Component {
   constructor(props) {
     super(props);

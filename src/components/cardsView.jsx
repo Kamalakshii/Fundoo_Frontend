@@ -6,7 +6,6 @@ export default class cardsView extends Component {
         this.state = {
             view: false,
         }
-        this.handleCardsView = this.handleCardsView.bind(this);
     }
     /**
      * @description:it handle the list and grid view event
@@ -27,18 +26,16 @@ export default class cardsView extends Component {
                 <div>
                     <IconButton id="cardViewIcon">
                         <Tooltip title="List View" onClick={this.handleCardsView}>
-                            <img src={require('../assets/list-view.svg')} alt="grid icon" 
+                            <img src={require('../assets/grid-view.svg')} alt="grid icon" 
                         />
                         </Tooltip>
                     </IconButton>
-             
                 </div>
-                :
-                
+                :               
                 <div>
                     <IconButton id="cardViewIcon">
                         <Tooltip title="Grid View" onClick={this.handleCardsView}>
-                            <img src={require('../assets/grid-view.svg')} alt="grid icon" />
+                            <img src={require('../assets/list-view.svg')} alt="grid icon" />
                         </Tooltip>
                     </IconButton>
                 </div>

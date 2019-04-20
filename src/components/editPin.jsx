@@ -7,7 +7,6 @@ export default class EditPin extends Component {
         this.state = {
             isPinned: false
         }
-        this.handleClick = this.handleClick.bind(this);
     }
     /**
      * @description:it will shows the pin status whether it is pinned or not
@@ -36,7 +35,7 @@ export default class EditPin extends Component {
         }
     }
     render() {
-        // const { isPinned } = this.state;
+         const { isPinned } = this.state;
         return (
             <div>
                 <div id ="pin">

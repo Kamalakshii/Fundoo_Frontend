@@ -132,15 +132,7 @@ export default class DialogBox extends Component {
                 // noteID={this.props.noteID}
                 >
                     <div id="dialogbox" style={{ backgroundColor: this.state.color }} >
-                        <div>
-                            {this.state.image ?
-                                <img style={{ maxWidth: "100%", height: "auto" }}
-                                    src={this.state.image} alt="cardImage">
-                                </img>
-                                :
-                                null
-                            }
-                        </div>
+                        
                         <div className="createNotePinIcon">
                             <Input
                                 className="dialogInputBase"

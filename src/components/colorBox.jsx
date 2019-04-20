@@ -77,12 +77,13 @@ export default class ColorPallete extends Component {
         try {
             this.setState({ open: !this.state.open });
             this.props.handleToggle(!this.state.open)
+            
         } catch (err) {
             console.log("error at handleToggle in colorBox");
         }
     }
     render() {
-        const { anchorEl, open } = this.state;
+        // const { anchorEl, open } = this.state;
         const changeCardColor = colorCodesAndNames.map((colorKey) =>
             <Tooltip title={colorKey.name}>
                 <IconButton style={{ backgroundColor: colorKey.colorCode, "margin": "2px" }}
@@ -97,11 +98,11 @@ export default class ColorPallete extends Component {
                 <Tooltip title="Change Color">
                 <div id="pallette">
                     <img src={require('../assets/pallete.svg')}
-                        className="colorPalleteIcon"
+                        // className="colorPalleteIcon"
                         alt="change color"
-                        onMouseEnter={this.handleMouseEnter}
+                         onMouseEnter={this.handleMouseEnter}
                         onClick={this.handleToggle}
-                         //onMouseLeave={this.handleMouseLeave}
+                       //  onMouseLeave={this.handleMouseLeave}
                     />
                     </div>
                 </Tooltip>

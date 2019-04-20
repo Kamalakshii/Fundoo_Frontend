@@ -79,7 +79,6 @@ export function updateTrashStatus(data) {
         }
     )
 }
-
 /**
  * 
  * @param {*} data 
@@ -95,7 +94,6 @@ export function setReminder(data) {
         }
     )
 }
-
 export function isTrashed(data) {
 
     return axios.put('/isTrash', data, {
@@ -103,7 +101,6 @@ export function isTrashed(data) {
 
     })
 }
-
 export function updateTitle(data) {
     var headers = {
         "token": localStorage.getItem("token")
@@ -124,10 +121,42 @@ export function updateDescription(data) {
         }
     )
 }
-/***************************************************************************************************** */
+/**
+ * 
+ * @param {*} data 
+ */
+export function updatePin(data) {
+    console.log("pinned data from front-end==>", data);
+    var headers = {
+        "token": localStorage.getItem("token")
+    }
+    return axios.put('/isPinned',
+        data, {
+            headers: headers
+        }
+    )
+    }
+    /**
+ * @description:
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function deleteNoteForever(data) {
+    console.log("delete note data from front-end==>", data);
+    var headers = {
+        'Content-Type': 'application/json',
+        "token": localStorage.getItem("token")
+    }
+    return axios.post('/deleteNote',
+        data, {
+            headers: headers
+        }
+    )
+}
 /**
  * 
  * @param {*} notesData 
+ * 
  */
 export function otherArray(notesData) {
     let otherArr = [];
@@ -155,12 +184,38 @@ export function archiveArray(notesData) {
  * 
  * @param {*} notesData 
  */
-export function remiderArray(notesData) {
+export function reminderArray(notesData) {
     let reminderArr = [];
     for (let i = 0; i < notesData.length; i++) {
-        if (notesData[i].reminder !== "") {
+        if (notesData[i].reminder !== "" && !notesData[i].trash) {
             reminderArr.push(notesData[i]);
         }
     }
     return reminderArr;
+}
+/**
+ * 
+ * @param{*}notesData
+ */
+export function trashArray(notesData){
+    let trashArr=[];
+    for(let i= 0;i<notesData.length;i++){
+        if(notesData[i].trash ){
+            trashArr.push(notesData[i]);
+        }
+    }
+    return trashArr;
+}
+/**
+ * 
+ * @param{*}notesData
+ */
+export function pinArray(notesData){
+    let pinArr=[];
+    for(let i= 0;i<notesData.length;i++){
+        if(notesData[i].pin){
+            pinArr.push(notesData[i]);
+        }
+    }
+    return pinArr;
 }
