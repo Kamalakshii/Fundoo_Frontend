@@ -135,12 +135,12 @@ export function updatePin(data) {
             headers: headers
         }
     )
-    }
-    /**
- * @description:
- * @param {*} url 
- * @param {*} data 
- */
+}
+/**
+* @description:
+* @param {*} url 
+* @param {*} data 
+*/
 export function deleteNoteForever(data) {
     console.log("delete note data from front-end==>", data);
     var headers = {
@@ -160,24 +160,24 @@ export function deleteNoteForever(data) {
  */
 export function otherArray(notesData) {
     let otherArr = [];
-    for (let i = 0; i < notesData.length; i++) {
-        if (!notesData[i].archive && !notesData[i].trash) {
-            otherArr.push(notesData[i]);
+    notesData.forEach(function (index) {
+        if (!index.archive && !index.trash) {
+            otherArr.push(index);
         }
-    }
+    })
     return otherArr;
 }
 /**
- * 
  * @param {*} notesData 
  */
+
 export function archiveArray(notesData) {
     let archiveArr = [];
-    for (let i = 0; i < notesData.length; i++) {
-        if (notesData[i].archive) {
-            archiveArr.push(notesData[i]);
+    notesData.forEach(function (index) {
+        if(index.archive) {
+            archiveArr.push(index);
         }
-    }
+    })
     return archiveArr;
 }
 /**
@@ -186,36 +186,36 @@ export function archiveArray(notesData) {
  */
 export function reminderArray(notesData) {
     let reminderArr = [];
-    for (let i = 0; i < notesData.length; i++) {
-        if (notesData[i].reminder !== "" && !notesData[i].trash) {
-            reminderArr.push(notesData[i]);
+    notesData.forEach(function (index) {
+        if (index.reminder !== "" && !index.trash) {
+            reminderArr.push(index);
         }
-    }
+    })
     return reminderArr;
 }
 /**
  * 
  * @param{*}notesData
  */
-export function trashArray(notesData){
-    let trashArr=[];
-    for(let i= 0;i<notesData.length;i++){
-        if(notesData[i].trash ){
-            trashArr.push(notesData[i]);
+export function trashArray(notesData) {
+    let trashArr = [];
+    notesData.forEach(function (index) {
+        if (index.trash) {
+            trashArr.push(index);
         }
-    }
+    })
     return trashArr;
 }
 /**
  * 
  * @param{*}notesData
  */
-export function pinArray(notesData){
-    let pinArr=[];
-    for(let i= 0;i<notesData.length;i++){
-        if(notesData[i].pin){
-            pinArr.push(notesData[i]);
+export function pinArray(notesData) {
+    let pinArr = [];
+    notesData.forEach(function (index) {
+        if (index.pin) {
+            pinArr.push(index);
         }
-    }
+    })
     return pinArr;
 }

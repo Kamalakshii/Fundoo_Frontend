@@ -259,7 +259,6 @@ export default class Cards extends Component {
     handleClose = (evt) => {
         this.setState({ open1: false })
     }
-
     render() {
         let notesArray = otherArray(this.state.notes);
         if (this.props.navigateArchived) {
@@ -271,6 +270,9 @@ export default class Cards extends Component {
                     noteProps={this.props.noteProps}
                     archiveNote={this.archiveNote}
                     pinNote={this.pinNote}
+                    editTitle={this.editTitle}
+                    reminderNote={this.reminderNote}
+                    editDescription={this.editDescription}
                 />
             )
         }
@@ -284,6 +286,7 @@ export default class Cards extends Component {
                     trashNote={this.trashNote}
                     pinNote={this.pinNote}
                     deleteNote={this.deleteNote}
+                     reminderNote={this.reminderNote}
                 />
             )
         }
@@ -295,7 +298,9 @@ export default class Cards extends Component {
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     reminderNote={this.reminderNote}
-                    pinNote={this.pinNote}
+                    pinNote={this.pinNote}       
+                    editTitle={this.editTitle}
+                    editDescription={this.editDescription}           
                 />
             )
         }
@@ -313,12 +318,9 @@ export default class Cards extends Component {
                             noteProps={this.props.noteProps}
                             reminder={this.reminderNote}
                             trashNote={this.trashNote}
-                            archiveNote={this.archiveNote}
-                            uploadImage={this.uploadImage}
+                            archiveNote={this.archiveNote}                
                             editTitle={this.editTitle}
-                            editDescription={this.editDescription}
-                            addLabelToNote={this.addLabelToNote}
-                            deleteLabelFromNote={this.deleteLabelFromNote}
+                            editDescription={this.editDescription}                          
                         />
                         :
                         <div className="CardsView" >

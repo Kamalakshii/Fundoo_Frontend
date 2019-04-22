@@ -46,7 +46,7 @@ export default class TrashOptions extends Component {
     }
     handleDelete = () => {
         this.closeLabelPopper();
-         this.props.deleteNote("" ,this.props.noteID)
+         this.props.deleteNote(this.props.noteID)
     }
     /**
     * @description:it will close the color popper box

@@ -134,7 +134,7 @@ export default class createNotes extends Component {
                         this.setState({
                             newNote: result.data.data.note
                         })
-                        this.props.getNewNote(this.state.newNote)
+                         this.props.getNewNote(this.state.newNote)
                     })
                     .catch((error) => {
                         alert(error);
