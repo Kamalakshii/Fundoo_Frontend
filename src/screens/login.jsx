@@ -14,6 +14,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { userLogin } from "../services/userServices";
+import { askForPermissioToReceiveNotifications } from '../pushNotification';
 import "../App.css";
 import "../scss/login.scss"
 export default class login extends React.Component {
@@ -74,9 +75,13 @@ export default class login extends React.Component {
             console.log("error at forgotPasswordPage in login");
         }
     };
+    componentDidMount=()=>{
+        askForPermissioToReceiveNotifications();
+    }
     handleSubmit = event => {
-        try {
+        try {        
             event.preventDefault();
+           
             if (!this.state.email) {
                 this.setState({
                     openSnackBar: true,
@@ -107,13 +112,13 @@ export default class login extends React.Component {
                 }
                 userLogin(data)
                     .then((response) => {
-                        console.log("response is  ==================>",response);
+                        console.log("response is  ============>",response);
                         this.setState({
                             openSnackBar: true,
                             snackBarMessage: "Login Successfull!!"
                         });
                          localStorage.setItem('username', response.data.result.firstname)
-                         console.log("in login_________________",response.data.result.firstname);
+                         console.log("in login_______________",response.data.result.firstname);
                          
                           localStorage.setItem('email', response.data.result.email)
                          localStorage.setItem('userId', response.data.result._id)
@@ -134,6 +139,7 @@ export default class login extends React.Component {
             console.log("error at handleSubmit in login");
         }
     }
+   
     render() {
         return (
             <div>

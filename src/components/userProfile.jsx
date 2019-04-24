@@ -6,6 +6,7 @@ import Popper from "@material-ui/core/Popper";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Button } from "@material-ui/core";
 import "../App.css";
+import { deleteToken} from '../pushNotification';
 import Demo from "./crop";
 export default class Logout extends Component {
   constructor(props) {
@@ -49,6 +50,7 @@ export default class Logout extends Component {
   handlelogout = event => {
     try {
       event.preventDefault();
+      deleteToken();
       localStorage.clear();
       this.props.props.props.history.push("/login");
     } catch (err) {

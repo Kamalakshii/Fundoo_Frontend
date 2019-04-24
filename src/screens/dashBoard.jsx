@@ -9,7 +9,7 @@ import CreateNote from '../components/createNote';
 import AppbarComponent from '../components/appBar';
 import Notes from '../components/notes';
 import "../App.css"
-import addNotification from '../components/addNotification';
+
 export default class dashBoard extends Component {
     constructor(props) {
         super(props);
