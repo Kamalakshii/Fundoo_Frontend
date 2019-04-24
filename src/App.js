@@ -15,29 +15,29 @@ import dashBoard from "../src/screens/dashBoard";
 import * as firebase from 'firebase';
 import { initializeFirebase } from './pushNotification';
 
-//  // Initialize Firebase
-//  var config = {
-//   apiKey: "AIzaSyCY0VlAWKLGyhrMN7XO5tBg4rM4CHuV7vQ",
-//   authDomain: "fundoo-f7774.firebaseapp.com",
-//   databaseURL: "https://fundoo-f7774.firebaseio.com",
-//   projectId: "fundoo-f7774",
-//   storageBucket: "fundoo-f7774.appspot.com",
-//   messagingSenderId: "598886060118"
-// };
-// initializeFirebase();
-// //firebase.initializeApp(config);
-// const messaging = firebase.messaging();
-// messaging.requestPermission()
-// .then(function() {
-//   console.log('Notification permission granted.');
-//    return messaging.getToken()
-// })
-// .then(function(token) {
-//   console.log('token is ',token);
-// })
-// .catch(function(err) {
-//   console.log('Unable to get permission to notify.', err);
-// });
+ // Initialize Firebase
+ var config = {
+  apiKey: "AIzaSyCY0VlAWKLGyhrMN7XO5tBg4rM4CHuV7vQ",
+  authDomain: "fundoo-f7774.firebaseapp.com",
+  databaseURL: "https://fundoo-f7774.firebaseio.com",
+  projectId: "fundoo-f7774",
+  storageBucket: "fundoo-f7774.appspot.com",
+  messagingSenderId: "598886060118"
+};
+initializeFirebase();
+//firebase.initializeApp(config);
+const messaging = firebase.messaging();
+messaging.requestPermission()
+.then(function() {
+  console.log('Notification permission granted.');
+   return messaging.getToken()
+})
+.then(function(token) {
+  console.log('token is ',token);
+})
+.catch(function(err) {
+  console.log('Unable to get permission to notify.', err);
+});
 
 
 const PrivateRoute =({ component : Component, ...rest})=>(

@@ -5,6 +5,9 @@
  *  @since          : 29-03-2019
  *******************************************************************************/
 import axios from 'axios';
+//  import { notification } from '../../../Server/api/services/noteService';
+
+
 /**
  * @description:To create a new note
  * @param {*used to send data or note to server} data 
@@ -153,6 +156,18 @@ export function deleteNoteForever(data) {
         }
     )
 }
+export function notification(data){
+    var headers = {
+        "Content-Type" : "application/json",
+        "token" : localStorage.getItem("token")
+    }
+    return axios.post("/notification",
+    data,{
+        headers:headers
+    }
+    )
+}
+/****************************************************************************************************/
 /**
  * 
  * @param {*} notesData 
