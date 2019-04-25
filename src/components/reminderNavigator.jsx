@@ -22,7 +22,6 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 })
-
 export default class ReminderNavigator extends Component {
     constructor() {
         super();

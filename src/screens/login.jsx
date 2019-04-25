@@ -14,7 +14,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { userLogin } from "../services/userServices";
-import { askForPermissioToReceiveNotifications } from '../pushNotification';
+
 import "../App.css";
 import "../scss/login.scss"
 export default class login extends React.Component {
@@ -75,9 +75,7 @@ export default class login extends React.Component {
             console.log("error at forgotPasswordPage in login");
         }
     };
-    componentDidMount=()=>{
-        askForPermissioToReceiveNotifications();
-    }
+    
     handleSubmit = event => {
         try {        
             event.preventDefault();

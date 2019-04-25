@@ -157,6 +157,8 @@ export function deleteNoteForever(data) {
     )
 }
 export function notification(data){
+    console.log("front to back data,,,,,,",data);
+    
     var headers = {
         "Content-Type" : "application/json",
         "token" : localStorage.getItem("token")
@@ -167,6 +169,7 @@ export function notification(data){
     }
     )
 }
+
 /****************************************************************************************************/
 /**
  * 

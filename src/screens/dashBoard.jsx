@@ -8,8 +8,8 @@ import React, { Component } from 'react';
 import CreateNote from '../components/createNote';
 import AppbarComponent from '../components/appBar';
 import Notes from '../components/notes';
+import { askForPermissioToReceiveNotifications } from '../pushNotification';
 import "../App.css"
-
 export default class dashBoard extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +31,9 @@ export default class dashBoard extends Component {
         } catch (err) {
             console.log("error at slideCards in dashBoard");
         }
+    }
+    componentDidMount=()=>{
+        askForPermissioToReceiveNotifications();
     }
     /**
  * @description:it handles the cards style
