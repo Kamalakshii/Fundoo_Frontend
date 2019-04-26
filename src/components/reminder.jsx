@@ -7,7 +7,9 @@
 import React, { Component } from 'react';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
-import { MenuItem, Paper, Tooltip, ListItem, createMuiTheme, MuiThemeProvider, ClickAwayListener } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { MenuItem, Paper, Tooltip, ListItem, createMuiTheme, MuiThemeProvider, ClickAwayListener, Button } from '@material-ui/core'
 const theme = createMuiTheme({
     overrides: {
         MuiMenuItem: {
@@ -31,11 +33,25 @@ const theme = createMuiTheme({
         useNextVariants: true,
     },
 })
-export default class reminder extends Component {
+
+const styles = theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    },
+  });
+
+ class reminder extends Component {
     state = {
         anchorEl: null,
         open: false,
         placement: null,
+        date:""
     };
     /**
      * @description:it handles the onclick on reminder event
@@ -62,33 +78,36 @@ export default class reminder extends Component {
             console.log("error at handleClose in reminder");
         }
     }
-    setTodayReminder = () => {
+    handleChange=(date)=>event=>{
+        this.setState({
+            [date]:new Date(event.target.value).toLocaleString()
+        });
+    }
+    sendDate=event=>{
+        event.preventDefault();
+        console.log("STATE IS ",this.state.date);
+        
+        this.props.reminder(this.state.data, this.props.noteID);
         this.handleClose();
-        let ampm = parseInt(new Date().getHours()) >= 8 ? "PM" : "AM";
-        var date = new Date().toDateString();
-        var reminder1 = date + ", 10 " + ampm;
-        console.log("today reminder data=====>", reminder1);
-        this.props.reminder(reminder1, this.props.noteID)
+    }
+    setTodayReminder = () => {
+       var date = new Date().toLocaleDateString();
+       var split = date.split("/");
+       split[1]=Number(split[1]-1)
+       var reminder = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
+        this.props.reminder(reminder, this.props.noteID)
+        this.handleClose();
     }
     setTomorrowReminder = () => {
-        this.handleClose();
-        let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"]
-        var date = new Date().toDateString();
-        date = date.replace(new Date().getDate().toString(), new Date().getDate() + 1);
-        date = date.replace(days[new Date().getDay() - 1], days[new Date().getDay()]);
-        var reminder1 = date + ", 10 AM";
-        console.log("tomorow reminder data====>", reminder1);
-        this.props.reminder(reminder1, this.props.noteID)                                         
+        var date = new Date().toLocaleDateString();
+        var split = date.split("/");
+        split[0]= Number(split[0]+1);
+        split[1]=Number(split[1]-1)
+        var reminder = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
+         this.props.reminder(reminder, this.props.noteID)
+         this.handleClose();
     }
-    setWeeklyReminder = () => {
-        this.handleClose();
-        var date = new Date().toDateString();
-        date = date.replace(new Date().getDate().toString(), (new Date().getDate() + 7));
-        var reminder1 = date + ", 08 AM";
-        console.log("weekly reminder data=====>", reminder1);
-        this.props.reminder(reminder1, this.props.noteID)
-    }
-    handleMouseEnter=()=> {
+    handleMouseEnter = () => {
         try {
             this.setState({ open: true });
             // this.props.handleToggle(!this.state.open)
@@ -99,17 +118,18 @@ export default class reminder extends Component {
     render() {
         const setAMPM = this.props.parentToolsProps;
         const { anchorEl, open, placement } = this.state;
+        const { classes } = this.props;
         return (
             <MuiThemeProvider theme={theme}>
                 <div>
                     <div id="reminderIcon">
-                    <Tooltip title="Remind me">
-                        <img src={require('../assets/reminder.svg')}
-                            className="reminderIcon"
-                            onClick={this.handleClick('bottom-start')} alt="remider icon" 
-                     />
+                        <Tooltip title="Remind me">
+                            <img src={require('../assets/reminder.svg')}
+                                className="reminderIcon"
+                                onClick={this.handleClick('bottom-start')} alt="remider icon"
+                            />
 
-                    </Tooltip>
+                        </Tooltip>
                     </div>
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 9999 }}>
                         {({ TransitionProps }) => (
@@ -126,10 +146,21 @@ export default class reminder extends Component {
                                                 <div>Tomorrow</div>
                                                 <div>10:00 AM</div>
                                             </MenuItem>
-                                            <MenuItem className="currentDate" onClick={() => this.setWeeklyReminder()}>
-                                                <div>Next Week</div>
-                                                <div>Mon, 8:00 AM</div>
-                                            </MenuItem>
+                                           
+                                            <form className={classes.container} noValidate>
+                                                <TextField
+                                                    id="datetime-local"
+                                                    label="Next appointment"
+                                                    type="datetime-local"
+                                                    defaultValue="2019-04-24T10:30"
+                                                    className={classes.textField}
+                                                    onChange={this.handleChange("date")}
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                />
+                                              
+                                            </form>  <Button onClick = {(this.sendDate)}>Save</Button>
                                             <MenuItem className="currentDate">
                                                 <div>april</div>
                                                 <div>mumbai</div>
@@ -145,4 +176,5 @@ export default class reminder extends Component {
         )
     }
 }
+export default withStyles(styles)(reminder);
 
