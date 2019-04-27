@@ -35,7 +35,7 @@ export default class EditPin extends Component {
         }
     }
     render() {
-         const { isPinned } = this.state;
+      //   const { isPinned } = this.state;
         return (
             <div>
                 <div id ="pin">

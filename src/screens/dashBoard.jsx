@@ -32,7 +32,7 @@ export default class dashBoard extends Component {
             console.log("error at slideCards in dashBoard");
         }
     }
-    componentDidMount=()=>{
+    componentWillMount=()=>{
         askForPermissioToReceiveNotifications();
     }
     /**

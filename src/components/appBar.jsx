@@ -157,7 +157,7 @@ class PrimarySearchAppBar extends React.Component {
               </Tooltip>
             </div>
             <div className="appList">
-              <CardsView
+                 <CardsView
                 appPropstoCardsView={this.handleAppbar}
               />
             </div>
@@ -179,4 +179,4 @@ class PrimarySearchAppBar extends React.Component {
 PrimarySearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(PrimarySearchAppBar);
+export default withStyles(styles)(PrimarySearchAppBar);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

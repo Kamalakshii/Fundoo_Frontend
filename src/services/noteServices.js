@@ -87,7 +87,7 @@ export function updateTrashStatus(data) {
  * @param {*} data 
  */
 export function setReminder(data) {
-    //console.log("reminder data from front-end==>", data);
+    console.log("reminder data from front-end==>", data);
     var headers = {
         "token": localStorage.getItem("token")
     }

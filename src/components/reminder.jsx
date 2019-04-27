@@ -83,15 +83,14 @@ const styles = theme => ({
             [date]:new Date(event.target.value).toLocaleString()
         });
     }
-    sendDate=event=>{
+    sendDate=(event)=>{
         event.preventDefault();
-        console.log("STATE IS ",this.state.date);
-        
-        this.props.reminder(this.state.data, this.props.noteID);
+        console.log("STATE IS ",this.state.date);    
+        this.props.reminder(this.state.date, this.props.noteID);
         this.handleClose();
     }
     setTodayReminder = () => {
-       var date = new Date().toLocaleDateString();
+       var date = new Date().toLocaleDateString(); 
        var split = date.split("/");
        split[1]=Number(split[1]-1)
        var reminder = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
@@ -99,21 +98,13 @@ const styles = theme => ({
         this.handleClose();
     }
     setTomorrowReminder = () => {
-        var date = new Date().toLocaleDateString();
+        var date = new Date().toLocaleDateString();   
         var split = date.split("/");
         split[0]= Number(split[0]+1);
         split[1]=Number(split[1]-1)
-        var reminder = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
-         this.props.reminder(reminder, this.props.noteID)
+        var reminder1 = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
+         this.props.reminder(reminder1, this.props.noteID)
          this.handleClose();
-    }
-    handleMouseEnter = () => {
-        try {
-            this.setState({ open: true });
-            // this.props.handleToggle(!this.state.open)
-        } catch (err) {
-            console.log("error at handleMouseEnter in colorBox");
-        }
     }
     render() {
         const setAMPM = this.props.parentToolsProps;
@@ -159,12 +150,9 @@ const styles = theme => ({
                                                         shrink: true,
                                                     }}
                                                 />
-                                              
-                                            </form>  <Button onClick = {(this.sendDate)}>Save</Button>
-                                            <MenuItem className="currentDate">
-                                                <div>april</div>
-                                                <div>mumbai</div>
-                                            </MenuItem>
+                                              <Button onClick = {(this.sendDate)}>Save</Button>
+                                            </form>  
+                        
                                         </div>
                                     </ClickAwayListener>
                                 </Paper>

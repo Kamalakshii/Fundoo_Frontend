@@ -6,10 +6,7 @@
  *****************************************************************************************************/
 import React, { Component } from 'react';
 import Archiveicon from '../assets/archive.svg';
-import Unarchiveicon from '../assets/unarchive.svg'
-import { Snackbar, IconButton, Tooltip } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import addNotification from './addNotification';
+import { Tooltip } from '@material-ui/core';
 export default class Archive extends Component {
     constructor(props) {
         super(props);

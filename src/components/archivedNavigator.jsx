@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Card, MuiThemeProvider, createMuiTheme, Chip, IconButton } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { Card, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';
 import Tools from '../components/toolbar';
 import ResponsiveDialog from "../components/dilogBox"
 const theme = createMuiTheme({
