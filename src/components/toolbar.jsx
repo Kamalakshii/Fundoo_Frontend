@@ -37,6 +37,7 @@ export default class Tools extends Component {
                         parentToolsProps={setNoteTime}
                         reminder={this.props.reminder}
                         noteID={this.props.noteID}
+                        showAlertMessage={this.props.showAlertMessage}
                     />
                     <ColorBox 
                         handleToggle={this.handleToggle}
@@ -47,6 +48,7 @@ export default class Tools extends Component {
                         archiveNote={this.props.archiveNote}
                         noteID={this.props.noteID}
                         archiveStatus={this.props.archiveStatus}
+                        showAlertMessage={this.props.showAlertMessage}
                     />
                          <MoreOptions
                         handleToggle={this.handleToggle}

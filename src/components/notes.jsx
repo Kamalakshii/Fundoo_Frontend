@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { Card, Chip, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Tools from '../components/toolbar';
-import { getNotes, updateColor, trashArray, setReminder,deleteNoteForever, archiveArray, reminderArray, pinArray, otherArray, isTrashed, updatePin, updateArchiveStatus, updateTitle, updateDescription } from '../services/noteServices';
+import { getNotes, updateColor, trashArray, setReminder, deleteNoteForever, archiveArray, reminderArray, pinArray, otherArray, isTrashed, updatePin, updateArchiveStatus, updateTitle, updateDescription } from '../services/noteServices';
 import '../App.css';
 import ArchivedNavigator from "../components/archivedNavigator";
 import TrashedNavigator from "../components/trashedNavigator"
@@ -15,6 +15,8 @@ import ReminderNavigator from "../components/reminderNavigator"
 import ResponsiveDialog from '../components/dilogBox'
 import EditPin from "./editPin"
 import PinAndOthers from '../components/notePin';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -44,6 +46,7 @@ export default class Cards extends Component {
             open1: false
         }
         this.cardsToDialogBox = React.createRef();
+        this.notificationDOMRef = React.createRef();
     }
     async handleClick(note) {
         console.log('note data ' + note);
@@ -89,6 +92,7 @@ export default class Cards extends Component {
             notes: [...this.state.notes, newCard]
         })
     }
+    
     reminderNote = (value, noteId) => {
         const reminder = {
             noteID: noteId,
@@ -190,7 +194,7 @@ export default class Cards extends Component {
         console.log("In Trash note->", trash);
         isTrashed(trash)
             .then((result) => {
-                //    console.log("ressssssssss----------",trash);
+                //     console.log("ressssssssss----------",trash);
                 let newArray = this.state.notes
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === noteId) {
@@ -212,8 +216,8 @@ export default class Cards extends Component {
         const obj = {
             noteID: noteId,
         }
-        console.log("data in deleteeeeeeeeeeeee",obj);
-        
+        console.log("data in deleteeeeeeeeeeeee", obj);
+
         deleteNoteForever(obj)
             .then((result) => {
                 let newArray = this.state.notes
@@ -228,9 +232,9 @@ export default class Cards extends Component {
             })
             .catch((error) => {
                 // NotificationManager.error(error);
-                 alert(error)
+                alert(error)
             });
-        }
+    }
     pinNote = (value, noteId) => {
         const isPinned = {
             noteID: noteId,
@@ -259,10 +263,25 @@ export default class Cards extends Component {
     handleClose = (evt) => {
         this.setState({ open1: false })
     }
+    addNotification=(title,msg,type) => {
+        this.notificationDOMRef.current.addNotification({
+            title: title,
+            message: msg,
+            type: type,
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: { duration: 2000 },
+            dismissable: { click: true }
+        });
+    }
     render() {
         let notesArray = otherArray(this.state.notes);
         if (this.props.navigateArchived) {
             return (
+                <div>
+                <ReactNotification ref={this.notificationDOMRef} />
                 <ArchivedNavigator
                     archiveArray={archiveArray(this.state.notes)}
                     othersArray={otherArray}
@@ -273,11 +292,15 @@ export default class Cards extends Component {
                     editTitle={this.editTitle}
                     reminderNote={this.reminderNote}
                     editDescription={this.editDescription}
+                    showAlertMessage={this.addNotification}
                 />
-            )
+                 </div>
+            )      
         }
         else if (this.props.navigateTrashed) {
             return (
+                <div>
+                <ReactNotification ref={this.notificationDOMRef} />
                 <TrashedNavigator
                     trashArray={trashArray(this.state.notes)}
                     othersArray={otherArray}
@@ -286,27 +309,34 @@ export default class Cards extends Component {
                     trashNote={this.trashNote}
                     pinNote={this.pinNote}
                     deleteNote={this.deleteNote}
-                     reminderNote={this.reminderNote}
+                    reminderNote={this.reminderNote}
+                    showAlertMessage={this.addNotification}
                 />
+                </div>
             )
         }
         else if (this.props.navigateReminder) {
             return (
+                <div>
+                <ReactNotification ref={this.notificationDOMRef} />
                 <ReminderNavigator
                     reminderArray={reminderArray(this.state.notes)}
                     othersArray={otherArray}
                     getColor={this.getColor}
                     noteProps={this.props.noteProps}
                     reminderNote={this.reminderNote}
-                    pinNote={this.pinNote}       
+                    pinNote={this.pinNote}
                     editTitle={this.editTitle}
-                    editDescription={this.editDescription}           
+                    editDescription={this.editDescription}
+                    showAlertMessage={this.addNotification}
                 />
+                </div>
             )
         }
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
             <div className="root">
+              <ReactNotification ref={this.notificationDOMRef} />
                 <MuiThemeProvider theme={theme}>
                     {pinArray(this.state.notes).length !== 0 ?
                         <PinAndOthers
@@ -318,9 +348,9 @@ export default class Cards extends Component {
                             noteProps={this.props.noteProps}
                             reminder={this.reminderNote}
                             trashNote={this.trashNote}
-                            archiveNote={this.archiveNote}                
+                            archiveNote={this.archiveNote}
                             editTitle={this.editTitle}
-                            editDescription={this.editDescription}                          
+                            editDescription={this.editDescription}
                         />
                         :
                         <div className="CardsView" >
@@ -344,7 +374,7 @@ export default class Cards extends Component {
                                                     <div onClick={() => this.handleClick(notesArray[key])} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                                         {notesArray[key].description}
                                                     </div >
-                                                   
+
                                                 </div>
                                                 <div id="dispNote">
                                                     <div
@@ -355,7 +385,7 @@ export default class Cards extends Component {
                                                         }}
                                                     ></div>
                                                 </div>
-
+                                                
                                                 <div>
                                                     {/* <img src={clockIcon} alt="clockIcon" /> */}
                                                     {notesArray[key].reminder ?
@@ -379,6 +409,7 @@ export default class Cards extends Component {
                                                         trashStatus={notesArray[key].trash}
                                                         pinArray={pinArray(this.state.notes)}
                                                         pinNote={this.pinNote}
+                                                        showAlertMessage={this.addNotification}
                                                     />
                                                 </div>
                                             </Card>
@@ -388,6 +419,7 @@ export default class Cards extends Component {
                             }
                         </div>
                     }
+
                     <ResponsiveDialog
                         close={this.handleClose}
                         ref={this.cardsToDialogBox}
@@ -400,6 +432,7 @@ export default class Cards extends Component {
                         createNotePropsToTools={this.getColor}
                         editTitle={this.editTitle}
                         editDescription={this.editDescription}
+                        showAlertMessage={this.addNotification}
                     ></ResponsiveDialog>
                 </MuiThemeProvider>
             </div>

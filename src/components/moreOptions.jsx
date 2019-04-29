@@ -15,9 +15,10 @@ export default class MoreOptions extends Component {
       anchorEl: null,
       open: false,
       placement: null,
-    //isTrash: false,
+      isTrashed: false,
       snackBarMessage: "",
-      openSnackBar: false
+      openSnackBar: false,
+      alertMessage : ""
     };
   }
   /**
@@ -62,8 +63,24 @@ export default class MoreOptions extends Component {
     // this.closeLabelPopper();
     this.props.trashNote(this.props.noteID);
     console.log("dasdasdsa", this.props.noteID);
-
   }
+  // async handleTrashedNotes() {
+  //  console.log("(this.props.trashStatus", this.state.isTrashed);
+  //   if (this.props.trashStatus === false) {
+  //   await this.setState({ isTrashed: true });
+  //   this.setState({
+  //   openSnackBar: true,
+  //   snackBarMessage: "Note Trashed"
+  //   });
+  //   // console.log("this.state.isTrash changed", this.state.isTrash);
+  //   this.props.trashNote(this.state.isTrashed, this.props.noteID);
+  //   } else {
+    
+  //   this.setState({ isTrashed: false });
+  //   console.log(" this.state.isTrash change in elseeeee", this.state.isTrashed);
+  //   this.props.trashNote(this.state.isTrashed, this.props.noteID);
+  //   }
+  //   };
   /**
    * @description:use to auto close snackBar
    */
@@ -109,32 +126,7 @@ export default class MoreOptions extends Component {
           )}
         </Popper>
         <div>
-          <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            open={this.state.openSnackBar}
-            autoHideDuration={6000}
-            onClose={this.handleSnackClose}
-            variant="error"
-            ContentProps={{
-              'aria-describedby': 'message-id',
-            }}
-            message={<span id="message-id">  {this.state.snackBarMessage}</span>}
-            action={[
-              <div >
-                <IconButton
-                  key="close"
-                  aria-label="Close"
-                  color="inherit"
-                  onClick={this.handleSnackClose}
-                >
-                  <CloseIcon />
-                </IconButton>
-              </div>
-            ]}
-          />
+        <addNotification/>
         </div>
         <div className="more">
           <Tooltip title="More options">

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
- 
+
 export default class addNotification extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +10,7 @@ export default class addNotification extends React.Component {
   }
  
   addNotification() {
-    this.notificationDOMRef.current.addNotification({
+    this.notificationDOMRef.current.addNotification({                                                                                                      
       title: "Awesomeness",
       message: "Awesome Notifications!",
       type: "success",
@@ -22,7 +22,6 @@ export default class addNotification extends React.Component {
       dismissable: { click: true }
     });
   }
- 
   render() {
     return (
       <div className="app-content">

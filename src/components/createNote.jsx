@@ -10,7 +10,7 @@ import { createNote } from '../services/noteServices';
 import { Button } from '@material-ui/core';
 import Tools from './toolbar';
 import EditPin from './editPin'
-
+import { NotificationManager } from 'react-notifications';
 const theme = createMuiTheme({
     overrides: {
         MuiPaper: {
@@ -113,7 +113,8 @@ export default class createNotes extends Component {
             console.log("error at handleTrash in createNotes");
         }
     }
-    handleToggle = () => {
+  
+    handleToggle =()=>  {
         try {
             this.setState({ openNote: !this.state.openNote });
             // console.log("pinned", this.state.openNote);
@@ -132,13 +133,13 @@ export default class createNotes extends Component {
                     .then((result) => {
                         console.log("create note result from back-end====>", result);
                         this.setState({
-                            newNote: result.data.data.note
+                            newNote: result.data.data.note            
                         })
-                         this.props.getNewNote(this.state.newNote)
+                        this.props.getNewNote(this.state.newNote)
                     })
                     .catch((error) => {
-                        alert(error);
-                    })
+                      console.log("error");                    
+                    })             
                 this.setState({
                     title: "",
                     description: "",
@@ -147,12 +148,12 @@ export default class createNotes extends Component {
                     archive: false,
                     pinned: false,
                     trash: false
-                })
+                })           
             }
         } catch (err) {
             console.log("error at handleToggle in createNotes");
         }
-    }
+    }    
     render() {
         return (!this.state.openNote ?
             <MuiThemeProvider theme={theme}>
@@ -201,6 +202,7 @@ export default class createNotes extends Component {
                             id="description"
                             value={this.state.description}
                             onChange={this.handleDescription}
+             
                         />
                         {this.state.reminder ?
                             <div className="chip">
@@ -211,19 +213,19 @@ export default class createNotes extends Component {
                             </div>
                             :
                             null}
-                        
-                            < div className="cardToolsClose" >
+                        < div className="cardToolsClose" >
                             <Tools
-                            reminder={this.handleReminder}
-                            archiveNote={this.handleArchive}
-                            createNotePropsToTools={this.handleColor}
-                            archiveStatus={this.state.archive}
-                            trashNote={this.handleTrash}
-                            trashStatus={this.state.trash}
-                        />
-                        <div>
-                            <Button onClick={this.handleToggle}>close</Button>
-                        </div>
+                                reminder={this.handleReminder}
+                                archiveNote={this.handleArchive}
+                                createNotePropsToTools={this.handleColor}
+                                archiveStatus={this.state.archive}
+                                trashNote={this.handleTrash}
+                                trashStatus={this.state.trash}
+                            />
+                            <div>
+                                <Button onClick={this.handleToggle}>close</Button>           
+                                      
+                            </div>
                         </div>
                     </Card>
                 </div>

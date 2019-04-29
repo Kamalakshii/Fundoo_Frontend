@@ -86,6 +86,7 @@ const styles = theme => ({
     sendDate=(event)=>{
         event.preventDefault();
         console.log("STATE IS ",this.state.date);    
+        this.props.showAlertMessage("Note Status: ", "Reminder set", "success");
         this.props.reminder(this.state.date, this.props.noteID);
         this.handleClose();
     }
@@ -94,6 +95,7 @@ const styles = theme => ({
        var split = date.split("/");
        split[1]=Number(split[1]-1)
        var reminder = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
+       this.props.showAlertMessage("Note Status: ", "Reminder set", "success");
         this.props.reminder(reminder, this.props.noteID)
         this.handleClose();
     }
@@ -103,6 +105,7 @@ const styles = theme => ({
         split[0]= Number(split[0]+1);
         split[1]=Number(split[1]-1)
         var reminder1 = new Date(split[2],split[1],split[0],20,0,0).toLocaleString();
+        this.props.showAlertMessage("Note Status: ", "Reminder set", "success");
          this.props.reminder(reminder1, this.props.noteID)
          this.handleClose();
     }
@@ -119,7 +122,6 @@ const styles = theme => ({
                                 className="reminderIcon"
                                 onClick={this.handleClick('bottom-start')} alt="remider icon"
                             />
-
                         </Tooltip>
                     </div>
                     <Popper open={open} anchorEl={anchorEl} placement={placement} transition style={{ zIndex: 9999 }}>
@@ -151,8 +153,7 @@ const styles = theme => ({
                                                     }}
                                                 />
                                               <Button onClick = {(this.sendDate)}>Save</Button>
-                                            </form>  
-                        
+                                            </form>                          
                                         </div>
                                     </ClickAwayListener>
                                 </Paper>

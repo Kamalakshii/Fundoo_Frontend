@@ -98,7 +98,7 @@ export function setReminder(data) {
     )
 }
 export function isTrashed(data) {
-
+//console.log("in trashhhhhhhhhhhhhhh",data);
     return axios.put('/isTrash', data, {
         headers: { 'token': localStorage.getItem('token') }
 
