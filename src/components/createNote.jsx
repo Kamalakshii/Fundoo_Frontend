@@ -112,8 +112,7 @@ export default class createNotes extends Component {
         } catch (err) {
             console.log("error at handleTrash in createNotes");
         }
-    }
-  
+    } 
     handleToggle =()=>  {
         try {
             this.setState({ openNote: !this.state.openNote });

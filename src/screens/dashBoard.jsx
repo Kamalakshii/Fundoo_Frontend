@@ -18,9 +18,11 @@ export default class dashBoard extends Component {
             cardStyles: false,
             reminder: false,
             archive: false,
-            trash: false
+            trash: false,
+            label: ""
         }
         this.noteToCards = React.createRef();
+        this.makeLabelFalse = this.makeLabelFalse.bind(this);
     }
     /**
     * @description:it performs the card action
@@ -34,6 +36,9 @@ export default class dashBoard extends Component {
     }
     componentWillMount=()=>{
         askForPermissioToReceiveNotifications();
+    }
+    makeLabelFalse() {
+        this.noteToCards.current.makeLabelFalse();
     }
     /**
  * @description:it handles the cards style
@@ -83,6 +88,7 @@ export default class dashBoard extends Component {
                         slideCards={this.slideCards}
                         notePropsToApp={this.handleCardStyle}
                         handleNavigation={this.handleNavigation}
+                        makeLabelFalse={this.makeLabelFalse}
                     />
                 </div>
                 <div className="setFixedMargin">
@@ -108,6 +114,7 @@ export default class dashBoard extends Component {
                                 navigateArchived={this.state.archive}
                                 navigateTrashed={this.state.trash}
                                 navigateReminder={this.state.reminder}
+                                labelValue={this.state.label}
                             />
                         </div>
                     }

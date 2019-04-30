@@ -8,6 +8,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { MenuItem } from '@material-ui/core';
+import EditLabel from '../components/editLabel';
+import { getLabels } from "../services/noteServices";
 const drawerWidth = 240;
 const styles = theme => ({
   root: {
@@ -74,50 +76,98 @@ const styles = theme => ({
   }
 });
 class PersistentDrawerLeft extends React.Component {
-  state = {
-    open: false,
-    navigateArchived: false,
-    navigateTrashed:false
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      navigateArchived: false,
+      navigateTrashed: false,
+      label: []
+    };
+    this.handleEditLabel = this.handleEditLabel.bind(this);
+  }
+  componentDidMount() {
+    getLabels()
+      .then((result) => {
+        this.setState({
+          label: result.data.data
+        })
+        // console.log("getLabels result from back-end", result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  handleEditLabel() {
+    this.setState({ open: !this.state.open })
+  }
+  showLabels(value) {
+    let labelArr = this.state.label;
+    if (value !== undefined) {
+      labelArr.push(value);
+      this.setState({ label: labelArr });
+    }
+    // this.setState({
+    //     label: [...this.state.label, value]
+    // })
+    //console.log("label-----------<",this.state.label);
+  }
+  newLabels(value) {
+    this.setState({ label: value })
+  }
   async handleArchived(event) {
     await this.setState({
-        navigateReminder: false,
-        navigateArchived: true,
-        navigateTrashed: false
+      navigateReminder: false,
+      navigateArchived: true,
+      navigateTrashed: false
     })
     this.props.name(event);
+    this.props.makeLabelFalse();
     this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
-}
-async handleTrashed(event){
-  await this.setState({
-    navigateReminder:false,
-    navigateArchived:false,
-    navigateTrashed:true
-  })
-  this.props.name(event);
-  this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
-}
-async handleReminder(event){
-  await this.setState({
-    navigateReminder:true,
-    navigateArchived:false,
-    navigateTrashed:false
-  })
-  this.props.name(event);
-  this.props.handleNavigation(this.state.navigateReminder,this.state.navigateArchived,this.state.navigateTrashed);
-}
-async handleNotes(event){
-  await this.setState({
-    navigateReminder:false,
-    navigateArchived:false,
-    navigateTrashed:false,
-  })
-  this.props.name(event);
-  this.props.handleNavigation(this.state.navigateReminder,this.state.navigateArchived,this.state.navigateTrashed);
-}
+  }
+  async handleTrashed(event) {
+    await this.setState({
+      navigateReminder: false,
+      navigateArchived: false,
+      navigateTrashed: true
+    })
+    this.props.name(event);
+    this.props.makeLabelFalse();
+    this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+  }
+  async handleReminder(event) {
+    await this.setState({
+      navigateReminder: true,
+      navigateArchived: false,
+      navigateTrashed: false
+    })
+    this.props.name(event);
+    this.props.makeLabelFalse();
+    this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+  }
+  async handleNotes(event) {
+    await this.setState({
+      navigateReminder: false,
+      navigateArchived: false,
+      navigateTrashed: false,
+    })
+    this.props.name(event);
+    this.props.makeLabelFalse();
+    this.props.handleNavigation(this.state.navigateReminder, this.state.navigateArchived, this.state.navigateTrashed);
+  }
   render() {
     const { classes } = this.props;
+    let displayLabels = this.state.label;
+    if (this.state.label !== "") {
+      displayLabels = this.state.label.map((key) =>
+        <MenuItem style={{ display: "flex", flexDirection: "row", color: "#202124", fontFamily: "Google Sans, Roboto, Arial, sans-serif", fontSize: ".875rem" }} onClick={() => this.displaySearchLabels(key.label)} key={key.label}>
+          <img src={require('../assets/labelIcon.svg')} alt="label icon" style={{ marginRight: "50px" }} />
+          <div style={{ marginRight: "50px", marginBottom: "10px", marginTop: "10px", fontWeight: "550" }}>
+            {key.label}
+          </div>
+        </MenuItem>
+      )
+    }
     return (
       <div className={classes.root}>
         <Drawer
@@ -130,14 +180,14 @@ async handleNotes(event){
           }}
         >
           <div >
-      <MenuItem id="noteMenu" className={classes.menuItem} onClick={()=>this.handleNotes("Fundoo")}  >
-       <img src={require('../assets/note.svg')} alt="note icon"
+            <MenuItem id="noteMenu" className={classes.menuItem} onClick={() => this.handleNotes("Fundoo")}  >
+              <img src={require('../assets/note.svg')} alt="note icon"
                 style={{ marginRight: "50px" }} />
               Notes
            </MenuItem>
           </div>
-          <div> 
-              <MenuItem id="reminderMenu" className={classes.menuItem} onClick={()=>this.handleReminder("Reminders")} >
+          <div>
+            <MenuItem id="reminderMenu" className={classes.menuItem} onClick={() => this.handleReminder("Reminders")} >
               <img src={require('../assets/remainder.svg')} alt="reminder icon"
                 style={{ marginRight: "50px" }} />
               Reminders
@@ -148,7 +198,7 @@ async handleNotes(event){
             <div style={{ padding: "3.5% 8%", fontSize: "12px", marginBottom: "15px", marginTop: "10px", fontFamily: "arial", color: "gray" }}>
               LABELS
              </div>
-
+            {displayLabels}
             <div>
               <MenuItem id="labelMenu" onClick={this.handleEditLabel}>
                 <img src={require('../assets/edit.svg')} alt="edit icon"
@@ -166,13 +216,19 @@ async handleNotes(event){
           </MenuItem>
           </div>
           <div>
-            <MenuItem id="trashMenu" className={classes.menuItem} onClick={()=>this.handleTrashed("Bin")}>
-              <img src={require('../assets/trash.svg')} alt="trash icon" 
+            <MenuItem id="trashMenu" className={classes.menuItem} onClick={() => this.handleTrashed("Bin")}>
+              <img src={require('../assets/trash.svg')} alt="trash icon"
                 style={{ marginRight: "50px" }} />
               Bin
                     </MenuItem>
           </div>
         </Drawer>
+        <EditLabel
+          newLabels={this.newLabels}
+          label={this.state.label}
+          showLabels={this.showLabels}
+          drawerPropstoEditLabels={this.state.open}
+          labelToggle={this.handleEditLabel} />
 
       </div>
     );

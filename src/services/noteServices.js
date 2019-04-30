@@ -169,7 +169,42 @@ export function notification(data){
     }
     )
 }
-
+export function addLabel(url,data) {
+    console.log("create note call",data);
+    return axios(url, {
+        method: "POST",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
+}
+export function getLabels() {
+    // console.log("*----get labels from front-end----*");
+    return axios.get('/getLabels', {
+        headers: {
+            "token": localStorage.getItem("token")
+        }
+    })
+}  
+export function deleteLabel(data) {
+    return axios('/deleteLabel', {
+        method: "POST",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
+}
+export function updateLabel(data) {
+    return axios('/updateLabel', {
+        method: "PUT",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
+}
 /****************************************************************************************************/
 /**
  * 
