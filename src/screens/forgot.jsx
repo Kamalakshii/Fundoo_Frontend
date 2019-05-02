@@ -120,7 +120,6 @@ export default class ForgotPassword extends React.Component {
                             Submit
                         </Button>
                     </div>
-
                     <div >
                     <Snackbar
                     anchorOrigin={{
@@ -149,10 +148,8 @@ export default class ForgotPassword extends React.Component {
                     ]}
                 />
             </div>
-
                     </div>
                 </div>
-            
         );
     }
 }

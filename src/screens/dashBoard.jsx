@@ -22,7 +22,6 @@ export default class dashBoard extends Component {
             label: ""
         }
         this.noteToCards = React.createRef();
-        this.makeLabelFalse = this.makeLabelFalse.bind(this);
     }
     /**
     * @description:it performs the card action
@@ -36,9 +35,6 @@ export default class dashBoard extends Component {
     }
     componentWillMount=()=>{
         askForPermissioToReceiveNotifications();
-    }
-    makeLabelFalse() {
-        this.noteToCards.current.makeLabelFalse();
     }
     /**
  * @description:it handles the cards style
@@ -106,8 +102,7 @@ export default class dashBoard extends Component {
                         <div className="dashboard">
                             <CreateNote
                                 getNewNote={this.getNewNote}
-                            />
-                           
+                            />                        
                             <Notes
                                 noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}

@@ -34,14 +34,8 @@ class EditLabel extends Component {
             editLabel: ""
         }
         this.openSnackBar = React.createRef();
-        this.handleLabel = this.handleLabel.bind(this);
-        this.addLabel = this.addLabel.bind(this);
-        this.changeLables = this.changeLables.bind(this);
-        this.handlEditLabel = this.handlEditLabel.bind(this);
-        this.deleteLabel = this.deleteLabel.bind(this);
-        this.editLabel = this.editLabel.bind(this);
     }
-    addLabel(value) {
+    addLabel=(value)=> {
         const label = {
             label: value
         }
@@ -50,7 +44,7 @@ class EditLabel extends Component {
                 .then(async (result) => {
                     console.log("label result", result);
                     this.setState({ label: "" });
-                    console.log("result in --->",result);                
+                    console.log("result in add label--->",result);                            
                     this.props.showLabels(result.data.data);
                 })
                 .catch((error) => {
@@ -64,7 +58,7 @@ class EditLabel extends Component {
             this.openSnackBar.current.handleClick();
         }
     }
-    deleteLabel(value) {
+    deleteLabel=(value)=> {
         const labelId = {
             labelID: value
         }
@@ -86,12 +80,11 @@ class EditLabel extends Component {
                 }
             })
             .catch((error) => {
-                displayErr = "Internal Server Error";
+                displayErr = "Label deleted";
                 this.openSnackBar.current.handleClick();
             });
     }
-
-    editLabel(Label, id) {
+    editLabel=(Label, id)=> {
         const editLabel = {
             editLabel: Label,
             labelID: id
@@ -103,30 +96,30 @@ class EditLabel extends Component {
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === editLabel.labelID) {
                         newArray[i].label = result.data.data.editLabel;
-                        this.props.newLabels(newArray);
+                       this.props.newLabels(newArray);
                         this.setState({ labelID: "" })
                     }
                 }
             })
             .catch((error) => {
-                displayErr = error.message;
+                displayErr = "label renamed"
                 console.log("message", displayErr);
                 this.openSnackBar.current.handleClick();
             });
     }
-    createLabel() {
-        this.setState({ labelID: "" })
+    createLabel=()=> {
+         this.setState({ labelID: "" })
     }
-    handlEditLabel(evt) {
+    handlEditLabel=(evt)=> {
         this.setState({ editLabel: evt.target.value });
     }
-    changeLables(id) {
+    changeLables=(id)=> {
         this.setState({ labelID: id })
     }
-    handleLabel(evt) {
+    handleLabel=(evt)=> {
         this.setState({ label: evt.target.value })
     }
-    handleToggle() {
+    handleToggle=()=> {
         this.props.labelToggle()
     }
     render() {
@@ -152,7 +145,7 @@ class EditLabel extends Component {
                                 />
                                 <Tooltip title="Create Label">
                                     <img src={require('../assets/tick.svg')}
-                                        alt="label tick icon"
+                                        alt="label tick icon"  
                                         onClick={() => this.addLabel(this.state.label)} />
                                 </Tooltip>
                             </div>
@@ -162,7 +155,7 @@ class EditLabel extends Component {
                                         style={{ display: "flex", justifyContent: "space-between", height: "45px", alignItems: "center" }}>
                                         <div style={{ display: "flex", flexDirection: "row" }}>
                                             <div><img src={require('../assets/labelFilled.svg')} alt="filled label icon" /></div>
-                                            <div style={{ width: "182px", margin: "0px 15px 0px 15px", fontWeight: "500" }}>{key.label}</div>
+                                            <div style={{ width: "182px", margin: "0px 15px 0px 15px", fontWeight: "500"  }}>{key.label}</div>
                                         </div>
                                         <div><img src={require('../assets/edit.svg')} alt="edit label icon" /></div>
                                     </div>
@@ -175,8 +168,8 @@ class EditLabel extends Component {
                                                 onClick={() => this.deleteLabel(key._id)} />
                                             <div style={{ width: "182px", margin: "0px 15px 0px 15px", fontWeight: "500" }}>
                                                 <TextField
-                                                    defaultValue={key.label}
-                                                    // value={this.state.editLabel}
+                                                     defaultValue={key.label}
+                                                     //value={this.state.editLabel}
                                                     onChange={this.handlEditLabel}
                                                 />
                                             </div>

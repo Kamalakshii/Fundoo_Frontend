@@ -217,7 +217,6 @@ export default class Cards extends Component {
             noteID: noteId,
         }
         console.log("data in deleteeeeeeeeeeeee", obj);
-
         deleteNoteForever(obj)
             .then((result) => {
                 let newArray = this.state.notes
