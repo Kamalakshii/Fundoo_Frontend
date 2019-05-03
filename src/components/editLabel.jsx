@@ -21,7 +21,7 @@ const theme = createMuiTheme({
             }
         },
     },
-    typography: {
+    typography: { 
         useNextVariants: true,
     },
 })
@@ -96,6 +96,8 @@ class EditLabel extends Component {
                 for (let i = 0; i < newArray.length; i++) {
                     if (newArray[i]._id === editLabel.labelID) {
                         newArray[i].label = result.data.data.editLabel;
+                        newArray[i].sort();
+                        console.log("sorted",newArray);                      
                        this.props.newLabels(newArray);
                         this.setState({ labelID: "" })
                     }
@@ -130,10 +132,10 @@ class EditLabel extends Component {
                         open={this.props.drawerPropstoEditLabels}
                     >
                         <div style={{ padding: "20px", display: "flex", flexDirection: "column" }}>
-                            <div style={{ color: "#3c4043", fontWeight: "500" }}>Edit Labels</div>
+                            <div style={{ color: "#3c4043", fontWeight: "500" }}>Edit Label</div>
                             <div style={{ display: "flex", justifyContent: "space-between", height: "45px" }} onClick={() => this.createLabel()}>
                                 <img src={require('../assets/addLabels.svg')}
-                                    alt="add label plus icon" />
+                                    alt="Plus icon to add label" />
                                 <TextField
                                     id="editLabelTextField"
                                     placeholder="Create New Label"
@@ -145,7 +147,7 @@ class EditLabel extends Component {
                                 />
                                 <Tooltip title="Create Label">
                                     <img src={require('../assets/tick.svg')}
-                                        alt="label tick icon"  
+                                        alt=" tick icon"  
                                         onClick={() => this.addLabel(this.state.label)} />
                                 </Tooltip>
                             </div>
@@ -191,5 +193,4 @@ class EditLabel extends Component {
         )
     }
 }
-
 export default EditLabel;

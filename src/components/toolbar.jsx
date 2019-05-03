@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import Reminder from '../components/reminder';
 import ColorBox from '../components/colorBox';
 import Archive from '../components/archive';
-import MoreOptions from './moreOptions';
+import MoreOptions from './moreOptionso';
 export default class Tools extends Component {
     constructor(props) {
         super(props);

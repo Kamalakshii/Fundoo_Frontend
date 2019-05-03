@@ -10,6 +10,8 @@ import AppbarComponent from '../components/appBar';
 import Notes from '../components/notes';
 import { askForPermissioToReceiveNotifications } from '../pushNotification';
 import "../App.css"
+
+
 export default class dashBoard extends Component {
     constructor(props) {
         super(props);
@@ -86,6 +88,7 @@ export default class dashBoard extends Component {
                         handleNavigation={this.handleNavigation}
                         makeLabelFalse={this.makeLabelFalse}
                     />
+       
                 </div>
                 <div className="setFixedMargin">
                     {this.state.archive || this.state.trash ?
@@ -111,6 +114,7 @@ export default class dashBoard extends Component {
                                 navigateReminder={this.state.reminder}
                                 labelValue={this.state.label}
                             />
+                                       
                         </div>
                     }
                 </div>

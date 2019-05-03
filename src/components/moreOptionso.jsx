@@ -5,6 +5,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
 import { MenuItem } from "@material-ui/core";
+import AddLabelsOnNote from "./labels";
 import { Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import "../App.css";
@@ -18,8 +19,11 @@ export default class MoreOptions extends Component {
       isTrashed: false,
       snackBarMessage: "",
       openSnackBar: false,
-      alertMessage : ""
+      alertMessage: ""
     };
+
+    this.moreOptionsToAddLabels = React.createRef();
+    this.clickMoreOptions = this.clickMoreOptions.bind(this);
   }
   /**
    * @description:it will toggle or reback the event
@@ -75,15 +79,46 @@ export default class MoreOptions extends Component {
   //   // console.log("this.state.isTrash changed", this.state.isTrash);
   //   this.props.trashNote(this.state.isTrashed, this.props.noteID);
   //   } else {
-    
+
   //   this.setState({ isTrashed: false });
   //   console.log(" this.state.isTrash change in elseeeee", this.state.isTrashed);
   //   this.props.trashNote(this.state.isTrashed, this.props.noteID);
   //   }
   //   };
+
   /**
-   * @description:use to auto close snackBar
-   */
+     * @description:it will open the more options event and in that 
+                    we can select add the labels and delete notes operations
+     * @param {*open the more options event} event 
+     */
+  clickMoreOptions(event) {
+    try {
+      const { currentTarget } = event;
+      this.setState(state => ({
+        anchorEl: currentTarget,
+        open: !state.open,
+
+      }));
+    } catch (err) {
+      console.log("error at clickMoreOptions in moreOptions");
+    }
+  }
+  /**
+     * @description:it will handle add label to notes
+     */
+  handleLabelsOnNote = (event) => {
+    try {
+      this.setState({
+        open: false
+      })
+      this.moreOptionsToAddLabels.current.addLabelPopup(event);
+    } catch (err) {
+      console.log("error at handleLabelOnNote in moreOptions");
+    }
+  }
+  /**
+ * @description:use to auto close snackBar
+ */
   handleSnackClose = () => {
     try {
       this.setState({
@@ -101,7 +136,7 @@ export default class MoreOptions extends Component {
           open={open}
           anchorEl={anchorEl}
           placement={placement}
-          transition style={{zIndex : 9999}}
+          transition style={{ zIndex: 9999 }}
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
@@ -118,15 +153,21 @@ export default class MoreOptions extends Component {
                     <MenuItem onClick={this.handleTrashedNotes}>
                       Delete Note
                     </MenuItem>
-                    <MenuItem>Add Label</MenuItem>
+                    <MenuItem onClick={this.handleLabelsOnNote}>Add Label</MenuItem>
                   </div>
                 </ClickAwayListener>
               </Paper>
             </Fade>
           )}
         </Popper>
+        <AddLabelsOnNote
+          ref={this.moreOptionsToAddLabels}
+          noteID={this.props.noteID}
+          addLabelToNote={this.props.addLabelToNote}
+          anchorEl={this.state.anchorEl}
+        />
         <div>
-        <addNotification/>
+          <addNotification />
         </div>
         <div className="more">
           <Tooltip title="More options">

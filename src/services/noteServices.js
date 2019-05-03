@@ -205,6 +205,20 @@ export function updateLabel(data) {
         data:data
     })
 }
+/**
+ * 
+ * @param {*} url 
+ * @param {*} data 
+ */
+export function saveLabel(url,data) {
+    return axios(url, {
+        method: "POST",
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        data:data
+    })
+}
 /****************************************************************************************************/
 /**
  * 
