@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : to set the profile picture 
+ *  @file           : userProfile.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 13-04-2019
+ *****************************************************************************************/
 import React, { Component } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";

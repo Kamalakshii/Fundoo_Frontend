@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import Reminder from '../components/reminder';
 import ColorBox from '../components/colorBox';
 import Archive from '../components/archive';
-import MoreOptions from './moreOptionso';
+import MoreOptions from './moreOptions';
 export default class Tools extends Component {
     constructor(props) {
         super(props);
@@ -48,13 +48,14 @@ export default class Tools extends Component {
                         archiveNote={this.props.archiveNote}
                         noteID={this.props.noteID}
                         archiveStatus={this.props.archiveStatus}
-                        showAlertMessage={this.props.showAlertMessage}
+                        showAlertMessage={this.props.showAlertMessage}                    
                     />
                          <MoreOptions
                         handleToggle={this.handleToggle}
                         trashNote={this.props.trashNote}
                         noteID={this.props.noteID}
                         trashStatus={this.props.trashStatus}
+                        addLabelToNote={this.props.addLabelToNote}
                     />
                 </div>
             </div>

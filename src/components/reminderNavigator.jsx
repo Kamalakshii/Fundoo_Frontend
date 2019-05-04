@@ -62,7 +62,16 @@ export default class ReminderNavigator extends Component {
                                             label={key.reminder}
                                             onDelete={() => this.props.reminderNote("", key._id)} />
                                         :
-                                        null}                                                                         
+                                        null}        
+                                         {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                            />
+                                        )
+                                        :
+                                        null}                                                                 
                                 </div>                                
                                 <div id="displaycontentdiv">
                                     <Tools
@@ -72,7 +81,9 @@ export default class ReminderNavigator extends Component {
                                         reminder={this.props.reminderNote}
                                         trashNote={this.props.trashNote}
                                         archiveStatus={key.archive}
-                                        archiveNote={this.props.archiveNote}                                                                               
+                                        archiveNote={this.props.archiveNote}      
+                                        addLabelToNote={this.props.addLabelToNote}     
+                                        deleteLabelFromNote={this.props.deleteLabelFromNote}                                                                    
                                     />
                                 </div>
                             </Card>
@@ -83,15 +94,14 @@ export default class ReminderNavigator extends Component {
                 <ResponsiveDialog
                         close={this.handleClose}
                         ref={this.cardsToDialogBox}
-                        parentProps={this.state.open1}
-                        // note={notesArray[key].note}
+                        parentProps={this.state.open1}                      
                         archiveNote={this.props.archiveNote}
-                        reminder={this.props.reminderNote}
-                        // noteID={notesArray[key]._id}
-                        // archiveStatus={notesArray[key].archive}
+                        reminder={this.props.reminderNote}                   
                         createNotePropsToTools={this.getColor}
                         editTitle={this.props.editTitle}
                         editDescription={this.props.editDescription}
+                        addLabelToNote={this.props.addLabelToNote}
+                        deleteLabelFromNote={this.props.deleteLabelFromNote}
                     ></ResponsiveDialog>
             </MuiThemeProvider>
         )

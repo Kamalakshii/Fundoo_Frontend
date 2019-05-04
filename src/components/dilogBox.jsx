@@ -51,7 +51,8 @@ class ResponsiveDialog extends React.Component {
       color: "",
       archive: "",
       _id: "",
-      reminder: ""
+      reminder: "",
+      label: ""
     };
     this.getData = this.getData.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
@@ -63,11 +64,11 @@ class ResponsiveDialog extends React.Component {
   async handleDescClick(evt) {
     await this.setState({ description: evt.target.value })
   }
-  handleClose=()=>{
+  handleClose = () => {
     this.props.editTitle(this.state._id, this.state.title)
-    this.props.editDescription(this.state._id,this.state.description)
+    this.props.editDescription(this.state._id, this.state.description)
     //this.props.updateDescription()
-   this.props.close();
+    this.props.close();
   }
   getData(note) {
     console.log("note in dialog==>", note);
@@ -80,6 +81,7 @@ class ResponsiveDialog extends React.Component {
         archive: note.archive,
         _id: note._id,
         reminder: note.reminder,
+        label:note.label
       })
     }
   }
@@ -88,19 +90,26 @@ class ResponsiveDialog extends React.Component {
     this.props.archiveNote(value, noteId)
     this.props.close();
   }
-  reminderNote=(value,noteId)=>
-  {
-    this.setState({reminder:value})
-    this.props.reminder(value,noteId)
+  reminderNote = (value, noteId) => {
+    this.setState({ reminder: value })
+    this.props.reminder(value, noteId)
   }
   reminderNotes = () => {
     this.setState({ reminder: "" })
     this.props.reminder('', this.state._id)
-}
+  }
   createNotePropsToTools = (value, noteID) => {
     this.setState({ color: value })
     this.props.createNotePropsToTools(value, noteID)
   }
+  async DeleteLabel(label, id) {
+    let newArr = this.state.label;
+    newArr = newArr.filter(item => item !== label);
+    await this.setState({
+    label: newArr
+    });
+    this.props.deleteLabelFromNote(label, id)
+    }
   render() {
     return (
       <div>
@@ -118,7 +127,7 @@ class ResponsiveDialog extends React.Component {
                   value={this.state.title}
                   onChange={this.handleTitleClick}
                 />
-             
+
               </div>
               <div className="createNotePinIcon2">
                 <Input
@@ -126,19 +135,30 @@ class ResponsiveDialog extends React.Component {
                   disableUnderline={true}
                   placeholder="Note"
                   multiline
-                   value={this.state.description}
+                  value={this.state.description}
                   onChange={this.handleDescClick}
                 />
               </div>
               {this.state.reminder ?
                 <div className="chipdialog">
-                            <Chip 
-                                label={this.state.reminder}
-                                onDelete={() => this.reminderNotes()}
-                            />
-                            </div>
-                            :
-                            null}
+                  <Chip
+                    label={this.state.reminder}
+                    onDelete={() => this.reminderNotes()}
+                  />
+                </div>
+                :
+                null}
+
+              {this.state.label.length > 0 ?
+                this.state.label.map((key1, index) => (
+
+                  <Chip
+                    label={key1}
+                    onDelete={() => this.DeleteLabel(key1, this.state._id)}
+                  />
+                ))
+                : null
+              }
               <div className="cardToolsClose1">
                 <Tools
                   createNotePropsToTools={this.createNotePropsToTools}
@@ -147,6 +167,8 @@ class ResponsiveDialog extends React.Component {
                   archiveStatus={this.state.archive}
                   archiveNote={this.archiveNote}
                   noteID={this.state._id}
+                  addLabelToNote={this.props.addLabelToNote}
+                  deleteLabelFromNote={this.props.deleteLabelFromNote}
                 />
                 <div>
                   <Button onClick={this.handleClose}>close</Button>

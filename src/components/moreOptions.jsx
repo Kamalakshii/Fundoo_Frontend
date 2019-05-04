@@ -1,3 +1,9 @@
+/********************************************************************************
+ *  @Purpose        : To give various options on labels
+ *  @file           : moreOptions.jsx        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 15-04-2019
+ *********************************************************************************/
 import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
@@ -136,7 +142,7 @@ export default class MoreOptions extends Component {
           open={open}
           anchorEl={anchorEl}
           placement={placement}
-          transition style={{ zIndex: 9999 }}
+          transition style={{ zIndex: 5500 }}
         >
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
@@ -167,7 +173,6 @@ export default class MoreOptions extends Component {
           anchorEl={this.state.anchorEl}
         />
         <div>
-          <addNotification />
         </div>
         <div className="more">
           <Tooltip title="More options">

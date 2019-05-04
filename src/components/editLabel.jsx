@@ -1,3 +1,9 @@
+/********************************************************************************
+ *  @Purpose        : to edit labels
+ *  @file           : editLabel.jsx        
+ *  @author         : KAMALAKSHI C SWAMY
+ *  @since          : 30-04-2019
+ *********************************************************************************/
 import React, { Component } from 'react';
 import { Dialog, TextField, Button, createMuiTheme, MuiThemeProvider, Divider, Tooltip } from '@material-ui/core';
 import { addLabel, deleteLabel, updateLabel } from '../services/noteServices';
@@ -40,7 +46,7 @@ class EditLabel extends Component {
             label: value
         }
         if (label.label !== "") {
-            addLabel('/addLabel', label)
+            addLabel( label)
                 .then(async (result) => {
                     console.log("label result", result);
                     this.setState({ label: "" });

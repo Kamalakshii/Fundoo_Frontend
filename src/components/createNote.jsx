@@ -39,6 +39,7 @@ export default class createNotes extends Component {
             archive: false,
             pinned: false,
             trash: false,
+            label: []
         }
     }
     handleTitle = (evt) => {
@@ -112,8 +113,19 @@ export default class createNotes extends Component {
         } catch (err) {
             console.log("error at handleTrash in createNotes");
         }
-    } 
-    handleToggle =()=>  {
+    }
+    addLabelToNote = (noteID, label) => {
+        this.state.label.push(label)
+        this.setState({ label: this.state.label })
+    }
+    async DeleteLabel(label, id) {
+        let newArr = this.state.label;
+        newArr = newArr.filter(item => item !== label);
+        await this.setState({
+            label: newArr
+        });
+    }
+    handleToggle = () => {
         try {
             this.setState({ openNote: !this.state.openNote });
             // console.log("pinned", this.state.openNote);
@@ -127,18 +139,19 @@ export default class createNotes extends Component {
                     pinned: this.state.pinned,
                     archive: this.state.archive,
                     trash: this.state.trash,
+                    label: this.state.label
                 }
                 createNote(note)
                     .then((result) => {
                         console.log("create note result from back-end====>", result);
                         this.setState({
-                            newNote: result.data.data.note            
+                            newNote: result.data.data.note
                         })
                         this.props.getNewNote(this.state.newNote)
                     })
                     .catch((error) => {
-                      console.log("error");                    
-                    })             
+                        console.log("error");
+                    })
                 this.setState({
                     title: "",
                     description: "",
@@ -146,13 +159,14 @@ export default class createNotes extends Component {
                     reminder: "",
                     archive: false,
                     pinned: false,
-                    trash: false
-                })           
+                    trash: false,
+                    label: []
+                })
             }
         } catch (err) {
             console.log("error at handleToggle in createNotes");
         }
-    }    
+    }
     render() {
         return (!this.state.openNote ?
             <MuiThemeProvider theme={theme}>
@@ -201,7 +215,7 @@ export default class createNotes extends Component {
                             id="description"
                             value={this.state.description}
                             onChange={this.handleDescription}
-             
+
                         />
                         {this.state.reminder ?
                             <div className="chip">
@@ -212,6 +226,16 @@ export default class createNotes extends Component {
                             </div>
                             :
                             null}
+                        {this.state.label.length > 0 ?
+                            this.state.label.map((key1, index) => (
+
+                                <Chip
+                                    label={key1}
+                                    onDelete={() => this.DeleteLabel(key1, this.state._id)}
+                                />
+                            ))
+                            : null
+                        }
                         < div className="cardToolsClose" >
                             <Tools
                                 reminder={this.handleReminder}
@@ -220,10 +244,12 @@ export default class createNotes extends Component {
                                 archiveStatus={this.state.archive}
                                 trashNote={this.handleTrash}
                                 trashStatus={this.state.trash}
+                                addLabelToNote={this.addLabelToNote}
+                                deleteLabelFromNote={this.deleteLabelFromNote}
                             />
                             <div>
-                                <Button onClick={this.handleToggle}>close</Button>           
-                                      
+                                <Button onClick={this.handleToggle}>close</Button>
+
                             </div>
                         </div>
                     </Card>

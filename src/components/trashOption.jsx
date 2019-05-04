@@ -33,7 +33,6 @@ export default class TrashOptions extends Component {
             this.setState(state => ({
                 anchorEl: currentTarget,
                 open: !state.open,
-
             }));
         } catch (err) {
             console.log("error at clickMoreOptions in trashOption");
@@ -41,7 +40,7 @@ export default class TrashOptions extends Component {
     }
     handleRestore = () => {
         this.closeLabelPopper();
-        this.props.restore(this.props.noteID)
+        this.props.restore(false,this.props.noteID)
 
     }
     handleDelete = () => {

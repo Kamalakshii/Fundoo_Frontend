@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : to display labels on notes.
+ *  @file           : labels.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 01-05-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import { MenuItem, Popper, Paper, Fade, Checkbox, ClickAwayListener } from '@material-ui/core';
 import { getLabels } from '../services/noteServices';
@@ -63,7 +69,7 @@ export default class AddLabelsOnNote extends Component {
         const { anchorEl, open } = this.state;
         return (
             <div>
-                <Popper open={open} anchorEl={anchorEl} placement={'right'} transition>
+                <Popper open={open} anchorEl={anchorEl} placement={'right'}  transition style={{ zIndex: 5500 }}>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={0}>
                             <Paper className="moreOptionsPopper" style={{ paddingTop: "10px" }}>

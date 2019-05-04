@@ -10,8 +10,6 @@ import AppbarComponent from '../components/appBar';
 import Notes from '../components/notes';
 import { askForPermissioToReceiveNotifications } from '../pushNotification';
 import "../App.css"
-
-
 export default class dashBoard extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +33,7 @@ export default class dashBoard extends Component {
             console.log("error at slideCards in dashBoard");
         }
     }
-    componentWillMount=()=>{
+    componentWillMount = () => {
         askForPermissioToReceiveNotifications();
     }
     /**
@@ -52,7 +50,7 @@ export default class dashBoard extends Component {
     * @description:it display the new note
     * @param {*get new card or note} newCard 
     */
-    getNewNote=(newCard)=> {
+    getNewNote = (newCard) => {
         console.log("new card", newCard);
         try {
             this.noteToCards.current.displayNewCard(newCard);
@@ -60,7 +58,7 @@ export default class dashBoard extends Component {
             console.log("error at getNewNote in dashBoard");
         }
     }
-    handleNavigation=(reminder, archive, trash)=> {
+    handleNavigation = (reminder, archive, trash) => {
         console.log("handleNavigation", reminder, archive, trash);
         if (reminder === true || archive === true || trash === true) {
             this.setState({
@@ -88,7 +86,7 @@ export default class dashBoard extends Component {
                         handleNavigation={this.handleNavigation}
                         makeLabelFalse={this.makeLabelFalse}
                     />
-       
+
                 </div>
                 <div className="setFixedMargin">
                     {this.state.archive || this.state.trash ?
@@ -105,7 +103,7 @@ export default class dashBoard extends Component {
                         <div className="dashboard">
                             <CreateNote
                                 getNewNote={this.getNewNote}
-                            />                        
+                            />
                             <Notes
                                 noteProps={this.state.cardStyles}
                                 ref={this.noteToCards}
@@ -114,7 +112,7 @@ export default class dashBoard extends Component {
                                 navigateReminder={this.state.reminder}
                                 labelValue={this.state.label}
                             />
-                                       
+
                         </div>
                     }
                 </div>

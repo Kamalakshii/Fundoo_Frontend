@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : to display the notes that are deleted.
+ *  @file           : trashNavigator.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 08-04-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import { Card, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import TrashOptions from '../components/trashOption';

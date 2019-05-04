@@ -38,9 +38,7 @@ export default class cardsView extends Component {
                             <img src={require('../assets/list-view.svg')} alt="grid icon" />
                         </Tooltip>
                     </IconButton>
-                </div>
-
-               
+                </div>         
         )
     }
 }

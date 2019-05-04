@@ -1,14 +1,12 @@
 import React from "react";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
-
 export default class addNotification extends React.Component {
   constructor(props) {
     super(props);
     this.addNotification = this.addNotification.bind(this);
     this.notificationDOMRef = React.createRef();
   }
- 
   addNotification() {
     this.notificationDOMRef.current.addNotification({                                                                                                      
       title: "Awesomeness",

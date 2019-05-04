@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : to display the notes that are archived.
+ *  @file           : archivedNavigator.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 16-004-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import { Card, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';
 import Tools from '../components/toolbar';
@@ -74,7 +80,6 @@ export default class ArchivedNavigator extends Component {
                         <div > <img src={require("../assets/archive.svg")} className="archiveicon" />
                             <h1 style={{ fontFamily: "Google Sans',Roboto,Arial,sans-serif", color: "#80868b", marginLeft: "20%" }}>Your Archived Notes Appear Here</h1></div>
                         :
-                        // 
                         null
                     }
                 </div>
@@ -96,6 +101,15 @@ export default class ArchivedNavigator extends Component {
                                             onDelete={() => this.props.reminderNote("", key._id)} />
                                         :
                                         null}
+                                    {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                                onDelete={() => this.props.deleteLabelFromNote(key1, key._id)}
+                                            />
+                                        )
+                                        :
+                                        null}
                                 </div>
                                 <div id="displaycontentdiv">
                                     <Tools
@@ -106,27 +120,28 @@ export default class ArchivedNavigator extends Component {
                                         trashNote={this.props.trashNote}
                                         archiveStatus={key.archive}
                                         archiveNote={this.props.archiveNote}
+                                        addLabelToNote={this.props.addLabelToNote}       
+                                        deleteLabelFromNote={this.props.deleteLabelFromNote}                        
                                     />
                                 </div>
                             </Card>
                         )
                     })
-                    }                  
+                    }
                 </div>
 
                 <ResponsiveDialog
-                        close={this.handleClose}
-                        ref={this.cardsToDialogBox}
-                        parentProps={this.state.open1}
-                        // note={notesArray[key].note}
-                        archiveNote={this.props.archiveNote}
-                        reminder={this.props.reminderNote}
-                        // noteID={notesArray[key]._id}
-                        // archiveStatus={notesArray[key].archive}
-                        createNotePropsToTools={this.getColor}
-                        editTitle={this.props.editTitle}
-                        editDescription={this.props.editDescription}
-                    ></ResponsiveDialog>
+                    close={this.handleClose}
+                    ref={this.cardsToDialogBox}
+                    parentProps={this.state.open1}
+                    archiveNote={this.props.archiveNote}
+                    reminder={this.props.reminderNote}
+                    createNotePropsToTools={this.getColor}
+                    editTitle={this.props.editTitle}
+                    editDescription={this.props.editDescription}
+                    addLabelToNote={this.props.addLabelToNote}
+                    deleteLabelFromNote={this.props.deleteLabelFromNote}
+                ></ResponsiveDialog>
             </MuiThemeProvider>
         )
     }
