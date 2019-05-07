@@ -40,8 +40,7 @@ export default class TrashOptions extends Component {
     }
     handleRestore = () => {
         this.closeLabelPopper();
-        this.props.restore(false,this.props.noteID)
-
+        this.props.restore(this.props.noteID)
     }
     handleDelete = () => {
         this.closeLabelPopper();

@@ -74,24 +74,6 @@ export default class MoreOptions extends Component {
     this.props.trashNote(this.props.noteID);
     console.log("dasdasdsa", this.props.noteID);
   }
-  // async handleTrashedNotes() {
-  //  console.log("(this.props.trashStatus", this.state.isTrashed);
-  //   if (this.props.trashStatus === false) {
-  //   await this.setState({ isTrashed: true });
-  //   this.setState({
-  //   openSnackBar: true,
-  //   snackBarMessage: "Note Trashed"
-  //   });
-  //   // console.log("this.state.isTrash changed", this.state.isTrash);
-  //   this.props.trashNote(this.state.isTrashed, this.props.noteID);
-  //   } else {
-
-  //   this.setState({ isTrashed: false });
-  //   console.log(" this.state.isTrash change in elseeeee", this.state.isTrashed);
-  //   this.props.trashNote(this.state.isTrashed, this.props.noteID);
-  //   }
-  //   };
-
   /**
      * @description:it will open the more options event and in that 
                     we can select add the labels and delete notes operations

@@ -162,8 +162,8 @@ class ResponsiveDialog extends React.Component {
               <div className="cardToolsClose1">
                 <Tools
                   createNotePropsToTools={this.createNotePropsToTools}
-                  // reminder={this.reminder}
                   reminder={this.reminderNote}
+                  trashNote={this.trashNote}
                   archiveStatus={this.state.archive}
                   archiveNote={this.archiveNote}
                   noteID={this.state._id}
@@ -182,6 +182,6 @@ class ResponsiveDialog extends React.Component {
   }
 }
 ResponsiveDialog.propTypes = {
-  fullScreen: PropTypes.bool.isRequired,
+  // fullScreen: PropTypes.bool.isRequired,
 };
 export default (ResponsiveDialog);

@@ -15,7 +15,7 @@ export default class AddLabelsOnNote extends Component {
             anchorEl: null,
             open: false,
             placement: null,
-            label: []
+            label: [],labelName:""
         }
     }
     addLabelPopup = () => {
@@ -57,9 +57,9 @@ export default class AddLabelsOnNote extends Component {
     render() {
         let displayLabels = this.state.label;
         if (this.state.label !== "") {
-            displayLabels = this.state.label.map((key) =>
+            displayLabels = this.state.label.filter(x=>x.label.includes(this.state.labelName)).map((key,i) =>
                 <MenuItem style={{ display: "flex", flexDirection: "row", }}>
-                    <Checkbox onClick={() => this.selectLabel(this.props.noteID, key.label)} />
+                    <Checkbox onClick={() => this.selectLabel(this.props.noteID, key.label)} key={i}/>
                     <div style={{ color: "black", marginRight: "50px", fontFamily: "arial", fontSize: "1rem", marginBottom: "10px", marginTop: "10px" }}>
                         {key.label}
                     </div>
@@ -77,6 +77,15 @@ export default class AddLabelsOnNote extends Component {
                                     <div style={{ color: "#3c4043", fontSize: "15px", fontWeight: "500", fontFamily: "'Roboto',arial,sans-serif", paddingLeft: "10px", paddingRight: "10px" }}>
                                         Label Note
                                     </div>
+                                    <div>
+                                    <input className = "LabelSearch" style={{paddingTop:"10px"}}
+                                    id = "labelSearchInput"
+                                    maxLength="50"
+                                    placeholder = "enter label name"
+                                    value = {this.state.labelName}
+                                    onChange={(e)=>{this.setState({labelName:e.target.value}) }}
+                                    />
+                                        </div>
                                     <div>
                                         {displayLabels}
                                     </div>

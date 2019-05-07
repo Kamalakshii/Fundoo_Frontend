@@ -5,8 +5,10 @@
  *  @since          : 08-04-2019
  *****************************************************************************************/
 import React, { Component } from 'react';
-import { Card, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { Card, MuiThemeProvider, createMuiTheme,Chip } from '@material-ui/core';
 import TrashOptions from '../components/trashOption';
+import ResponsiveDialog from '../components/dilogBox'
+import Tools from '../components/toolbar';
 const theme = createMuiTheme({
     overrides: {
         MuiChip: {
@@ -22,6 +24,22 @@ const theme = createMuiTheme({
     },
 })
 export default class TrashNavigator extends Component {
+    constructor() {
+        super();
+        this.state = {
+            open1: false
+        }
+        this.cardsToDialogBox = React.createRef();
+    }
+    handleClose = (evt) => {
+        this.setState({ open1: false })
+    } 
+    async handleClick(note) {
+        console.log('note data ' + note);
+        console.log("note--------------------->", note);
+        this.cardsToDialogBox.current.getData(note);
+        await this.setState({ open1: true })
+    }
     render() {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
@@ -40,10 +58,10 @@ export default class TrashNavigator extends Component {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
                                 <div>
-                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div onClick={()=>this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
                                         <b>{key.title}</b>
                                     </div>
-                                    <div style={{ paddingBottom: "10px", paddingTop: "10px" }}>
+                                    <div  onClick={()=>this.handleClick(key)} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                         {key.description}
                                     </div>
                                 </div>
@@ -52,12 +70,32 @@ export default class TrashNavigator extends Component {
                                     noteID={key._id}
                                     deleteNote={this.props.deleteNote}
                                 />
-                            </Card>
+                                 {key.label.length > 0 ?
+                                        key.label.map((key1) =>
+                                            <Chip
+                                                label={key1}
+                                            />
+                                        )
+                                        :
+                                        null}  
+                                        <div id="displaycontentdiv">
+                                  
+                                </div>
+                            </Card>                           
                         )
                     })
                     }
                 </div>
-  
+                <ResponsiveDialog
+                        close={this.handleClose}
+                        ref={this.cardsToDialogBox}           
+                        parentProps={this.state.open1}                            
+                        archiveNote={this.props.archiveNote}
+                        reminder={this.props.reminderNote}                   
+                        createNotePropsToTools={this.getColor}
+                        editTitle={this.props.editTitle}
+                        editDescription={this.props.editDescription}                      
+                    ></ResponsiveDialog>
             </MuiThemeProvider>
         )
     }
