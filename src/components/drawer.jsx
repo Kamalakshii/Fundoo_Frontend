@@ -80,7 +80,7 @@ class PersistentDrawerLeft extends React.Component {
     super(props);
     this.state = {
       open: false,
-      navigateArchived: false,
+      navigateArchived: false,                                                                                                  
       navigateTrashed: false,
       label: []
     };

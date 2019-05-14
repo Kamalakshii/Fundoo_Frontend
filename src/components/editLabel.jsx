@@ -131,7 +131,7 @@ class EditLabel extends Component {
         this.props.labelToggle()
     }
     render() {
-        return (
+         return (
             <MuiThemeProvider theme={theme}>
                 <div>
                     <Dialog
