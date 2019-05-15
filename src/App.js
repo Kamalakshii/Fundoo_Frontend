@@ -14,7 +14,6 @@ import resetPassword from "../src/screens/reset";
 import dashBoard from "../src/screens/dashBoard";
 import * as firebase from 'firebase';
 import { initializeFirebase } from './pushNotification';
-
  // Initialize Firebase
  var config = {
   apiKey: "AIzaSyCY0VlAWKLGyhrMN7XO5tBg4rM4CHuV7vQ",

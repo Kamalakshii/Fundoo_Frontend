@@ -21,7 +21,7 @@ export default class registration extends React.Component {
             lastname: "",
             email: "",
             password: "",
-            profilePic:"",
+            profilePic: "",
             confirmPassword: "",
             snackBarMessage: ""
         }
@@ -135,7 +135,7 @@ export default class registration extends React.Component {
                     lastname: this.state.lastname,
                     email: this.state.email,
                     password: this.state.password,
-                    profilePic:this.state.profilePic
+                    profilePic: this.state.profilePic
                 }
                 // console.log("data in reggg....",data);
 
@@ -288,7 +288,6 @@ export default class registration extends React.Component {
                     ]}
                 />
             </div>
-
         );
     }
 }

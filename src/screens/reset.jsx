@@ -71,8 +71,7 @@ export default class ResetPassword extends React.Component {
         } catch (err) {
             console.log("error at handleSnackClose in resetPassword");
         }
-    };
-   
+    };   
     handleSubmit = event => {
         try {
             event.preventDefault();

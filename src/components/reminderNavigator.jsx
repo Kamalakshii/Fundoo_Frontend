@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : to display the notes that have reminder.
+ *  @file           : reminderNavigator.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 16-04-2019
+ *****************************************************************************************/
 import React, { Component } from 'react';
 import { Card, Chip, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import Tools from '../components/toolbar';
@@ -27,7 +33,7 @@ export default class ReminderNavigator extends Component {
         super();
         this.state = {
             notes: [],
-              open: false,
+            open: false,
             open1: false
         }
         this.cardsToDialogBox = React.createRef();
@@ -40,7 +46,7 @@ export default class ReminderNavigator extends Component {
     }
     handleClose = (evt) => {
         this.setState({ open1: false })
-    }  
+    }
     render() {
         let cardsView = this.props.noteProps ? "listCards" : "cards";
         return (
@@ -50,20 +56,20 @@ export default class ReminderNavigator extends Component {
                     {this.props.reminderArray.map((key) => {
                         return (
                             <Card className={cardsView} style={{ backgroundColor: key.color, borderRadius: "15px", border: "1px solid #dadce0", wordBreak: "break-word" }} >
-                                <div className="DispCont" >   
-                                    <div onClick={()=>this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
-                                        <b>{key.title}</b>                                       
-                                    </div>                              
-                                    <div onClick={()=>this.handleClick(key)} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
+                                <div className="DispCont" >
+                                    <div onClick={() => this.handleClick(key)} style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <b>{key.title}</b>
+                                    </div>
+                                    <div onClick={() => this.handleClick(key)} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
                                         {key.description}
-                                    </div >                     
+                                    </div >
                                     {key.reminder ?
                                         <Chip
                                             label={key.reminder}
                                             onDelete={() => this.props.reminderNote("", key._id)} />
                                         :
-                                        null}        
-                                         {key.label.length > 0 ?
+                                        null}
+                                    {key.label.length > 0 ?
                                         key.label.map((key1) =>
                                             <Chip
                                                 label={key1}
@@ -71,8 +77,8 @@ export default class ReminderNavigator extends Component {
                                             />
                                         )
                                         :
-                                        null}                                                                 
-                                </div>                                
+                                        null}
+                                </div>
                                 <div id="displaycontentdiv">
                                     <Tools
                                         createNotePropsToTools={this.props.getColor}
@@ -81,29 +87,29 @@ export default class ReminderNavigator extends Component {
                                         reminder={this.props.reminderNote}
                                         trashNote={this.props.trashNote}
                                         archiveStatus={key.archive}
-                                        archiveNote={this.props.archiveNote}      
-                                        addLabelToNote={this.props.addLabelToNote}     
-                                        deleteLabelFromNote={this.props.deleteLabelFromNote}                                                                    
+                                        archiveNote={this.props.archiveNote}
+                                        addLabelToNote={this.props.addLabelToNote}
+                                        deleteLabelFromNote={this.props.deleteLabelFromNote}
                                     />
                                 </div>
                             </Card>
                         )
-                    })              
+                    })
                     }
                 </div>
                 <ResponsiveDialog
-                        close={this.handleClose}
-                        ref={this.cardsToDialogBox}
-                        parentProps={this.state.open1}                      
-                        archiveNote={this.props.archiveNote}
-                        reminder={this.props.reminderNote}                   
-                        createNotePropsToTools={this.getColor}
-                        editTitle={this.props.editTitle}
-                        editDescription={this.props.editDescription}
-                        addLabelToNote={this.props.addLabelToNote}
-                        deleteLabelFromNote={this.props.deleteLabelFromNote}
-                    ></ResponsiveDialog>
+                    close={this.handleClose}
+                    ref={this.cardsToDialogBox}
+                    parentProps={this.state.open1}
+                    archiveNote={this.props.archiveNote}
+                    reminder={this.props.reminderNote}
+                    createNotePropsToTools={this.getColor}
+                    editTitle={this.props.editTitle}
+                    editDescription={this.props.editDescription}
+                    addLabelToNote={this.props.addLabelToNote}
+                    deleteLabelFromNote={this.props.deleteLabelFromNote}
+                ></ResponsiveDialog>
             </MuiThemeProvider>
         )
-}
+    }
 }

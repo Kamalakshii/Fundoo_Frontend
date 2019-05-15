@@ -20,7 +20,7 @@ export const askForPermissioToReceiveNotifications = async () => {
     return token;
   } catch (error) {
     console.error(error);
-  }
+  }    
 }
 export const deleteToken = async () => {
   try {

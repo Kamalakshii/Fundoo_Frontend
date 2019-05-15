@@ -58,7 +58,6 @@ export default class TrashOptions extends Component {
             console.log("error at closeLabelPopper in trashOption");
         }
     }
-
     render() {
         const { anchorEl, open } = this.state;
         return (

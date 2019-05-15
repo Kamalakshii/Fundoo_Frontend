@@ -14,7 +14,6 @@ import TrashedNavigator from "../components/trashedNavigator"
 import ReminderNavigator from "../components/reminderNavigator"
 import ResponsiveDialog from '../components/dilogBox'
 import EditPin from "./editPin"
-import PinAndOthers from '../components/notePin';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 const theme = createMuiTheme({

@@ -2,7 +2,7 @@
  *  @Purpose        : to display the notes that are archived.
  *  @file           : archivedNavigator.jsx       
  *  @author         : KAMALAKSHI C SWAMY 
- *  @since          : 16-004-2019
+ *  @since          : 16-04-2019
  *****************************************************************************************/
 import React, { Component } from 'react';
 import { Card, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';

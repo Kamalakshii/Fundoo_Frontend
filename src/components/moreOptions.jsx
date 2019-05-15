@@ -12,8 +12,6 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "@material-ui/core/Fade";
 import { MenuItem } from "@material-ui/core";
 import AddLabelsOnNote from "./labels";
-import { Snackbar, IconButton } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
 import "../App.css";
 export default class MoreOptions extends Component {
   constructor(props) {

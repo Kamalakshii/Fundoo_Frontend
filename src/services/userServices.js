@@ -9,6 +9,10 @@
  *  @since          : 29-03-2019
  ******************************************************************************/
 import axios from "axios";
+/**
+ * 
+ * @param {*} data 
+ */
 export function userLogin(data)
 {
     return axios.post('/login',data)
@@ -17,11 +21,18 @@ export function userRegister(data) {
     //console.log("dataaaaaaaaa=>",data);
     return axios.post('/registration',data)
 }
-
+/**
+ * 
+ * @param {*} data 
+ */
 export function forgotPassword(data)
 {
     return axios.post('/forgotPassword',data)
 }
+/**
+ * 
+ * @param {*} token
+ */
 export function resetPassword(password, token) {
     return axios.post(`/resetPassword/${token}`, 
          password,

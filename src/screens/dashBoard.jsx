@@ -86,7 +86,6 @@ export default class dashBoard extends Component {
                         handleNavigation={this.handleNavigation}
                         makeLabelFalse={this.makeLabelFalse}
                     />
-
                 </div>
                 <div className="setFixedMargin">
                     {this.state.archive || this.state.trash ?
@@ -112,7 +111,6 @@ export default class dashBoard extends Component {
                                 navigateReminder={this.state.reminder}
                                 labelValue={this.state.label}
                             />
-
                         </div>
                     }
                 </div>

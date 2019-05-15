@@ -75,11 +75,11 @@ export default class login extends React.Component {
             console.log("error at forgotPasswordPage in login");
         }
     };
-    
+
     handleSubmit = event => {
-        try {        
+        try {
             event.preventDefault();
-           
+
             if (!this.state.email) {
                 this.setState({
                     openSnackBar: true,
@@ -110,23 +110,23 @@ export default class login extends React.Component {
                 }
                 userLogin(data)
                     .then((response) => {
-                        console.log("response is  ============>",response);
+                        console.log("response is  ============>", response);
                         this.setState({
                             openSnackBar: true,
                             snackBarMessage: "Login Successfull!!"
                         });
-                         localStorage.setItem('username', response.data.result.firstname)
-                         console.log("in login_______________",response.data.result.firstname);
-                         
-                          localStorage.setItem('email', response.data.result.email)
-                         localStorage.setItem('userId', response.data.result._id)
-                    localStorage.setItem('token', response.data.token.token)
-                    localStorage.setItem('profilePic', response.data.result.profilePic);
-                    //    console.log("hhhhhhh",response.token);
+                        localStorage.setItem('username', response.data.result.firstname)
+                        console.log("in login_______________", response.data.result.firstname);
+
+                        localStorage.setItem('email', response.data.result.email)
+                        localStorage.setItem('userId', response.data.result._id)
+                        localStorage.setItem('token', response.data.token.token)
+                        localStorage.setItem('profilePic', response.data.result.profilePic);
+                        //    console.log("hhhhhhh",response.token);
                         this.props.history.push('/dashBoard');
                     })
                     .catch((err) => {
-                        console.log("err==>",err);
+                        console.log("err==>", err);
                         this.setState({
                             openSnackBar: true,
                             snackBarMessage: "Login failed!!"
@@ -137,7 +137,7 @@ export default class login extends React.Component {
             console.log("error at handleSubmit in login");
         }
     }
-   
+
     render() {
         return (
             <div>

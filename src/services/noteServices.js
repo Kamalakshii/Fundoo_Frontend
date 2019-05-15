@@ -5,9 +5,6 @@
  *  @since          : 29-03-2019
  *******************************************************************************/
 import axios from 'axios';
-//  import { notification } from '../../../Server/api/services/noteService';
-
-
 /**
  * @description:To create a new note
  * @param {*used to send data or note to server} data 
@@ -97,6 +94,10 @@ export function setReminder(data) {
         }
     )
 }
+/**
+ * 
+ * @param {*} data 
+ */
 export function isTrashed(data) {
 //console.log("in trashhhhhhhhhhhhhhh",data);
     return axios.put('/isTrash', data, {
@@ -104,6 +105,10 @@ export function isTrashed(data) {
 
     })
 }
+/**
+ * 
+ * @param {*} data 
+ */
 export function updateTitle(data) {
     var headers = {
         "token": localStorage.getItem("token")
@@ -114,6 +119,10 @@ export function updateTitle(data) {
         }
     )
 }
+/**
+ * 
+ * @param {*} data 
+ */
 export function updateDescription(data) {
     var headers = {
         "token": localStorage.getItem("token")
@@ -156,6 +165,10 @@ export function deleteNoteForever(data) {
         }
     )
 }
+/**
+ * 
+ * @param {*} data 
+ */
 export function notification(data){
     console.log("front to back data,,,,,,",data);   
     var headers = {
@@ -168,15 +181,22 @@ export function notification(data){
     }
     )
 }
-export function addLabel(url,data) {
-    console.log("create note call",data);
-    return axios(url, {
-        method: "POST",
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        data:data
-    })
+/**
+ * 
+ * @param {*} data 
+ */
+
+export function addLabel(data){
+    console.log("front to back data,,,,,,",data);   
+    var headers = {
+        "Content-Type" : "application/json",
+        "token" : localStorage.getItem("token")
+    }
+    return axios.post("/addLabel",
+    data,{
+        headers:headers
+    }
+    )
 }
 export function getLabels() {
     // console.log("*----get labels from front-end----*");
@@ -186,6 +206,10 @@ export function getLabels() {
         }
     })
 }  
+/**
+ * 
+ * @param {*} data 
+ */
 export function deleteLabel(data) {
     return axios('/deleteLabel', {
         method: "POST",

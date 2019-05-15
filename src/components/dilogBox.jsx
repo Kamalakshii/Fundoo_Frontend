@@ -1,6 +1,5 @@
 import React from 'react';
 import { Input, MuiThemeProvider, createMuiTheme, Chip } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import Tools from '../components/toolbar';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,7 +8,6 @@ const theme = createMuiTheme({
     MuiDialog: {
       paper: {
         borderRadius: "20px",
-        // boxShadow: "0 3px 5px rgba(0, 0, 0, 0.20)",
         overflowY: "inherit",
         border: "none",
       }
@@ -67,7 +65,6 @@ class ResponsiveDialog extends React.Component {
   handleClose = () => {
     this.props.editTitle(this.state._id, this.state.title)
     this.props.editDescription(this.state._id, this.state.description)
-    //this.props.updateDescription()
     this.props.close();
   }
   getData(note) {
@@ -181,7 +178,4 @@ class ResponsiveDialog extends React.Component {
     );
   }
 }
-ResponsiveDialog.propTypes = {
-  // fullScreen: PropTypes.bool.isRequired,
-};
 export default (ResponsiveDialog);

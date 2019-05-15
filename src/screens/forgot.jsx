@@ -70,23 +70,23 @@ export default class ForgotPassword extends React.Component {
             console.log("error at handleSubmit in forgotPassword");
         }
     };
-            handleSnackClose = () => {
-                try {
-                    this.setState({
-                        openSnackBar: false
-                    })
-                } catch (err) {
-                    console.log("error at handleSnackClose in forgotPassword");
-                }
-            }
-            loginclick = event => {
-                try {
-                    event.preventDefault();
-                    this.props.history.push("/login");
-                } catch (err) {
-                    console.log("error at loginclick in forgotPassword");
-                }
-            };
+    handleSnackClose = () => {
+        try {
+            this.setState({
+                openSnackBar: false
+            })
+        } catch (err) {
+            console.log("error at handleSnackClose in forgotPassword");
+        }
+    }
+    loginclick = event => {
+        try {
+            event.preventDefault();
+            this.props.history.push("/login");
+        } catch (err) {
+            console.log("error at loginclick in forgotPassword");
+        }
+    };
     render() {
         return (
             <div>
@@ -121,35 +121,35 @@ export default class ForgotPassword extends React.Component {
                         </Button>
                     </div>
                     <div >
-                    <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    open={this.state.openSnackBar}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    variant="error"
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id"> {this.state.snackBarMessage} </span>}
-                    action={[
-                        <div >
-                            <IconButton
-                                key="close"
-                                aria-label="Close"
-                                color="inherit"
-                                onClick={this.handleSnackClose}
-                            >
-                                <CloseIcon />
-                            </IconButton>
-                        </div>
-                    ]}
-                />
-            </div>
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right',
+                            }}
+                            open={this.state.openSnackBar}
+                            autoHideDuration={6000}
+                            onClose={this.handleSnackClose}
+                            variant="error"
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            message={<span id="message-id"> {this.state.snackBarMessage} </span>}
+                            action={[
+                                <div >
+                                    <IconButton
+                                        key="close"
+                                        aria-label="Close"
+                                        color="inherit"
+                                        onClick={this.handleSnackClose}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>
+                                </div>
+                            ]}
+                        />
                     </div>
                 </div>
+            </div>
         );
     }
 }

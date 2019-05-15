@@ -15,7 +15,7 @@ export default class AddLabelsOnNote extends Component {
             anchorEl: null,
             open: false,
             placement: null,
-            label: [],labelName:""
+            label: [], labelName: ""
         }
     }
     addLabelPopup = () => {
@@ -57,9 +57,9 @@ export default class AddLabelsOnNote extends Component {
     render() {
         let displayLabels = this.state.label;
         if (this.state.label !== "") {
-            displayLabels = this.state.label.filter(x=>x.label.includes(this.state.labelName)).map((key,i) =>
+            displayLabels = this.state.label.filter(x => x.label.includes(this.state.labelName)).map((key, i) =>
                 <MenuItem style={{ display: "flex", flexDirection: "row", }}>
-                    <Checkbox onClick={() => this.selectLabel(this.props.noteID, key.label)} key={i}/>
+                    <Checkbox onClick={() => this.selectLabel(this.props.noteID, key.label)} key={i} />
                     <div style={{ color: "black", marginRight: "50px", fontFamily: "arial", fontSize: "1rem", marginBottom: "10px", marginTop: "10px" }}>
                         {key.label}
                     </div>
@@ -69,7 +69,7 @@ export default class AddLabelsOnNote extends Component {
         const { anchorEl, open } = this.state;
         return (
             <div>
-                <Popper open={open} anchorEl={anchorEl} placement={'right'}  transition style={{ zIndex: 5500 }}>
+                <Popper open={open} anchorEl={anchorEl} placement={'right'} transition style={{ zIndex: 5500 }}>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={0}>
                             <Paper className="moreOptionsPopper" style={{ paddingTop: "10px" }}>
@@ -78,14 +78,14 @@ export default class AddLabelsOnNote extends Component {
                                         Label Note
                                     </div>
                                     <div>
-                                    <input className = "LabelSearch" style={{paddingTop:"10px"}}
-                                    id = "labelSearchInput"
-                                    maxLength="50"
-                                    placeholder = "enter label name"
-                                    value = {this.state.labelName}
-                                    onChange={(e)=>{this.setState({labelName:e.target.value}) }}
-                                    />
-                                        </div>
+                                        <input className="LabelSearch" style={{ paddingTop: "10px" }}
+                                            id="labelSearchInput"
+                                            maxLength="50"
+                                            placeholder="enter label name"
+                                            value={this.state.labelName}
+                                            onChange={(e) => { this.setState({ labelName: e.target.value }) }}
+                                        />
+                                    </div>
                                     <div>
                                         {displayLabels}
                                     </div>

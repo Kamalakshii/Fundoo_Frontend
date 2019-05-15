@@ -1,3 +1,9 @@
+/****************************************************************************************
+ *  @Purpose        : to crop the profile picture 
+ *  @file           : crop.jsx       
+ *  @author         : KAMALAKSHI C SWAMY 
+ *  @since          : 26-04-2019
+ *****************************************************************************************/
 import React, { Component } from "react";
 import "cropperjs/dist/cropper.css";
 import Cropper from "react-cropper";

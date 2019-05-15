@@ -45,6 +45,8 @@ class EditLabel extends Component {
         const label = {
             label: value
         }
+        console.log("value is",label);
+        
         if (label.label !== "") {
             addLabel( label)
                 .then(async (result) => {
@@ -119,12 +121,15 @@ class EditLabel extends Component {
          this.setState({ labelID: "" })
     }
     handlEditLabel=(evt)=> {
+       
+        
         this.setState({ editLabel: evt.target.value });
     }
     changeLables=(id)=> {
         this.setState({ labelID: id })
     }
     handleLabel=(evt)=> {
+        
         this.setState({ label: evt.target.value })
     }
     handleToggle=()=> {
